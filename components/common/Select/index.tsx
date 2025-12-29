@@ -38,7 +38,6 @@ export const FormSelect = <T extends FieldValues>({
   label,
   placeholder = "Select...",
   options,
-  disabled,
   searchable = false,
 }: FormSelectProps<T>) => {
   const { control } = useFormContext<T>();
