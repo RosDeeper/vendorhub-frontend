@@ -55,7 +55,7 @@ const EnterResetEmail = ({ onSuccess }: { onSuccess: () => void }) => {
             </Grid>
           </Grid>
 
-          <Stack mt={4} alignItems='center' direction='column' gap={3}>
+          <Stack mt={4} alignItems='center' direction='row-reverse' gap={3}>
             <Button
               type="button"
               label="Request OTP code"

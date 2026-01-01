@@ -84,7 +84,7 @@ const EnterOTP = ({ onSuccess }: { onSuccess: () => void }) => {
 
       </Stack>
 
-      <Stack mt={2} alignItems='center' direction='column' gap={3}>
+      <Stack mt={2} alignItems='center' direction='row-reverse' gap={3}>
         <Button
           type="button"
           label="Continue"

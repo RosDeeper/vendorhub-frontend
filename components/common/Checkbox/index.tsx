@@ -19,6 +19,7 @@ const LibCheckbox = React.forwardRef<
       data-slot="checkbox"
       className={cn(
         "peer size-4 shrink-0 outline-2 outline-border ring-offset-white focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-main data-[state=checked]:text-white",
+        props?.disabled && 'bg-gray-200',
         className
       )}
       {...props}
@@ -48,7 +49,12 @@ export const Checkbox = React.forwardRef<
     <div className="flex flex-col gap-1">
       <label className="flex items-center gap-2 cursor-pointer">
         <LibCheckbox ref={ref} {...props} />
-        <span className="text-sm text-foreground font-bold">{label}</span>
+        <span className={cn(
+          "text-sm text-foreground font-bold select-none",
+          props?.disabled && 'opacity-50'
+        )}>
+          {label}
+        </span>
       </label>
 
       {error && (

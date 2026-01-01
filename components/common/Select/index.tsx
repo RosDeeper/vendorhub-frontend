@@ -38,6 +38,7 @@ export const FormSelect = <T extends FieldValues>({
   label,
   placeholder = "Select...",
   options,
+  disabled,
   searchable = false,
 }: FormSelectProps<T>) => {
   const { control } = useFormContext<T>();
@@ -58,16 +59,25 @@ export const FormSelect = <T extends FieldValues>({
               <span className="font-bold">{label}</span>
             )}
 
-            <Popover open={open} onOpenChange={setOpen}>
+            <Popover 
+              open={open} 
+              onOpenChange={(v) => {
+                if (disabled) return;
+                setOpen(v);
+              }}
+            >
               <PopoverTrigger asChild>
                 <FormControl>
-                  <div style={{
-                    border: '2px solid #000',
-                    borderRadius: '5px',
-                    padding: '0 12px',
-                    backgroundColor: '#fff',
-                    cursor: 'pointer'
-                  }}>
+                  <div 
+                    className={cn(
+                      "rounded-base bg-white cursor-pointer",
+                      disabled && "bg-gray-200"
+                    )}
+                    style={{
+                      border: '2px solid #000',
+                      padding: '0 12px',
+                    }}
+                  >
                     <div className="flex h-10 justify-between items-center">
                       {selected?.label ? (
                         <span className="font-base text-black">

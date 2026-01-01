@@ -109,7 +109,7 @@ const EnterNewPassword = () => {
             </Grid>
           </Grid>
 
-          <Stack mt={4} alignItems='center' direction='column' gap={3}>
+          <Stack mt={4} alignItems='center' direction='row-reverse' gap={3}>
             <Button
               type="submit"
               label="Continue"
