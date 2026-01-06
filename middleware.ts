@@ -11,7 +11,10 @@ const isPublicPath = (pathname: string) => {
 
 function extractSubdomain(req: NextRequest): string | null {
   const url = req.url;
-  const host = req.headers.get('host') || '';
+  const host = req.headers.get('host');
+
+  if (!host) return null;
+
   const hostname = host.split(':')[0];
 
   // Local development environment
@@ -30,20 +33,19 @@ function extractSubdomain(req: NextRequest): string | null {
   }
 
   // Production environment
-  const rootDomainFormatted = rootDomain.split(':')[0];
-
-  if (hostname.includes('---') && hostname.endsWith('.vercel.app')) {
-    const parts = hostname.split('---');
-
-    return parts.length > 0 ? parts[0] : null;
+  if (hostname.endsWith('.vercel.app') && hostname.includes('---')) {
+    return hostname.split('---')[0];
   }
 
-  const isSubdomain =
-    hostname !== rootDomainFormatted &&
-    hostname !== `www.${rootDomainFormatted}` &&
-    hostname.endsWith(`.${rootDomainFormatted}`);
+  if (
+    hostname !== rootDomain &&
+    hostname !== `www.${rootDomain}` &&
+    hostname.endsWith(`.${rootDomain}`)
+  ) {
+    return hostname.replace(`.${rootDomain}`, '');
+  }
 
-  return isSubdomain ? hostname.replace(`.${rootDomainFormatted}`, '') : null;
+  return null;
 }
 
 export function middleware(req: NextRequest) {
