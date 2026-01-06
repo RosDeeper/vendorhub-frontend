@@ -73,7 +73,7 @@ export const middleware = async (req: NextRequest) => {
     }
 
     if (pathname === '/') {
-      return NextResponse.rewrite(new URL(`/s/${subdomain}`, req.url));
+      return NextResponse.rewrite(new URL(`/vh/${subdomain}`, req.url));
     }
   }
 
