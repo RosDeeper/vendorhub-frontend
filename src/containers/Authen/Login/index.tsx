@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/immutability */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
@@ -7,6 +8,7 @@ import { CiMail } from "react-icons/ci";
 import { IoKeyOutline } from "react-icons/io5";
 import { LuArrowRightFromLine } from "react-icons/lu";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
 
@@ -19,7 +21,7 @@ import { GoogleLogo } from "@/components/common/Logo";
 import { COLOR_CODES } from "@/src/constants/color";
 import { Divider, FormInput } from "@/components/common";
 import { SYSTEM_PATHS } from "@/src/constants/path";
-import { Toastify } from "@/lib";
+import { Toastify, mockLogin, protocol, rootDomain } from "@/lib";
 import { CrudKeys, formSchema, initialValues, LoginFormValues } from "./helpers";
 
 import { useLogin } from "@/src/queries";
@@ -53,7 +55,18 @@ const LoginPage = () => {
   } = form;
 
   const handleValidSubmit = (formValues: LoginFormValues) => {
-    login(formValues);
+    // login(formValues);
+    const { email, password } = formValues;
+    const result = mockLogin(email, password);
+
+    if (!result) {
+      return;
+    }
+
+    localStorage.setItem('accessToken', result.accessToken)
+    localStorage.setItem('user', JSON.stringify(result.user))
+
+    redirect(`${protocol}://${result.user.tenant.slug}.${rootDomain}/dashboard`);
   };
 
   return (

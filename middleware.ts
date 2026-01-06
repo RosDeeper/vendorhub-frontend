@@ -3,13 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { PUBLIC_PATHS } from "./src/constants/path";
 import { rootDomain } from "./lib";
 
-export const isPublicPath = (pathname: string) => {
+const isPublicPath = (pathname: string) => {
   return PUBLIC_PATHS?.some(
     (path) => pathname === path || pathname.startsWith(`${path}/`)
   );
 };
 
-export const extractSubdomain = (req: NextRequest): string | null => {
+function extractSubdomain(req: NextRequest): string | null {
   const url = req.url;
   const host = req.headers.get('host') || '';
   const hostname = host.split(':')[0];
@@ -46,7 +46,7 @@ export const extractSubdomain = (req: NextRequest): string | null => {
   return isSubdomain ? hostname.replace(`.${rootDomainFormatted}`, '') : null;
 }
 
-export const middleware = async (req: NextRequest) => {
+export function middleware(req: NextRequest) {
   // const refreshToken = req.cookies.get("refreshToken")?.value;
 
   // const { pathname } = req.nextUrl;
@@ -68,13 +68,13 @@ export const middleware = async (req: NextRequest) => {
   const subdomain = extractSubdomain(req);
 
   if (subdomain) {
-    if (pathname.startsWith('/admin')) {
-      return NextResponse.redirect(new URL('/', req.url));
+    if (pathname.startsWith('/vh')) {
+      return NextResponse.next();
     }
 
-    if (pathname === '/') {
-      return NextResponse.rewrite(new URL(`/vh/${subdomain}`, req.url));
-    }
+    return NextResponse.rewrite(
+      new URL(`/vh/${subdomain}${pathname}`, req.url)
+    );
   }
 
   return NextResponse.next();
