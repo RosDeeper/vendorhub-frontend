@@ -48,7 +48,7 @@ function extractSubdomain(req: NextRequest): string | null {
   return null;
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   // const refreshToken = req.cookies.get("refreshToken")?.value;
 
   // const { pathname } = req.nextUrl;
