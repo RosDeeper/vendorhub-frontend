@@ -8,7 +8,7 @@ import {
   FormItem,
   FormControl,
 } from "@/components/ui";
-import { Slider } from "./SliderComponents";
+import { Slider } from "./lib-ui";
 import { Stack } from "@mui/material";
 
 type FormSliderRangeProps<T extends FieldValues> = {

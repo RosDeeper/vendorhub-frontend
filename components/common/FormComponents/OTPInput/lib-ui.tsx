@@ -1,10 +1,10 @@
-"use client"
+'use client';
 
-import { OTPInput, OTPInputContext } from "input-otp"
+import { OTPInput, OTPInputContext } from "input-otp";
+import { useContext } from "react";
 import { Dot } from "lucide-react"
-import { Dispatch, SetStateAction, useContext } from "react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib";
 
 const InputOTP = ({
   className,
@@ -49,7 +49,9 @@ const InputOTPSlot = ({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        "relative flex size-10 items-center justify-center border-y-2 border-r-2 border-border bg-secondary-background text-sm font-base text-foreground first:rounded-l-base first:border-l-2 last:rounded-r-base transition-all",
+        "relative flex size-10 items-center justify-center border-y-2 border-r-2",
+        "border-border bg-secondary-background text-sm font-base text-foreground",
+        "first:rounded-l-base first:border-l-2 last:rounded-r-base transition-all",
         isActive && "z-10 ring-1 ring-ring",
         className,
       )}
@@ -73,31 +75,9 @@ const InputOTPSeparator = ({ ...props }: React.ComponentProps<"div">) => {
   )
 };
 
-type OTPInputProps = {
-  value: string;
-  onChange: Dispatch<SetStateAction<string>>;
-};
-
-export const FormOTPInput = ({ value, onChange }: OTPInputProps) => {
-  return (
-    <InputOTP 
-      maxLength={6}
-      value={value}
-      onChange={onChange}
-      inputMode='numeric'
-      pattern="\d*"
-    >
-      <InputOTPGroup>
-        <InputOTPSlot index={0} />
-        <InputOTPSlot index={1} />
-        <InputOTPSlot index={2} />
-      </InputOTPGroup>
-      <InputOTPSeparator />
-      <InputOTPGroup>
-        <InputOTPSlot index={3} />
-        <InputOTPSlot index={4} />
-        <InputOTPSlot index={5} />
-      </InputOTPGroup>
-    </InputOTP>
-  )
+export { 
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
 };

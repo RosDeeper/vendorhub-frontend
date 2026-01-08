@@ -25,7 +25,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui";
 import { FONT_WEIGHT, TEXT_SIZE } from "@/src/constants/text";
-import { Input } from "../Input";
+import { Input } from "../FormComponents";
 import { 
   TableBody, 
   TableCell, 

@@ -1,6 +1,7 @@
 "use client";
 
 import { Command as CommandPrimitive } from "cmdk";
+import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { Search } from "lucide-react";
 import * as React from "react";
 
@@ -13,6 +14,8 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
+// //////////////////////// COMMAND /////////////////////////////
+
 const Command = ({
   className,
   ...props
@@ -21,7 +24,8 @@ const Command = ({
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "flex h-full w-full flex-col overflow-hidden rounded-none border-2 border-border bg-main font-base text-main-foreground",
+        "flex h-full w-full flex-col overflow-hidden rounded-none border-2 border-border",
+        "bg-main font-base text-main-foreground",
         className,
       )}
       {...props}
@@ -45,7 +49,13 @@ const CommandDialog = ({
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
       <DialogContent className="overflow-hidden p-0 rounded-none! shadow-shadow border-0">
-        <Command className="**:data-[slot=command-input-wrapper]:h-12 **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:font-heading **:[[cmdk-group-heading]]:mb-1 **:[[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 **:[[cmdk-input]]:h-12 **:[[cmdk-item]]:px-2 **:[[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <Command className={cn(
+          "**:data-[slot=command-input-wrapper]:h-12 **:[[cmdk-group-heading]]:px-2",
+          "**:[[cmdk-group-heading]]:font-heading **:[[cmdk-group-heading]]:mb-1",
+          "**:[[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5",
+          "**:[[cmdk-input]]:h-12 **:[[cmdk-item]]:px-2 **:[[cmdk-item]]:py-3",
+          "[&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5"
+        )}>
           {children}
         </Command>
       </DialogContent>
@@ -66,7 +76,9 @@ const CommandInput = ({
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "flex h-10 w-full rounded-base bg-transparent py-3 text-sm outline-hidden placeholder:text-main-foreground placeholder:opacity-50 disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-10 w-full rounded-base bg-transparent py-3 text-sm outline-hidde",
+          "placeholder:text-main-foreground placeholder:opacity-50",
+          "disabled:cursor-not-allowed disabled:opacity-50",
           className,
         )}
         {...props}
@@ -112,7 +124,9 @@ const CommandGroup = ({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "p-2! text-main-foreground overflow-hidden **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-base **:[[cmdk-group-heading]]:font-heading",
+        "p-2! text-main-foreground overflow-hidden **:[[cmdk-group-heading]]:px-2",
+        "**:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-base",
+        "**:[[cmdk-group-heading]]:font-heading",
         className,
       )}
       {...props}
@@ -141,7 +155,11 @@ const CommandItem = ({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "cursor-pointer h-9 relative p-3! justify-between flex select-none items-center rounded-base px-2 py-1.5 gap-2 text-sm text-main-foreground outline-border outline-0 aria-selected:outline-2 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "cursor-pointer h-9 relative p-3! justify-between flex select-none items-center",
+        "rounded-base px-2 py-1.5 gap-2 text-sm text-main-foreground outline-border",
+        "outline-0 aria-selected:outline-2 data-[disabled=true]:pointer-events-none",
+        "data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "[&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -165,6 +183,47 @@ const CommandShortcut = ({
   )
 };
 
+// //////////////////////// POPOVER /////////////////////////////
+const Popover = ({
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Root>) => {
+  return <PopoverPrimitive.Root data-slot="popover" {...props} />
+};
+
+const PopoverTrigger = ({
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) => {
+  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
+};
+
+const PopoverContent = ({
+  className,
+  align = "center",
+  sideOffset = 4,
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Content>) => {
+  return (
+    <PopoverPrimitive.Portal>
+      <PopoverPrimitive.Content
+        data-slot="popover-content"
+        align={align}
+        sideOffset={sideOffset}
+        className={cn(
+          "z-50 w-72 rounded-base border-2 border-border bg-main p-4 text-foreground",
+          "outline-none data-[state=open]:animate-in data-[state=closed]:animate-out",
+          "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+          "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
+          "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          "origin-(--radix-popover-content-transform-origin)",
+          className,
+        )}
+        {...props}
+      />
+    </PopoverPrimitive.Portal>
+  )
+};
+
 export {
   Command,
   CommandDialog,
@@ -175,4 +234,8 @@ export {
   CommandItem,
   CommandShortcut,
   CommandSeparator,
+
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
 };

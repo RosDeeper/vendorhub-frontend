@@ -5,19 +5,17 @@ import { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { FormControl, FormField, FormItem } from "@/components/ui";
-import { 
-  Popover, 
-  PopoverContent,
-  PopoverTrigger
-} from "./PopoverComponents";
-import { 
-  Command, 
-  CommandEmpty, 
-  CommandGroup, 
-  CommandInput, 
-  CommandItem 
-} from "./CommandComponents";
 import { cn } from "@/lib";
+import { 
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "./lib-ui";
 
 type Option = {
   label: string;
