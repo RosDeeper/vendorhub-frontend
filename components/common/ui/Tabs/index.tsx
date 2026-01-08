@@ -1,10 +1,10 @@
-import { 
-  Tabs as LibTabs, 
-  TabsList, 
-  TabsTrigger
-} from "@/components/ui";
 import { FONT_WEIGHT, TEXT_SIZE } from "@/src/constants/text";
 import { COLOR_CODES } from "@/src/constants/color";
+import { 
+  Tabs as LibTabs,
+  TabsList,
+  TabsTrigger,
+} from "./lib-ui";
 
 type Props = {
   tabsList: { label: string, value: string }[];
@@ -48,4 +48,4 @@ const Tabs = ({ tabsList, currentTab, onChange }: Props) => {
   );
 };
 
-export default Tabs;
+export { Tabs };

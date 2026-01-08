@@ -25,7 +25,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui";
 import { FONT_WEIGHT, TEXT_SIZE } from "@/src/constants/text";
-import { Input } from "../FormComponents";
 import { 
   TableBody, 
   TableCell, 
@@ -33,13 +32,12 @@ import {
   TableHeader, 
   TableRow, 
   UITable,
-} from "./TableComponents";
-import { 
   Pagination, 
   PaginationContent, 
   PaginationItem, 
   PaginationLink, 
-} from "./PaginationComponents";
+} from "./lib-ui";
+import { Input } from "../../FormComponents";
 import { useDialog } from "@/components/hooks";
 
 // CUSTOME TABLE
@@ -294,4 +292,4 @@ const Table = <TData, TValue>({
   );  
 };
 
-export default Table;
+export { Table };

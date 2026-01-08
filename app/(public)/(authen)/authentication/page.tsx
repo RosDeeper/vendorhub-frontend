@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { Stack } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { Tabs } from "@/components/common";
 import { LoginPage, SignUpPage } from "@/src/containers/Authen";
+import { Tabs } from "@/components/common/ui";
 
 import '../styles.scss';
 

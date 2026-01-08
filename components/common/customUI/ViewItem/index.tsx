@@ -21,4 +21,4 @@ const ViewItem = ({ label, value, xs = 6 }: Props) => {
   );
 };
 
-export default ViewItem;
+export { ViewItem };

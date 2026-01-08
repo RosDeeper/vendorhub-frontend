@@ -3,7 +3,8 @@
 import { Stack } from '@mui/material';
 import { useMemo } from 'react';
 
-import { Table } from '@/components/common';
+import { Table } from '@/components/common/ui';
+
 import { allColumns } from './allColumns';
 import FilterForm from './FilterForm';
 import { mock } from './helpers';
