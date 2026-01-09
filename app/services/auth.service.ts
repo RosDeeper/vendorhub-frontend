@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+'use server';
+
 const BE_API = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 export type LoginPayload = {
@@ -12,7 +13,7 @@ export type RegisterPayload = {
   userName?: string;
 };
 
-const login = async (payload: LoginPayload): Promise<any> => {
+export const login = async (payload: LoginPayload): Promise<any> => {
   const response = await fetch(`${BE_API}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -29,7 +30,7 @@ const login = async (payload: LoginPayload): Promise<any> => {
   return data;
 };
 
-const register = async (payload: RegisterPayload): Promise<any> => {
+export const register = async (payload: RegisterPayload): Promise<any> => {
   const response = await fetch(`${BE_API}/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -44,9 +45,4 @@ const register = async (payload: RegisterPayload): Promise<any> => {
   }
 
   return data;
-};
-
-export const authService = {
-  login,
-  register,
 };

@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useMutation } from "@tanstack/react-query";
 
-import { authService } from "@/app/services";
+import { login } from "@/app/services";
 
 type Props = {
   onSuccess?: (data?: any) => void;
@@ -12,7 +11,7 @@ type Props = {
 
 export const useLogin = (options: Props) => {
   const mutation = useMutation({
-    mutationFn: authService.login,
+    mutationFn: login,
 
     onSuccess: (data) => {
       options?.onSuccess?.(data);
@@ -23,10 +22,8 @@ export const useLogin = (options: Props) => {
     },
   });
 
-  const { mutate: login, isPending } = mutation;
-
   return {
-    login,
-    isLoading: isPending,
+    login: mutation.mutate,
+    isLoading: mutation.isPending,
   };
 };
