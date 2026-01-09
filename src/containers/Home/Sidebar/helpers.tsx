@@ -2,6 +2,7 @@ import { RxDashboard } from "react-icons/rx";
 import { BsBoxSeam } from "react-icons/bs";
 import { BsPeople } from "react-icons/bs";
 import { IoSparklesOutline } from "react-icons/io5";
+import { LuCalendarDays } from "react-icons/lu";
 
 import { SYSTEM_PATHS } from "@/src/constants/path";
 import { COLOR_CODES } from "@/src/constants/color";
@@ -21,6 +22,11 @@ export const sidebarList = [
     title: 'Service',
     route: SYSTEM_PATHS.service,
     icon: <IoSparklesOutline size={24} color={COLOR_CODES.ICON_COLOR} />,
+  },
+  {
+    title: 'Booking',
+    route: SYSTEM_PATHS.booking,
+    icon: <LuCalendarDays size={24} color={COLOR_CODES.ICON_COLOR} />,
   },
   {
     title: 'Product',

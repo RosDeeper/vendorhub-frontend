@@ -5,6 +5,7 @@ export const SYSTEM_PATHS = {
   product: '/product',
   employee: '/employee',
   service: '/service',
+  booking: '/booking',
 };
 
 export const PUBLIC_PATHS = [

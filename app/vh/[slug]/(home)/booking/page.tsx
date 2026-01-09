@@ -5,7 +5,7 @@ import { ProductList } from "@/src/containers/ProductManagement";
 
 const X = () => {
   const breadcrumbItems = [
-    { label: "Service Management", href: "/service" },
+    { label: "Booking Management", href: "/booking" },
   ];
 
   return (
