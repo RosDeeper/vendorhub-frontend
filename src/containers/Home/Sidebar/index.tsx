@@ -2,33 +2,19 @@
 
 import { Stack, Typography } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
-import { RxDashboard } from "react-icons/rx";
-import { BsBoxSeam } from "react-icons/bs";
 import { useState } from "react";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 
 import { FONT_WEIGHT } from "@/src/constants/text";
 import { useSidebar } from "@/components/hooks";
+import { sidebarList } from "./helpers";
 
 const Sidebar = () => {
   const router = useRouter();
   const pathname = usePathname();
   // const { isCollapsed, toggleSidebar } = useSidebar();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-
-  const sidebarList = [
-    {
-      title: 'Dashboard',
-      route: '/dashboard',
-      icon: <RxDashboard size={24} color="#584700" />,
-    },
-    {
-      title: 'Product',
-      route: '/product',
-      icon: <BsBoxSeam size={24} color="#584700" />,
-    },
-  ];
-
+  
   return (
     <Stack>
       <Stack 

@@ -192,7 +192,7 @@ const Table = <TData, TValue>({
           border: '1px solid #000',
           padding: '12px 20px',
           backgroundColor: '#F7F6EC',
-          maxHeight: '518px',
+          maxHeight: 'calc(100vh - 260px)',
         }}
         gap={2}
       >

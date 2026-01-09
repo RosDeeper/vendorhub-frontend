@@ -22,4 +22,6 @@ export const COLOR_CODES = {
   GREY_NORMAL: "var(--grey-normal)",
   GREY_DARK: "var(--grey-dark)",
   GREY_DARKER: "var(--grey-darker)",
+
+  ICON_COLOR: '#584700',
 };
