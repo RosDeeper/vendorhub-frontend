@@ -1,9 +1,8 @@
 import { Stack } from "@mui/material";
 
 import { Breadcrumbs } from "@/components/common";
-import { ProductList } from "@/src/containers/ProductManagement";
 
-const X = async () => {
+const X = () => {
   const breadcrumbItems = [
     { label: "Service Management", href: "/service" },
   ];
@@ -11,7 +10,6 @@ const X = async () => {
   return (
     <Stack gap={2}>
       <Breadcrumbs items={breadcrumbItems} />
-      <ProductList />
     </Stack>
   );
 };

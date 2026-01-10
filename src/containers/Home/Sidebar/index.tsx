@@ -48,7 +48,7 @@ const Sidebar = () => {
                 router.push(item.route);
               }}
             >
-              {item.icon}
+              <span>{item.icon}</span>
               {!isCollapsed &&  (
                 <Typography
                   fontWeight={FONT_WEIGHT.BOLD}

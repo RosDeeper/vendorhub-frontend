@@ -6,6 +6,8 @@ export const SYSTEM_PATHS = {
   employee: '/employee',
   service: '/service',
   booking: '/booking',
+  payment: '/payment',
+  voucher: '/voucher',
 };
 
 export const PUBLIC_PATHS = [

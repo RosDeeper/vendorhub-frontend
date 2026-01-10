@@ -3,7 +3,7 @@ import { Stack } from "@mui/material";
 import { Breadcrumbs } from "@/components/common";
 import { ProductList } from "@/src/containers/ProductManagement";
 
-const X = async () => {
+const X = () => {
   const breadcrumbItems = [
     { label: "Product Management", href: "/product" },
   ];

@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/common";
 
 const X = () => {
   const breadcrumbItems = [
-    { label: "Booking Management", href: "/booking" },
+    { label: "Voucher Management", href: "/voucher" },
   ];
 
   return (
