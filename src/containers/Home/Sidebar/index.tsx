@@ -2,7 +2,7 @@
 
 import { Stack, Typography } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 
 import { FONT_WEIGHT } from "@/src/constants/text";
@@ -14,6 +14,12 @@ const Sidebar = () => {
   const pathname = usePathname();
   // const { isCollapsed, toggleSidebar } = useSidebar();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const [activeRoute, setActiveRoute] = useState(pathname);
+
+  useEffect(() => {
+    setActiveRoute(pathname);
+  }, [pathname]);
+
   
   return (
     <Stack>
@@ -24,7 +30,7 @@ const Sidebar = () => {
         }}
       >
         {sidebarList.map((item, index) => {
-          const isActive = pathname.startsWith(item.route);
+          const isActive = activeRoute.startsWith(item.route);
 
           return (
             <Stack 
@@ -37,7 +43,10 @@ const Sidebar = () => {
                   : "transparent",
                 transform: isActive ? "translateX(0)" : "translateX(-4px)",
               }}
-              onClick={() => router.push(item.route)}
+              onClick={() => {
+                setActiveRoute(item.route); 
+                router.push(item.route);
+              }}
             >
               {item.icon}
               {!isCollapsed &&  (

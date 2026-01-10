@@ -1,0 +1,10 @@
+.loader {
+  width: 120px;
+  height: 12px;
+  background: radial-gradient(circle closest-side,#facc00 92%,#0000) calc(100%/3) 0/calc(100%/4) 100%;
+  animation: l2 0.5s infinite linear;
+}
+
+@keyframes l2 {
+    100% {background-position: 0 0}
+}
