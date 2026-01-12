@@ -152,7 +152,7 @@ const PaginationLink = ({
       aria-current={isActive ? "page" : undefined}
       className={cn(
         buttonVariants({
-          variant: "noShadow",
+          variant: "primary",
           size,
         }),
         className,
