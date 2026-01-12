@@ -6,8 +6,8 @@ import { BiFilterAlt } from "react-icons/bi";
 import { IoIosSearch } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
 
-import { FormInput, FormSlider, FormSelect } from "@/components/common";
-import { Button, Form } from "@/components/ui";
+import { FormInput, FormSlider, FormSelect, Button } from "@/components/common";
+import { Form } from "@/components/ui";
 import { 
   ProductFilterParams, 
   ProductFilterParamsValues,
@@ -112,14 +112,14 @@ const FilterForm = () => {
         style={{ marginTop: '12px' }}
       >
         <Button
-          variant='noShadow'
+          variant='primary'
           label="Reset"
           style={{ width: '140px', backgroundColor: '#fff' }}
           startIcon={<LiaTimesSolid style={{ width: '20px', height: '20px' }} />}
         />
         <Button
           type="submit"
-          variant='noShadow'
+          variant='primary'
           form="filter-form"
           label="Apply"
           style={{ width: '140px' }}
