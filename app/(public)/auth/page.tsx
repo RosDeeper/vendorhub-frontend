@@ -1,12 +1,10 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
 import { useEffect, useState } from "react";
 import { Stack } from "@mui/material";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import { LoginPage, SignUpPage } from "@/src/containers/Authen";
-import { Tabs } from "@/components/common/ui";
 
 import '../styles.scss';
 
@@ -16,7 +14,6 @@ const tabs = [
 ];
 
 const X = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const typeFromUrl = searchParams.get("type") as "login" | "signup";
@@ -24,11 +21,6 @@ const X = () => {
   const [currentTab, setCurrentTab] = useState<string>(
     typeFromUrl ?? tabs[0].value
   );
-
-  const handleChangeTab = (tab: string) => {
-    setCurrentTab(tab);
-    router.push(`?type=${tab}`, { scroll: false });
-  };
 
   const renderTab = () => {
     switch (currentTab) {
@@ -45,14 +37,7 @@ const X = () => {
   }, [typeFromUrl])
 
   return (
-    <Stack className="authen-page" gap={2}>
-      <Tabs 
-        tabsList={tabs}
-        currentTab={currentTab}
-        onChange={handleChangeTab}
-      />
-      {renderTab()}
-    </Stack>
+    renderTab()
   );
 };
 

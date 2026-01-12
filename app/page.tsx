@@ -1,11 +1,17 @@
+'use client';
+
 import Image from 'next/image';
 import { Typography, Stack } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/common';
+import { SYSTEM_PATHS } from '@/src/constants/path';
 
 import './styles.scss';
 
 const X = () => {
+  const router = useRouter();
+
   return (
     <div className="background-image">
       <div className='flex flex-col h-full justify-center items-center'>
@@ -35,6 +41,7 @@ const X = () => {
           <Button 
             label='Sign In'
             variant='primary'
+            onClick={() => router.push(`${SYSTEM_PATHS.auth}?type=login`)}
             style={{ width: '160px' }}
           />
         </Stack>

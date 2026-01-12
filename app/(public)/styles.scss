@@ -1,13 +1,3 @@
-.MuiStack-root {
-  &.authen-page {
-    margin: 0 auto;
-    border: 8px solid var(--primary-color);
-    border-radius: 20px;
-    padding: 20px;
-    width: 620px;
-  }
-}
-
 .MuiTypography-root {
   &.slogan {
     font-weight: var(--font-weight-bold);
@@ -29,4 +19,17 @@
     font-weight: var(--font-weight-semibold);
     font-size: var(--text-heading-sm);
   }
+}
+
+.background-image {
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url('/assets/background-image.png') center / 100% 100% no-repeat;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  z-index: -1;
 }

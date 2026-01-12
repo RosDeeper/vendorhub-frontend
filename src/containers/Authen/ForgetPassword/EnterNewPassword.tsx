@@ -68,7 +68,7 @@ const EnterNewPassword = () => {
           <Button
             label="Login"
             onClick={() => {
-              router.push(`${SYSTEM_PATHS.authentication}?type=login`);
+              router.push(`${SYSTEM_PATHS.auth}?type=login`);
               closeDialog();
             }}
           />

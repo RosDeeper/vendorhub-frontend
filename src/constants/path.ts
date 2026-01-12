@@ -1,5 +1,5 @@
 export const SYSTEM_PATHS = {
-  authentication: '/authentication',
+  auth: '/auth',
   forgetPassword: '/forget-password',
   dashboard: '/dashboard',
   product: '/product',
@@ -11,6 +11,6 @@ export const SYSTEM_PATHS = {
 };
 
 export const PUBLIC_PATHS = [
-  SYSTEM_PATHS.authentication,
+  SYSTEM_PATHS.auth,
   SYSTEM_PATHS.forgetPassword,
 ];

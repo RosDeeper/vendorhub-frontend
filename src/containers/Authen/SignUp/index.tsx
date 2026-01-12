@@ -10,12 +10,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { HiOutlineUser } from "react-icons/hi2";
 
-import { 
-  StarBlingEmoji, 
-  RocketEmoji, 
-  MoneyBagEmoji,
-  PeopleGroupEmoji
-} from "@/components/common/Emoji";
+import { PeopleGroupEmoji } from "@/components/common/Emoji";
 import { Form } from "@/components/ui";
 import { GoogleLogo } from "@/components/common/Logo";
 import { COLOR_CODES } from "@/src/constants/color";
@@ -95,7 +90,7 @@ const SignUpPage = () => {
           <Button
             label="Login"
             onClick={() => {
-              router.push(`${SYSTEM_PATHS.authentication}?type=login`);
+              router.push(`${SYSTEM_PATHS.auth}?type=login`);
               closeDialog();
             }}
           />
@@ -110,14 +105,12 @@ const SignUpPage = () => {
         <Typography className="semi-2xl">
           START SELLING!
         </Typography>
-        <RocketEmoji width={20} height={20} />
       </Stack>
 
       <Stack direction='row' alignItems='center' gap={1} justifyContent='center'>
         <Typography className="semi-2xl" letterSpacing={1}>
           Your online empire starts here
         </Typography>
-        <StarBlingEmoji width={20} height={20} />
       </Stack>
 
       <Button 
@@ -190,7 +183,6 @@ const SignUpPage = () => {
                       <span className="underline">Privacy Policy</span>.{" "}
                       I&apos;m 18+ and ready to make money!
                     </Typography>
-                    <MoneyBagEmoji width={16} height={16} />
                   </Stack>
                 }
               />
