@@ -7,8 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTimer } from "react-timer-hook"
 
-import { FormOTPInput } from "@/components/common";
-import { Button } from "@/components/ui";
+import { FormOTPInput, Button } from "@/components/common";
 import { COLOR_CODES } from "@/src/constants/color";
 import { SYSTEM_PATHS } from "@/src/constants/path";
 

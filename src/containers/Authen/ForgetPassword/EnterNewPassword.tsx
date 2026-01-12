@@ -7,8 +7,8 @@ import { Grid, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { IoKeyOutline, IoKeySharp } from "react-icons/io5";
 
-import { FormInput } from "@/components/common";
-import { Button, Form } from "@/components/ui";
+import { Button, FormInput } from "@/components/common";
+import { Form } from "@/components/ui";
 import { COLOR_CODES } from "@/src/constants/color";
 import { 
   CrudKeys, 
