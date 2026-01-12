@@ -15,8 +15,9 @@ const buttonVariants = cva(
           "bg-[#8394FF] text-white shadow-[0_6px_16px_rgba(131,148,255,0.35)] \
           hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(131,148,255,0.45)]",
         secondary:
-          "bg-[#EDEDED] text-[#3A3A3A] shadow-[0_6px_16px_rgba(0,0,0,0.15)] \
-          hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(0,0,0,0.22)]",
+          "bg-[#EDEDED] text-[#3A3A3A] \
+          hover:-translate-y-0.5 \
+          hover:shadow-[0_4px_12px_rgba(255,255,255,0.3),0_6px_16px_rgba(0,0,0,0.12)]",
         ghost:
           "bg-transparent text-white hover:bg-white/10",
         default: "text-main-foreground bg-main hover:translate-x-boxShadowX hover:translate-y-boxShadowY", 
