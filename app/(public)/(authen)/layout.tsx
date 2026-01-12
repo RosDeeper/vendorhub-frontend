@@ -1,4 +1,5 @@
 import { Stack } from '@mui/material';
+import { Suspense } from 'react';
 
 import { LogoWithSlogan } from '@/src/containers/Authen';
 
@@ -14,7 +15,9 @@ const AuthenLayout = ({ children }: Props) => {
       <LogoWithSlogan />
 
       <Stack mt={4} zIndex={10}>
-        {children}
+        <Suspense fallback={null}>
+          {children}
+        </Suspense>
       </Stack>
     </Stack>
   );
