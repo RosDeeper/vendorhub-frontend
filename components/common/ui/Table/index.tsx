@@ -167,7 +167,7 @@ const Table = <TData, TValue>({
         <div className="flex items-center gap-6">
           <Button 
             className="w-20 text-sm!" 
-            variant='noShadow'
+            variant='primary'
             onClick={handleOpenFilter}
             label='Filter'
             startIcon={<BiFilterAlt style={{ width: '20px', height: '20px' }} />}
@@ -253,7 +253,7 @@ const Table = <TData, TValue>({
             <PaginationItem>
               <Button 
                 label="Previous"
-                variant='noShadow'
+                variant='primary'
                 startIcon={<FaChevronLeft style={{ width: '12px', height: '12px' }} />}
                 onClick={() => onPageChange(page - 1)}
                 style={{ width: '100px' }}
@@ -278,7 +278,7 @@ const Table = <TData, TValue>({
             <PaginationItem>
               <Button 
                 label="Next"
-                variant='noShadow'
+                variant='primary'
                 startIcon={<FaChevronRight style={{ width: '12px', height: '12px' }} />}
                 onClick={() => onPageChange(page + 1)}
                 style={{ width: '100px' }}

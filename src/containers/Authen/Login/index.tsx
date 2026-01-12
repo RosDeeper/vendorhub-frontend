@@ -84,7 +84,7 @@ const LoginPage = () => {
       </Stack>
 
       <Button 
-        variant='default'
+        variant='primary'
         label="CONTINUE WITH GOOGLE"
         startIcon={<GoogleLogo />}
         style={{

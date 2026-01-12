@@ -9,14 +9,14 @@ import {
 import { DayButton, DayPicker, getDefaultClassNames } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "../common"
 
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
   captionLayout = "label",
-  buttonVariant = "noShadow",
+  buttonVariant = "primary",
   formatters,
   components,
   ...props
@@ -191,8 +191,8 @@ function CalendarDayButton({
   return (
     <Button
       ref={ref}
-      variant='noShadow'
-      size="icon"
+      variant='primary'
+      // size="icon"
       data-day={day.date.toLocaleDateString()}
       data-selected-single={
         modifiers.selected &&
