@@ -23,7 +23,6 @@ import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { Button } from "@/components/ui";
 import { FONT_WEIGHT, TEXT_SIZE } from "@/src/constants/text";
 import { 
   TableBody, 
@@ -39,6 +38,7 @@ import {
 } from "./lib-ui";
 import { Input } from "../../FormComponents";
 import { useDialog } from "@/components/hooks";
+import { Button } from "../Button";
 
 // CUSTOME TABLE
 interface DataTableProps<TData, TValue> {

@@ -1,7 +1,7 @@
 import { MoreHorizontal } from "lucide-react";
 
-import { buttonVariants } from "@/components/ui";
 import { cn } from "@/lib";
+import { buttonVariants } from "../Button";
 
 // /////////////////// TABLE //////////////////////
 const UITable = ({ className, ...props }: React.ComponentProps<"table">) => {
