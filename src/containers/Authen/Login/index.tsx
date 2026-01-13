@@ -69,10 +69,14 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="background-image">
+    <>
+      <div className="background-image" />
+      
       <div 
-        className='h-full'
-        style={{ padding: '40px 120px 20px' }}
+        style={{
+          minHeight: "100vh",
+          padding: "40px 120px 40px",
+        }}
       >
         <Stack flexDirection='row' justifyContent='space-between'>
           <NavigationMenu
@@ -182,7 +186,7 @@ const LoginPage = () => {
 
         </Stack>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -9,12 +9,10 @@ type Props = {
 
 const AuthenLayout = ({ children }: Props) => {
   return (
-    <Stack padding={5} position='relative'>
-      <Stack mt={4} zIndex={10}>
-        <Suspense fallback={null}>
-          {children}
-        </Suspense>
-      </Stack>
+    <Stack position='relative'>
+      <Suspense fallback={null}>
+        {children}
+      </Suspense>
     </Stack>
   );
 }
