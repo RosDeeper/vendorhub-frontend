@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { Stack } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 
 import { LoginPage, SignUpPage } from "@/src/containers/Authen";

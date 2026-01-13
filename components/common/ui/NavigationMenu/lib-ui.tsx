@@ -18,8 +18,7 @@ const NavigationMenu = ({
       data-slot="navigation-menu"
       data-viewport={viewport}
       className={cn(
-        "relative z-10 flex max-w-max rounded-base font-heading border-border border-2",
-        "p-1 bg-main flex-1 items-center justify-center",
+        "relative z-10 max-w-max",
         className,
       )}
       {...props}
@@ -38,7 +37,7 @@ const NavigationMenuList = ({
     <NavigationMenuPrimitive.List
       data-slot="navigation-menu-list"
       className={cn(
-        "group flex flex-1 list-none items-center font-heading justify-center space-x-1",
+        "group flex flex-1 list-none items-center justify-center gap-[60]",
         className,
       )}
       {...props}
@@ -70,7 +69,7 @@ const NavigationMenuTrigger = ({
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
     >
-      {children}{" "}
+      {children}
       <ChevronDown
         className={cn(
           'relative top-px ml-2 size-4 font-heading transition duration-200 group-data-[state=open]:rotate-180'
@@ -94,7 +93,6 @@ const NavigationMenuContent = ({
         "ata-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52",
         "data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52",
         "top-0 left-0 w-full p-2 pr-2.5 md:absolute md:w-auto",
-        "group-data-[viewport=false]/navigation-menu:bg-main",
         "group-data-[viewport=false]/navigation-menu:text-main-foreground",
         "group-data-[viewport=false]/navigation-menu:data-[state=open]:animate-in",
         "group-data-[viewport=false]/navigation-menu:data-[state=closed]:animate-out",
@@ -122,9 +120,11 @@ const NavigationMenuLink = ({
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
       className={cn(
-        "block select-none space-y-1 rounded-base p-2 leading-none no-underline",
+        "block select-none space-y-1 p-2 leading-none no-underline",
         "outline-none transition-colors focus-visible:ring-4 focus-visible:outline-1",
         "[&_svg:not([class*='size-'])]:size-4",
+        'transition-all duration-200 ease-out',
+        'hover:-translate-y-1 hover:text-primary',
         className,
       )}
       {...props}
@@ -146,7 +146,7 @@ const NavigationMenuViewport = ({
         data-slot="navigation-menu-viewport"
         className={cn(
           "origin-top-center relative mt-1.5 h-(--radix-navigation-menu-viewport-height)",
-          "w-full overflow-hidden rounded-base border-2 border-border bg-main",
+          "w-full overflow-hidden",
           "text-main-foreground data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90",
           "md:w-(--radix-navigation-menu-viewport-width)",
@@ -179,8 +179,8 @@ const NavigationMenuIndicator = ({
 };
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-10 w-max items-center justify-center text-main-foreground \
-  rounded-base bg-main px-4 py-2 text-sm font-heading transition-colors \
+  "group inline-flex h-10 gap-2 items-center justify-center text-main-foreground \
+  text-base text-white transition-colors cursor-pointer \
   focus:outline-none disabled:pointer-events-none disabled:opacity-50",
 );
 

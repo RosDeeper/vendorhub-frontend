@@ -73,6 +73,12 @@ body {
   background-color: var(--primary-background-color);
 }
 
-.default-border {
-  border: 2px solid var(--main-border-color);
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+  display: none !important;
 }

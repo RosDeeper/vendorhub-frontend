@@ -1,22 +1,23 @@
-'use client';
-
 import { Stack, Typography, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { CiMail } from "react-icons/ci";
-import { IoKeyOutline } from "react-icons/io5";
-import { LuArrowRightFromLine } from "react-icons/lu";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
+import Image from "next/image";
 
 import { Form } from "@/components/ui";
-import { GoogleLogo } from "@/components/common/Logo";
-import { COLOR_CODES } from "@/src/constants/color";
-import { Button, Divider, FormInput } from "@/components/common";
+import { Button, FormInput, NavigationMenu } from "@/components/common";
 import { SYSTEM_PATHS } from "@/src/constants/path";
 import { Toastify, mockLogin, protocol, rootDomain } from "@/lib";
-import { CrudKeys, formSchema, initialValues, LoginFormValues } from "./helpers";
+import { 
+  CrudKeys, 
+  formSchema, 
+  initialValues, 
+  leftNavItems, 
+  LoginFormValues, 
+  rightNavItems
+} from "./helpers";
 
 import { useLogin } from "@/src/queries";
 
@@ -65,60 +66,72 @@ const LoginPage = () => {
 
   return (
     <div className="background-image">
-      <div className='h-full'>
-        <Stack>
-          {/* <Button 
-            variant='primary'
-            label="CONTINUE WITH GOOGLE"
-            startIcon={<GoogleLogo />}
-            style={{
-              backgroundColor: COLOR_CODES.SECONDARY_BG,
-              marginTop: '20px',
-              marginBottom: '28px'
-            }}
-            onClick={handleLoginWithGoogle}
-          /> */}
+      <div 
+        className='h-full'
+        style={{ padding: '40px 120px 20px' }}
+      >
+        <Stack flexDirection='row' justifyContent='space-between'>
+          <NavigationMenu
+            items={leftNavItems}
+          />
+          <NavigationMenu
+            items={rightNavItems} 
+          />
+        </Stack>
 
-          {/* <Form {...form}>
-            <form onSubmit={handleSubmit(handleValidSubmit)}>
-              <Grid container gap={3}>
-                <Grid size={12}>
-                  <FormInput 
-                    name={CrudKeys._EMAIL}
-                    label="Email"
-                    placeholder="seller@gmail.com"
-                    startIcon={<CiMail style={{ width: '24px', height: '24px' }} />}
-                    required
-                  />
-                </Grid>
-                <Grid size={12}>
-                  <FormInput 
-                    name={CrudKeys._PASSWORD}
-                    label="Password"
-                    type='password'
-                    placeholder="*******"
-                    startIcon={<IoKeyOutline style={{ width: '24px', height: '24px' }} />}
-                    handleForgetPassword={() => router.push(SYSTEM_PATHS.forgetPassword)}
-                    required
-                    includeForgetPass
-                  />
-                </Grid>
-              </Grid>
+        <Stack flexDirection='row' justifyContent='flex-end' mt={8}>
+          <Stack flexDirection='column' alignItems='center'>
+            <Image 
+              src='/assets/vendor-hub-black.png' 
+              alt='vendorHub-logo-black' 
+              width={340}
+              height={28}
+              objectFit='contain'
+            />
 
-              <Stack mt={4} justifyContent='center' direction='row'>
-                <Button
-                  type="submit"
-                  label="LET'S GO!"
-                  endIcon={<LuArrowRightFromLine style={{ width: '20px', height: '20px' }} />}
-                  style={{
-                    minWidth: '300px',
-                  }}
-                  disabled={isLoading}
-                  isLoading={isLoading}
-                />
+            <Stack className="login-container">
+              <Typography className="welcome-text">
+                Hello !
+              </Typography>
+              <Typography className="welcome-text">
+                Welcome Back
+              </Typography>
+
+              <Stack mt='60px' width='400px'>
+                <Form {...form}>
+                  <form onSubmit={handleSubmit(handleValidSubmit)}>
+                    <Grid container gap={3}>
+                      <Grid size={12}>
+                        <FormInput 
+                          name={CrudKeys._EMAIL}
+                          placeholder="Enter Email"
+                        />
+                      </Grid>
+                      <Grid size={12}>
+                        <FormInput 
+                          name={CrudKeys._PASSWORD}
+                          type='password'
+                          placeholder="Enter Password"
+                        />
+                      </Grid>
+                    </Grid>
+
+                    <Stack mt={4} justifyContent='center' direction='row'>
+                      <Button
+                        type="submit"
+                        variant='secondary'
+                        label="Sign In"
+                        style={{ width: '100%', backgroundColor: '#D7CECE' }}
+                        disabled={isLoading}
+                        isLoading={isLoading}
+                      />
+                    </Stack>
+                  </form>
+                </Form>
               </Stack>
-            </form>
-          </Form> */}
+            </Stack>
+          </Stack>
+
         </Stack>
       </div>
     </div>

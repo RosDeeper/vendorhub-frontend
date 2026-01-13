@@ -25,19 +25,30 @@ const LibLabel = ({
 const LibInput = ({ 
   className, 
   type, 
+  variant,
   ...props 
-}: React.ComponentProps<"input">) => {
+}: React.ComponentProps<"input"> & { variant?: 'glass' | 'light' }) => {
   return (
     <input
       type={type}
       data-slot="input"
+      // className={cn(
+      //   "flex h-11 rounded-base w-full selection:bg-white tracking-[1]",
+      //   "selection:text-main-foreground text-sm font-base text-white",
+      //   "file:border-0 file:bg-transparent file:text-sm file:font-heading",
+      //   "placeholder:text-white/50 focus-visible:outline-hidden focus-visible:ring-black",
+      //   "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-200",
+      //   className,
+      // )}
       className={cn(
-        "flex h-10 w-full rounded-base bg-secondary-background selection:bg-main",
-        "selection:text-main-foreground px-3 py-2 text-sm font-base text-foreground",
+        "flex h-11 w-full tracking-[1] bg-transparent outline-none text-sm transition-colors",
+        "selection:bg-white selection:text-main-foreground",
         "file:border-0 file:bg-transparent file:text-sm file:font-heading",
-        "placeholder:text-foreground/50 focus-visible:outline-hidden focus-visible:ring-black",
-        "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-200",
-        className,
+        "disabled:cursor-not-allowed",
+        variant === 'glass' 
+          ? "text-white placeholder:text-white/50" 
+          : "text-gray-800 placeholder:text-gray-400",
+        className
       )}
       {...props}
     />

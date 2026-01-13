@@ -1,23 +1,22 @@
 .MuiTypography-root {
-  &.slogan {
-    font-weight: var(--font-weight-bold);
-    font-size: var(--text-heading-4xl);
-    letter-spacing: 16px;
-  }
-
-  &.caption {
-    font-weight: var(--font-weight-bold);
-    font-size: var(--text-heading-xl);
-  }
-
-  &.semi-2xl {
+  &.welcome-text {
     font-weight: var(--font-weight-semibold);
-    font-size: var(--text-heading-2xl);
+    color: #fff;
+    font-size: 32px;
+    text-align: center;
   }
+}
 
-  &.semi-sm {
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--text-heading-sm);
+.MuiStack-root {
+  &.login-container {
+    padding: 60px 32px;
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 40px;
+    border: 2px solid #7A8497;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    width: fit-content;
+    margin-top: 40px;
   }
 }
 

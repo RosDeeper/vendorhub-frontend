@@ -1,6 +1,85 @@
-export const NavigationMenu = () => {
+import { ReactNode } from "react";
+import Link from "next/link";
+
+import { 
+  NavigationMenu as LibNavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem, 
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger
+} from "./lib-ui";
+import { cn } from "@/lib";
+
+export type NavItemType = {
+  label: string,
+  href?: string,
+  children?: NavItemType[],
+  render?: (item: NavItemType) => ReactNode;
+};
+
+const NavigationItem = ({ item }: { item: NavItemType }) => {
+  if (item.render) {
+    return (
+      <NavigationMenuItem>
+        <NavigationMenuLink
+          href={item.href ?? "#"}
+          className={cn("text-base text-white")}
+        >
+          {item.render(item)}
+        </NavigationMenuLink>
+      </NavigationMenuItem>
+    );
+  }
+
+  if (item.children && item.children.length > 0) {
+    return (
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>
+          {item.label}
+        </NavigationMenuTrigger>
+
+        <NavigationMenuContent>
+          <ul className="grid gap-3 w-[120]">
+            {item.children.map((child) => (
+              <NavigationMenuLink
+                key={child.label}
+                href={child.href ?? "#"}
+                className={cn("text-base text-white")}
+              >
+                {child.label}
+              </NavigationMenuLink>
+            ))}
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+    );
+  }
+
   return (
-    <>
-    </>
+    <NavigationMenuItem>
+      <NavigationMenuLink
+        href={item.href ?? "#"}
+        className={cn("px-4 py-2 text-base text-white")}
+      >
+        {item.label}
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+  );
+};
+
+type NavigationMenuProps = {
+  items: NavItemType[],
+};
+
+export const NavigationMenu = ({ items }: NavigationMenuProps) => {
+  return (
+    <LibNavigationMenu>
+      <NavigationMenuList>
+        {items.map((item) => (
+          <NavigationItem key={item.label} item={item} />
+        ))}
+      </NavigationMenuList>
+    </LibNavigationMenu>
   );
 };

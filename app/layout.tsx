@@ -1,4 +1,5 @@
 import { DM_Sans } from "next/font/google";
+import type { Metadata } from "next";
 
 import { 
   DialogProvider, 
@@ -20,6 +21,10 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
 });
 
+export const metadata: Metadata = {
+  title: 'VendorHub'
+};
+
 const RootLayout = ({ children }: Props) => {
   return (
     <html lang="en" className={dmSans.variable}>
@@ -37,6 +42,6 @@ const RootLayout = ({ children }: Props) => {
       </body>
     </html>
   );
-}
+};
 
 export default RootLayout;
