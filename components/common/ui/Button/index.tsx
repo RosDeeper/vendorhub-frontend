@@ -73,7 +73,7 @@ const Button = ({
       {isLoading ? (
         <LoaderCircle className="animate-spin" />
       ) : (
-        <Stack direction='row' alignItems='center' gap={1}>
+        <Stack direction='row' alignItems='center' gap={size === 'icon' ? 0 : 1}>
           {startIcon && <span className="inline-flex">{startIcon}</span>}
           <Typography sx={{ 
             fontWeight: FONT_WEIGHT.SEMIBOLD,

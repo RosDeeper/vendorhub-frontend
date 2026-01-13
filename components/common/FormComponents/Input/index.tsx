@@ -55,21 +55,18 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           alignItems='center' 
           gap={2}
           px={2}
-          style={{
-            backdropFilter: 'blur(20px)',
-            boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 15px rgba(0, 0, 0, 0.1)',
-          }}
           className={cn(
             "rounded-full transition-all duration-300",
             variant === 'glass' && [
-              "bg-white/10 border-white/10 backdrop-blur-[15px]",
+              "bg-white/10 border-white/10 backdrop-blur-[20px]",
               "shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_4px_15px_rgba(0,0,0,0.1)]",
-              "focus-within:bg-white/32"
+              "focus-within:bg-white/24"
             ],
             variant === 'light' && [
               "bg-white border-gray-200 shadow-sm",
               "focus-within:shadow-md"
             ],
+            props.value && variant === 'glass' ? 'bg-white/24' : 'shadow-md',
             error ? "border-red-500" : "",
             props?.disabled ? 'bg-gray-200' : ''
           )}

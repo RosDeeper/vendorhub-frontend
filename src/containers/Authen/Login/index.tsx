@@ -5,9 +5,11 @@ import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
 import Image from "next/image";
+import { useState } from "react";
+import { FaGoogle } from "react-icons/fa";
 
 import { Form } from "@/components/ui";
-import { Button, FormInput, NavigationMenu } from "@/components/common";
+import { Button, FormCheckbox, FormInput, NavigationMenu } from "@/components/common";
 import { SYSTEM_PATHS } from "@/src/constants/path";
 import { Toastify, mockLogin, protocol, rootDomain } from "@/lib";
 import { 
@@ -24,6 +26,8 @@ import { useLogin } from "@/src/queries";
 const LoginPage = () => {
   const router = useRouter();
   const cookies = new Cookies();
+
+  const [checked, setChecked] = useState<boolean>(false);
 
   const { login, isLoading } = useLogin({
     onSuccess(data) {
@@ -79,10 +83,10 @@ const LoginPage = () => {
           />
         </Stack>
 
-        <Stack flexDirection='row' justifyContent='flex-end' mt={8}>
+        <Stack flexDirection='row' justifyContent='center' mt={8}>
           <Stack flexDirection='column' alignItems='center'>
             <Image 
-              src='/assets/vendor-hub-black.png' 
+              src='/assets/vendor-black.png' 
               alt='vendorHub-logo-black' 
               width={340}
               height={28}
@@ -114,6 +118,31 @@ const LoginPage = () => {
                           placeholder="Enter Password"
                         />
                       </Grid>
+                      <Grid size={12}>
+                        <Stack flexDirection='row' justifyContent='space-between'>
+                          <FormCheckbox 
+                            name=""
+                            checked={checked}
+                            onClick={() => setChecked(!checked)}
+                            label={
+                              <span style={{
+                                fontWeight: 400,
+                                color: '#fff',
+                                letterSpacing: 1
+                              }}>
+                                Remember me
+                              </span>
+                            }
+                          />
+
+                          <Typography 
+                            className="span-white"
+                            style={{ cursor: 'pointer' }}
+                          >
+                            Forgot password ?
+                          </Typography>
+                        </Stack>
+                      </Grid>
                     </Grid>
 
                     <Stack mt={4} justifyContent='center' direction='row'>
@@ -121,13 +150,32 @@ const LoginPage = () => {
                         type="submit"
                         variant='secondary'
                         label="Sign In"
-                        style={{ width: '100%', backgroundColor: '#D7CECE' }}
+                        style={{ width: '100%', backgroundColor: '#D7CECE', color: '#000' }}
                         disabled={isLoading}
                         isLoading={isLoading}
                       />
                     </Stack>
                   </form>
                 </Form>
+
+                <Stack flexDirection='column' alignItems='center' gap={2} mt={4}>
+                  <Typography className="span-white">
+                    or sign in with
+                  </Typography>
+                  <Button
+                    type="submit"
+                    variant='secondary'
+                    size='icon'
+                    startIcon={<FaGoogle size={18} />}
+                  />
+                  <Typography className="span-white">
+                    Don&apos;t have an account?{' '}
+                    <span style={{
+                      fontWeight: 600,
+                      color: '#8394FF'
+                    }}>Sign up</span>
+                  </Typography>
+                </Stack>
               </Stack>
             </Stack>
           </Stack>

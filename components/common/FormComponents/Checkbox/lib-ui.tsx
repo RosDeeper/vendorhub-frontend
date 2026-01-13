@@ -15,10 +15,11 @@ export const LibCheckbox = forwardRef<
       ref={ref}
       data-slot="checkbox"
       className={cn(
-        "peer size-4 shrink-0 outline-2 outline-border ring-offset-white",
+        "peer size-4 rounded-[4] bg-white/10 ring-offset-white",
         "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black",
         "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-        "data-[state=checked]:bg-main data-[state=checked]:text-white",
+        "data-[state=checked]:bg-white/32 data-[state=checked]:text-white",
+        "shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_4px_15px_rgba(0,0,0,0.1)]",
         props?.disabled && 'bg-gray-200',
         className
       )}
@@ -28,7 +29,7 @@ export const LibCheckbox = forwardRef<
         data-slot="checkbox-indicator"
         className="flex items-center justify-center text-current"
       >
-        <CheckIcon className="size-4 text-main-foreground" />
+        <CheckIcon className="size-3 text-white" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )
