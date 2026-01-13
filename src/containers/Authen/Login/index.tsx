@@ -69,124 +69,120 @@ const LoginPage = () => {
   };
 
   return (
-    <>
-      <div className="background-image" />
-      
-      <div 
-        style={{
-          minHeight: "100vh",
-          padding: "40px 120px 40px",
-        }}
-      >
-        <Stack flexDirection='row' justifyContent='space-between'>
-          <NavigationMenu
-            items={leftNavItems}
+    <div 
+      style={{
+        minHeight: "100vh",
+        padding: "40px 120px 40px",
+      }}
+    >
+      <Stack flexDirection='row' justifyContent='space-between'>
+        <NavigationMenu
+          items={leftNavItems}
+        />
+        <NavigationMenu
+          items={rightNavItems} 
+        />
+      </Stack>
+
+      <Stack flexDirection='row' justifyContent='center' mt={8}>
+        <Stack flexDirection='column' alignItems='center'>
+          <Image 
+            src='/assets/vendor-black.png' 
+            alt='vendorHub-logo-black' 
+            width={340}
+            height={28}
+            objectFit='contain'
           />
-          <NavigationMenu
-            items={rightNavItems} 
-          />
-        </Stack>
 
-        <Stack flexDirection='row' justifyContent='center' mt={8}>
-          <Stack flexDirection='column' alignItems='center'>
-            <Image 
-              src='/assets/vendor-black.png' 
-              alt='vendorHub-logo-black' 
-              width={340}
-              height={28}
-              objectFit='contain'
-            />
+          <Stack className="login-container">
+            <Typography className="welcome-text">
+              Hello !
+            </Typography>
+            <Typography className="welcome-text">
+              Welcome Back
+            </Typography>
 
-            <Stack className="login-container">
-              <Typography className="welcome-text">
-                Hello !
-              </Typography>
-              <Typography className="welcome-text">
-                Welcome Back
-              </Typography>
-
-              <Stack mt='60px' width='400px'>
-                <Form {...form}>
-                  <form onSubmit={handleSubmit(handleValidSubmit)}>
-                    <Grid container gap={3}>
-                      <Grid size={12}>
-                        <FormInput 
-                          name={CrudKeys._EMAIL}
-                          placeholder="Enter Email"
-                        />
-                      </Grid>
-                      <Grid size={12}>
-                        <FormInput 
-                          name={CrudKeys._PASSWORD}
-                          type='password'
-                          placeholder="Enter Password"
-                        />
-                      </Grid>
-                      <Grid size={12}>
-                        <Stack flexDirection='row' justifyContent='space-between'>
-                          <FormCheckbox 
-                            name=""
-                            checked={checked}
-                            onClick={() => setChecked(!checked)}
-                            label={
-                              <span style={{
-                                fontWeight: 400,
-                                color: '#fff',
-                                letterSpacing: 1
-                              }}>
-                                Remember me
-                              </span>
-                            }
-                          />
-
-                          <Typography 
-                            className="span-white"
-                            style={{ cursor: 'pointer' }}
-                          >
-                            Forgot password ?
-                          </Typography>
-                        </Stack>
-                      </Grid>
-                    </Grid>
-
-                    <Stack mt={4} justifyContent='center' direction='row'>
-                      <Button
-                        type="submit"
-                        variant='secondary'
-                        label="Sign In"
-                        style={{ width: '100%', backgroundColor: '#D7CECE', color: '#000' }}
-                        disabled={isLoading}
-                        isLoading={isLoading}
+            <Stack mt='60px' width='400px'>
+              <Form {...form}>
+                <form onSubmit={handleSubmit(handleValidSubmit)}>
+                  <Grid container gap={3}>
+                    <Grid size={12}>
+                      <FormInput 
+                        name={CrudKeys._EMAIL}
+                        placeholder="Enter Email"
                       />
-                    </Stack>
-                  </form>
-                </Form>
+                    </Grid>
+                    <Grid size={12}>
+                      <FormInput 
+                        name={CrudKeys._PASSWORD}
+                        type='password'
+                        placeholder="Enter Password"
+                      />
+                    </Grid>
+                    <Grid size={12}>
+                      <Stack flexDirection='row' justifyContent='space-between'>
+                        <FormCheckbox 
+                          name=""
+                          checked={checked}
+                          onClick={() => setChecked(!checked)}
+                          label={
+                            <span style={{
+                              fontWeight: 400,
+                              color: '#fff',
+                              letterSpacing: 1
+                            }}>
+                              Remember me
+                            </span>
+                          }
+                        />
 
-                <Stack flexDirection='column' alignItems='center' gap={2} mt={4}>
-                  <Typography className="span-white">
-                    or sign in with
-                  </Typography>
-                  <Button
-                    type="submit"
-                    variant='secondary'
-                    size='icon'
-                    startIcon={<FaGoogle size={18} />}
-                  />
-                  <Typography className="span-white">
-                    Don&apos;t have an account?{' '}
-                    <span style={{
-                      fontWeight: 600,
-                      color: '#8394FF'
-                    }}>Sign up</span>
-                  </Typography>
-                </Stack>
+                        <Typography 
+                          className="span-white"
+                          style={{ cursor: 'pointer' }}
+                        >
+                          Forgot password ?
+                        </Typography>
+                      </Stack>
+                    </Grid>
+                  </Grid>
+
+                  <Stack mt={4} justifyContent='center' direction='row'>
+                    <Button
+                      type="submit"
+                      variant='secondary'
+                      label="Sign In"
+                      style={{ width: '100%', backgroundColor: '#D7CECE', color: '#000' }}
+                      disabled={isLoading}
+                      isLoading={isLoading}
+                    />
+                  </Stack>
+                </form>
+              </Form>
+
+              <Stack flexDirection='column' alignItems='center' gap={2} mt={4}>
+                <Typography className="span-white">
+                  or sign in with
+                </Typography>
+                <Button
+                  type="submit"
+                  variant='secondary'
+                  size='icon'
+                  startIcon={<FaGoogle size={18} />}
+                />
+                <Typography className="span-white">
+                  Don&apos;t have an account?{' '}
+                  <span style={{
+                    fontWeight: 600,
+                    color: '#8394FF'
+                  }}>Sign up</span>
+                </Typography>
               </Stack>
             </Stack>
           </Stack>
-
         </Stack>
-      </div>
-    </>
+
+      </Stack>
+    </div>
   );
 };
 

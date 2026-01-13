@@ -31,7 +31,7 @@ export const formSchema = z.object({
 export const leftNavItems: NavItemType[] = [
   {
     label: "Home",
-    href: "#",
+    href: "/",
   },
   {
     label: "About",
@@ -59,7 +59,7 @@ export const rightNavItems: NavItemType[] = [
     href: "#",
     render: () => {
       return (
-        <Stack flexDirection='column' alignItems='center'>
+        <Stack flexDirection='column' alignItems='center' gap='4px'>
           <span>Sign in</span>
           <span className="h-0.5 w-8 bg-white rounded-full" />
         </Stack>
@@ -74,7 +74,7 @@ export const rightNavItems: NavItemType[] = [
         <Stack style={{
           backgroundColor: '#fff',
           borderRadius: '99px',
-          padding: '0px 12px'
+          padding: '4px 12px'
         }}>
           <span className="text-black">Register</span>
         </Stack>

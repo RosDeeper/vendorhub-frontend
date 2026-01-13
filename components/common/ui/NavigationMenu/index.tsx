@@ -22,11 +22,13 @@ const NavigationItem = ({ item }: { item: NavItemType }) => {
   if (item.render) {
     return (
       <NavigationMenuItem>
-        <NavigationMenuLink
-          href={item.href ?? "#"}
-          className={cn("text-base text-white")}
-        >
-          {item.render(item)}
+        <NavigationMenuLink asChild>
+          <Link
+            href={item.href ?? "#"}
+            className={cn("text-base text-white")}
+          >
+            {item.render(item)}
+          </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
     );
@@ -42,12 +44,13 @@ const NavigationItem = ({ item }: { item: NavItemType }) => {
         <NavigationMenuContent>
           <ul className="grid gap-3 w-[120]">
             {item.children.map((child) => (
-              <NavigationMenuLink
-                key={child.label}
-                href={child.href ?? "#"}
-                className={cn("text-base text-white")}
-              >
-                {child.label}
+              <NavigationMenuLink key={child.label}>
+                <Link
+                  href={child.href ?? "#"}
+                  className={cn("text-base text-white")}
+                >
+                  {child.label}
+                </Link>
               </NavigationMenuLink>
             ))}
           </ul>
@@ -58,11 +61,13 @@ const NavigationItem = ({ item }: { item: NavItemType }) => {
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuLink
-        href={item.href ?? "#"}
-        className={cn("px-4 py-2 text-base text-white")}
-      >
-        {item.label}
+      <NavigationMenuLink asChild>
+        <Link
+          href={item.href ?? "#"}
+          className={cn("px-4 py-2 text-base text-white")}
+        >
+          {item.label}
+        </Link>
       </NavigationMenuLink>
     </NavigationMenuItem>
   );
