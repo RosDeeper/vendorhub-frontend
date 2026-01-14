@@ -1,5 +1,6 @@
 import z from "zod";
 import { Stack } from "@mui/material";
+import { Variants } from "motion/react";
 
 import { NavItemType } from "@/components/common";
 
@@ -82,3 +83,28 @@ export const rightNavItems: NavItemType[] = [
     }
   },
 ];
+
+// ------------ Animation --------------
+export const navVariants: Variants = {
+  hidden: { y: -100, opacity: 0 },
+  visible: { 
+    y: 0, 
+    opacity: 1,
+    transition: { 
+      duration: 0.4, 
+      ease: [0.22, 1, 0.36, 1] as const 
+    } 
+  }
+};
+
+export const formVariants: Variants = {
+  hidden: { opacity: 0, x: -1000 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.4, 
+      ease: [0.22, 1, 0.36, 1] as const
+    } 
+  }
+};
