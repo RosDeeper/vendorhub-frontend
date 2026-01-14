@@ -28,11 +28,13 @@ const X = () => {
       </Typography>
 
       <Stack flexDirection='row' gap={25} mt={20}>
-        <Button 
-          label='Sign Up'
-          variant='secondary'
-          style={{ width: '160px' }}
-        />
+        <Link href={`${SYSTEM_PATHS.auth}?type=signup`}>
+          <Button 
+            label='Sign Up'
+            variant='secondary'
+            style={{ width: '160px' }}
+          />
+        </Link>
         <Link href={`${SYSTEM_PATHS.auth}?type=login`}>
           <Button 
             label='Sign In'

@@ -25,7 +25,7 @@ export const AnimatedBackground = () => {
         animate={{ 
           clipPath: isSignup ? 'inset(0 50% 0 0)' : 'inset(0 0% 0 0)',
         }}
-        transition={{ duration: 0.4, ease: 'easeInOut' }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
         style={backgroundImage}
       />
     </>

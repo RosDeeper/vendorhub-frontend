@@ -13,7 +13,7 @@ const buttonVariants = cva(
       variant: {
         primary:
           "bg-[#8394FF] text-white shadow-[0_6px_16px_rgba(131,148,255,0.35)] \
-          hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(131,148,255,0.45)]",
+          hover:translate-y-0.5 hover:shadow-[0_10px_24px_rgba(131,148,255,0.45)]",
         secondary:
           "bg-[#EDEDED] text-[#3A3A3A] \
           shadow-[0_4px_6px_rgba(0,0,0,0.4)] \
