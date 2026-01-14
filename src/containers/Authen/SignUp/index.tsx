@@ -7,6 +7,7 @@ import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
 import { FaStarOfLife } from "react-icons/fa";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 import { PeopleGroupEmoji } from "@/components/common/Emoji";
 import { Form } from "@/components/ui";
@@ -135,6 +136,18 @@ const SignUpPage = () => {
         }}
       >
         <Stack width='460px'>
+          <Image 
+            src='/assets/vendor-black.png' 
+            alt='vendorHub-logo-black' 
+            width={160}
+            height={16}
+            style={{
+              objectFit: 'contain',
+              marginLeft: 'auto',
+              marginBottom: '20px'
+            }}
+          />
+
           <Stack mb='40px'>
             <FaStarOfLife size={28} color="#453838" />
             <Typography className="create-title">
