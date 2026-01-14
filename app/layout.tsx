@@ -1,5 +1,6 @@
 import { DM_Sans } from "next/font/google";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { 
   DialogProvider, 
@@ -34,7 +35,9 @@ const RootLayout = ({ children }: Props) => {
           <QueryProvider>
             <DialogProvider>
               {/* <SidebarProvider> */}
-                <AnimatedBackground />
+                <Suspense fallback={null}>
+                  <AnimatedBackground />
+                </Suspense>
                 {children}
                 <ToastProvider />
               {/* </SidebarProvider> */}
