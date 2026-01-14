@@ -10,9 +10,9 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     <AnimatePresence mode='wait'>
       <motion.div
         key={pathname}
-        initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, ease: 'easeInOut' }}
       >
         {children}
       </motion.div>

@@ -15,23 +15,15 @@
 
 .MuiStack-root {
   &.login-container {
+    width: fit-content;
     padding: 60px 32px;
-    backdrop-filter: blur(6px);
+    margin-top: 40px;
+  
     background: rgba(255, 255, 255, 0.05);
     border-radius: 40px;
     border: 2px solid #7A8497;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    width: fit-content;
-    margin-top: 40px;
+
+    backdrop-filter: blur(10px);
   }
-}
-
-.background-image {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-
-  background:
-    linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
-    url('/assets/background-image.png') center / 100% 100% no-repeat;
 }
