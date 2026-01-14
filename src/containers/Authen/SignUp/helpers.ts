@@ -39,6 +39,12 @@ export const formSchema = z
   );
 
 // ------------ Animation --------------
+export const heroVariants: Variants = {
+  hidden: { y: 100 },
+  visible: { y: 0, transition: { duration: 0.2 } },
+  exit: { y: 100,transition: { duration: 0.2 } }
+};
+
 export const formVariants: Variants = {
   hidden: { x: 500, opacity: 0 },
   visible: { x: 0, opacity: 1, transition: { duration: 0.2 } },

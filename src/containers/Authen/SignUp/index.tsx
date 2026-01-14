@@ -18,7 +18,8 @@ import {
   formSchema, 
   initialValues, 
   SignUpFormValues,
-  formVariants
+  formVariants,
+  heroVariants
 } from "./helpers";
 import { useDialog } from "@/components/hooks";
 import { Toastify } from "@/lib/toast";
@@ -101,20 +102,37 @@ const SignUpPage = () => {
   };
 
   return (
-    <div
-      className="overflow-x-hidden flex items-center justify-center"
-      style={{
-        minHeight: "100vh",
-        width: '50%',
-        marginLeft: 'auto',
-        padding: "40px 120px 40px",
-      }}
-    >
+    <div style={{
+      padding: "40px 0px",
+      display: 'flex',
+      minHeight: '100vh',
+      alignItems: 'center',
+      overflowX: 'hidden'
+    }}>
+      <motion.p
+        variants={heroVariants}
+        style={{
+          fontSize: '28px',
+          color: '#fff',
+          fontWeight: 600,
+          width: '50%',
+          marginTop: 'auto',
+          paddingLeft: '40px',
+        }}
+      >
+        Easily access your personal hub to stay clear, focused, and productive
+      </motion.p>
+      
       <motion.div
         variants={formVariants}
         initial="hidden"
         animate="visible"
         exit='exit'
+        style={{
+          width: '50%',
+          display: 'flex',
+          justifyContent: 'center'
+        }}
       >
         <Stack width='460px'>
           <Stack mb='40px'>
