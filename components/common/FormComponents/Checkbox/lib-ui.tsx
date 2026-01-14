@@ -8,8 +8,8 @@ import { cn } from "@/lib";
 
 export const LibCheckbox = forwardRef<
   React.ComponentRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> & { variant?: 'glass' | 'light'}
+>(({ className, variant, ...props }, ref) => {
   return (
     <CheckboxPrimitive.Root
       ref={ref}
@@ -29,7 +29,10 @@ export const LibCheckbox = forwardRef<
         data-slot="checkbox-indicator"
         className="flex items-center justify-center text-current"
       >
-        <CheckIcon className="size-3 text-white" />
+        <CheckIcon className={cn(
+          'size-3',
+          variant === 'glass' ? 'text-white' : 'text-black'
+        )} />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )

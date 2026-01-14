@@ -10,16 +10,17 @@ import { LibCheckbox } from "./lib-ui";
 type CheckboxFieldProps = {
   label?: React.ReactNode,
   error?: string,
+  variant?: 'glass' | 'light';
 } & React.ComponentPropsWithoutRef<typeof LibCheckbox>
 
 export const Checkbox = React.forwardRef<
   React.ComponentRef<typeof LibCheckbox>,
   CheckboxFieldProps
->(({ label, error, ...props }, ref) => {
+>(({ label, error, variant = 'glass', ...props }, ref) => {
   return (
     <div className="flex flex-col gap-1">
       <label className="flex items-center gap-2 cursor-pointer">
-        <LibCheckbox ref={ref} {...props} />
+        <LibCheckbox ref={ref} variant={variant} {...props} />
         <span className={cn(
           "text-sm text-foreground font-bold select-none",
           props?.disabled && 'opacity-50'

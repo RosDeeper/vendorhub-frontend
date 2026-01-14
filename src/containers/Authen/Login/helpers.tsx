@@ -3,6 +3,7 @@ import { Stack } from "@mui/material";
 import { Variants } from "motion/react";
 
 import { NavItemType } from "@/components/common";
+import { SYSTEM_PATHS } from "@/src/constants/path";
 
 export enum CrudKeys {
   _EMAIL = 'email',
@@ -68,8 +69,8 @@ export const rightNavItems: NavItemType[] = [
     }
   },
   {
-    label: "Register",
-    href: "#",
+    label: "Sign up",
+    href: `${SYSTEM_PATHS.auth}?type=signup`,
     render: () => {
       return (
         <Stack style={{
@@ -77,7 +78,7 @@ export const rightNavItems: NavItemType[] = [
           borderRadius: '99px',
           padding: '4px 12px'
         }}>
-          <span className="text-black">Register</span>
+          <span className="text-black">Sign up</span>
         </Stack>
       );
     }
@@ -86,25 +87,13 @@ export const rightNavItems: NavItemType[] = [
 
 // ------------ Animation --------------
 export const navVariants: Variants = {
-  hidden: { y: -100, opacity: 0 },
-  visible: { 
-    y: 0, 
-    opacity: 1,
-    transition: { 
-      duration: 0.4, 
-      ease: [0.22, 1, 0.36, 1] as const 
-    } 
-  }
+  hidden: { y: -100 },
+  visible: { y: 0 },
+  exit: { y: -100 }
 };
 
 export const formVariants: Variants = {
-  hidden: { opacity: 0, x: -1000 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: { 
-      duration: 0.4, 
-      ease: [0.22, 1, 0.36, 1] as const
-    } 
-  }
+  hidden: { x: -500, opacity: 0 },
+  visible: { x: 0, opacity: 1 },
+  exit: { x: -500, opacity: 0 }
 };

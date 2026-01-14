@@ -41,7 +41,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <LibLabel 
               htmlFor={name} 
               className={cn(
-                'font-bold',
+                'font-bold tracking-[1]',
                 variant === 'glass' ? "text-white" : "text-gray-700"
               )}>
               {label}
@@ -64,7 +64,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ],
             variant === 'light' && [
               "bg-white border-gray-200 shadow-sm",
-              "focus-within:shadow-md"
+              "shadow-[20px_20px_50px_rgba(199, 199, 199, 0.9)]",
+              "focus-within:shadow-md",
             ],
             props.value && variant === 'glass' ? 'bg-white/24' : 'shadow-md',
             error ? "border-red-500" : "",

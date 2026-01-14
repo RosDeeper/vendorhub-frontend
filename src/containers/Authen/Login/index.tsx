@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 import { Form } from "@/components/ui";
 import { Button, FormCheckbox, FormInput, NavigationMenu } from "@/components/common";
@@ -82,6 +83,7 @@ const LoginPage = () => {
         variants={navVariants}
         initial='hidden'
         animate='visible'
+        exit='exit'
       >
         <Stack flexDirection='row' justifyContent='space-between'>
           <NavigationMenu
@@ -97,6 +99,7 @@ const LoginPage = () => {
         variants={formVariants}
         initial="hidden"
         animate="visible"
+        exit='exit'
       >
         <Stack flexDirection='row' justifyContent='center' mt={8}>
           <Stack flexDirection='column' alignItems='center'>
@@ -185,10 +188,12 @@ const LoginPage = () => {
                   />
                   <Typography className="span-white">
                     Don&apos;t have an account?{' '}
-                    <span style={{
-                      fontWeight: 600,
-                      color: '#8394FF'
-                    }}>Sign up</span>
+                    <Link href={`${SYSTEM_PATHS.auth}?type=signup`}>
+                      <span style={{
+                        fontWeight: 600,
+                        color: '#8394FF'
+                      }}>Sign up</span>
+                    </Link>
                   </Typography>
                 </Stack>
               </Stack>

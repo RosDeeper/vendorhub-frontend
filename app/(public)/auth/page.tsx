@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { motion, AnimatePresence, Variants, stagger } from "motion/react";
 
 import { LoginPage, SignUpPage } from "@/src/containers/Authen";
 
@@ -21,6 +22,22 @@ const X = () => {
     typeFromUrl ?? tabs[0].value
   );
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1, 
+      transition: { 
+        duration: 0.2
+      } 
+    },
+    exit: { 
+      opacity: 0,
+      transition: { 
+        duration: 0.2
+      } 
+    }
+  };
+
   const renderTab = () => {
     switch (currentTab) {
       case 'login':
@@ -36,7 +53,17 @@ const X = () => {
   }, [typeFromUrl])
 
   return (
-    renderTab()
+    <AnimatePresence mode='wait'>
+      <motion.div
+        key={currentTab}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        {renderTab()}
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

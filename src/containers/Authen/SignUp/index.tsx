@@ -1,23 +1,25 @@
-'use client';
-
 import { Grid, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { CiMail } from "react-icons/ci";
-import { IoKeyOutline, IoKeySharp } from "react-icons/io5";
-import { LuArrowRightFromLine } from "react-icons/lu";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { HiOutlineUser } from "react-icons/hi2";
+import { FaGoogle } from "react-icons/fa";
+import Link from "next/link";
+import { FaStarOfLife } from "react-icons/fa";
+import { motion } from "motion/react";
 
 import { PeopleGroupEmoji } from "@/components/common/Emoji";
 import { Form } from "@/components/ui";
-import { GoogleLogo } from "@/components/common/Logo";
-import { COLOR_CODES } from "@/src/constants/color";
 import { TEXT_SIZE, FONT_WEIGHT } from "@/src/constants/text";
 import { SYSTEM_PATHS } from "@/src/constants/path";
-import { Divider, FormInput, FormCheckbox, Button } from "@/components/common";
-import { CrudKeys, formSchema, initialValues, SignUpFormValues } from "./helpers";
+import { FormInput, FormCheckbox, Button } from "@/components/common";
+import { 
+  CrudKeys, 
+  formSchema, 
+  initialValues, 
+  SignUpFormValues,
+  formVariants
+} from "./helpers";
 import { useDialog } from "@/components/hooks";
 import { Toastify } from "@/lib/toast";
 
@@ -51,7 +53,6 @@ const SignUpPage = () => {
     const payload: RegisterPayload = {
       email: formValues.email,
       password: formValues.password,
-      userName: formValues.userName,
     };
 
     register(payload);
@@ -100,110 +101,122 @@ const SignUpPage = () => {
   };
 
   return (
-    <Stack>
-      <Stack direction='row' alignItems='center' gap={2} justifyContent='center'>
-        <Typography className="semi-2xl">
-          START SELLING!
-        </Typography>
-      </Stack>
+    <div
+      className="overflow-x-hidden flex items-center justify-center"
+      style={{
+        minHeight: "100vh",
+        width: '50%',
+        marginLeft: 'auto',
+        padding: "40px 120px 40px",
+      }}
+    >
+      <motion.div
+        variants={formVariants}
+        initial="hidden"
+        animate="visible"
+        exit='exit'
+      >
+        <Stack width='460px'>
+          <Stack mb='40px'>
+            <FaStarOfLife size={28} color="#453838" />
+            <Typography className="create-title">
+              Create an account
+            </Typography>
+            <Typography color="#453838" textAlign='center'>
+              Access your tasks, notes, and project anytime,<br />
+              anywhere - and keep everything flowflowing in one place.
+            </Typography>
+          </Stack>
 
-      <Stack direction='row' alignItems='center' gap={1} justifyContent='center'>
-        <Typography className="semi-2xl" letterSpacing={1}>
-          Your online empire starts here
-        </Typography>
-      </Stack>
+          <Form {...form}>
+            <form onSubmit={handleSubmit(handleValidSubmit)}>
+              <Grid container gap={3}>
+                <Grid size={12}>
+                  <FormInput 
+                    name={CrudKeys._EMAIL}
+                    label="Your Email"
+                    placeholder="example@gmail.com"
+                    required
+                    variant='light'
+                  />
+                </Grid>
+                <Grid size={12}>
+                  <FormInput 
+                    name={CrudKeys._PASSWORD}
+                    label="Password"
+                    type='password'
+                    placeholder="*******"
+                    required
+                    variant='light'
+                  />
+                </Grid>
+                <Grid size={12}>
+                  <FormInput 
+                    name={CrudKeys._CONFIRM_PASSWORD}
+                    label="Confirm Password"
+                    type='password'
+                    placeholder="*******"
+                    required
+                    variant='light'
+                  />
+                </Grid>
 
-      <Button 
-        variant='default'
-        label="CONTINUE WITH GOOGLE"
-        startIcon={<GoogleLogo />}
-        style={{
-          backgroundColor: COLOR_CODES.SECONDARY_BG,
-          cursor: 'pointer',
-          marginTop: '20px',
-          marginBottom: '28px'
-        }}
-      />
+                <Grid size={12}>
+                  <FormCheckbox 
+                    name=""
+                    variant='light'
+                    checked={checked}
+                    onClick={() => setChecked(!checked)}
+                    label={
+                      <Stack direction='row' alignItems='center' gap={1}>
+                        <Typography sx={{ fontSize: TEXT_SIZE.SM }}>
+                          By creating an account, you agree to the{" "}
+                          <span className="underline">Terms</span>{" "}
+                          and{" "}
+                          <span className="underline">Privacy Policy</span>
+                        </Typography>
+                      </Stack>
+                    }
+                  />
+                </Grid>
+              </Grid>
 
-      <Divider text="OR" />
-
-      <Form {...form}>
-        <form onSubmit={handleSubmit(handleValidSubmit)}>
-          <Grid container gap={3}>
-            <Grid size={12}>
-              <FormInput 
-                name={CrudKeys._USERNAME}
-                label="Username"
-                placeholder="coolseller123"
-                startIcon={<HiOutlineUser style={{ width: '24px', height: '24px' }} />}
-                required
-              />
-            </Grid>
-            <Grid size={12}>
-              <FormInput 
-                name={CrudKeys._EMAIL}
-                label="Email"
-                placeholder="seller@gmail.com"
-                startIcon={<CiMail style={{ width: '24px', height: '24px' }} />}
-                required
-              />
-            </Grid>
-            <Grid size={12}>
-              <FormInput 
-                name={CrudKeys._PASSWORD}
-                label="Password"
-                type='password'
-                placeholder="*******"
-                startIcon={<IoKeyOutline style={{ width: '24px', height: '24px' }} />}
-                required
-              />
-            </Grid>
-            <Grid size={12}>
-              <FormInput 
-                name={CrudKeys._CONFIRM_PASSWORD}
-                label="Confirm Password"
-                type='password'
-                placeholder="*******"
-                startIcon={<IoKeySharp style={{ width: '24px', height: '24px' }} />}
-                required
-              />
-            </Grid>
-
-            <Grid size={12}>
-              <FormCheckbox 
-                name=""
-                checked={checked}
-                onClick={() => setChecked(!checked)}
-                label={
-                  <Stack direction='row' alignItems='center' gap={1}>
-                    <Typography sx={{ fontSize: TEXT_SIZE.SM, fontWeight: FONT_WEIGHT.BOLD }}>
-                      I agree to{" "}
-                      <span className="underline">Terms</span>{" "}
-                      and{" "}
-                      <span className="underline">Privacy Policy</span>.{" "}
-                      I&apos;m 18+ and ready to make money!
-                    </Typography>
-                  </Stack>
-                }
-              />
-            </Grid>
-          </Grid>
-
-          <Stack mt={4} justifyContent='center' direction='row'>
+              <Stack mt={4} justifyContent='center' direction='row'>
+                <Button
+                  type="submit"
+                  label="Get Started"
+                  variant='secondary'
+                  style={{ width: '100%', backgroundColor: '#E6E6E6', color: '#000' }}
+                  disabled={isLoading}
+                  isLoading={isLoading}
+                />
+              </Stack>
+            </form>
+          </Form>
+          
+          <Stack flexDirection='column' alignItems='center' gap={2} mt={4}>
+            <Typography>
+              or sign in with
+            </Typography>
             <Button
               type="submit"
-              label="CREATE MY SHOP!"
-              endIcon={<LuArrowRightFromLine style={{ width: '20px', height: '20px' }} />}
-              style={{
-                minWidth: '300px',
-              }}
-              disabled={!checked || isLoading}
-              isLoading={isLoading}
+              variant='secondary'
+              size='icon'
+              startIcon={<FaGoogle size={18} />}
             />
+            <Typography>
+              Already have an account?{' '}
+              <Link href={`${SYSTEM_PATHS.auth}?type=login`}>
+                <span style={{
+                  fontWeight: 600,
+                  color: '#8394FF'
+                }}>Sign in</span>
+              </Link>
+            </Typography>
           </Stack>
-        </form>
-      </Form>
-    </Stack>
+        </Stack>
+      </motion.div>
+    </div>
   );
 };
 
