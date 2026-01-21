@@ -42,12 +42,13 @@ const NavigationItem = ({ item }: { item: NavItemType }) => {
         </NavigationMenuTrigger>
 
         <NavigationMenuContent>
-          <ul className="grid gap-3 w-[120]">
+          <ul className="w-[120]">
             {item.children.map((child) => (
-              <NavigationMenuLink key={child.label}>
+              <NavigationMenuLink asChild key={child.label}>
                 <Link
                   href={child.href ?? "#"}
                   className={cn("text-base text-white")}
+                  style={{ padding: '8px 0' }}
                 >
                   {child.label}
                 </Link>

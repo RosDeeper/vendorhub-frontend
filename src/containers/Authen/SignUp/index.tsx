@@ -166,7 +166,16 @@ const SignUpPage = () => {
                   <FormInput 
                     name={CrudKeys._EMAIL}
                     label="Your Email"
-                    placeholder="example@gmail.com"
+                    placeholder="Enter email"
+                    required
+                    variant='light'
+                  />
+                </Grid>
+                <Grid size={12}>
+                  <FormInput 
+                    name={CrudKeys._PHONE_NUMBER}
+                    label="Phone Number"
+                    placeholder="Enter phone number"
                     required
                     variant='light'
                   />

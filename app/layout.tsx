@@ -1,5 +1,7 @@
 import { DM_Sans } from "next/font/google";
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, getLocale } from 'next-intl/server';
 import { Suspense } from "react";
 
 import { 
@@ -27,23 +29,28 @@ export const metadata: Metadata = {
   title: 'VendorHub'
 };
 
-const RootLayout = ({ children }: Props) => {
+const RootLayout = async ({ children }: Props) => {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en" className={dmSans.variable}>
+    <html lang={locale} className={dmSans.variable}>
       <body>
-        <ThemeProvider>
-          <QueryProvider>
-            <DialogProvider>
-              {/* <SidebarProvider> */}
-                <Suspense fallback={null}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ThemeProvider>
+            <QueryProvider>
+              <DialogProvider>
+                {/* <SidebarProvider> */}
                   <AnimatedBackground />
-                </Suspense>
-                {children}
-                <ToastProvider />
-              {/* </SidebarProvider> */}
-            </DialogProvider>
-          </QueryProvider>
-        </ThemeProvider>
+                  <Suspense fallback={null}>
+                    {children}
+                  </Suspense>
+                  <ToastProvider />
+                {/* </SidebarProvider> */}
+              </DialogProvider>
+            </QueryProvider>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -20,14 +20,12 @@ export const AnimatedBackground = () => {
   const isSignup = type === "signup";
 
   return (
-    <>
-      <motion.div
-        animate={{ 
-          clipPath: isSignup ? 'inset(0 50% 0 0)' : 'inset(0 0% 0 0)',
-        }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        style={backgroundImage}
-      />
-    </>
+    <motion.div
+      animate={{ 
+        clipPath: isSignup ? 'inset(0 50% 0 0)' : 'inset(0 0% 0 0)',
+      }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+      style={backgroundImage}
+    />
   );
 };

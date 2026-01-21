@@ -47,13 +47,17 @@ export const leftNavItems: NavItemType[] = [
 
 export const rightNavItems: NavItemType[] = [
   {
-    label: "English",
+    label: "Language",
     href: "#",
     children: [
       {
-        label: "Vietnamese",
+        label: "English",
         href: "#",
       },
+      {
+        label: 'Vietnamese',
+        href: '#'
+      }
     ]
   },
   {

@@ -1,15 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { PUBLIC_PATHS } from "./src/constants/path";
 import { rootDomain } from "./lib";
+import { routing } from "./src/i18n/routing";
 
-const isPublicPath = (pathname: string) => {
-  return PUBLIC_PATHS?.some(
-    (path) => pathname === path || pathname.startsWith(`${path}/`)
-  );
-};
-
-function extractSubdomain(req: NextRequest): string | null {
+const extractSubdomain = (req: NextRequest): string | null => {
   const url = req.url;
   const host = req.headers.get('host');
 
@@ -17,7 +11,6 @@ function extractSubdomain(req: NextRequest): string | null {
 
   const hostname = host.split(':')[0];
 
-  // Local development environment
   if (url.includes('localhost') || url.includes('127.0.0.1')) {
     const fullUrlMatch = url.match(/http:\/\/([^.]+)\.localhost/);
 
@@ -32,7 +25,6 @@ function extractSubdomain(req: NextRequest): string | null {
     return null;
   }
 
-  // Production environment
   if (hostname.endsWith('.vercel.app') && hostname.includes('---')) {
     return hostname.split('---')[0];
   }
@@ -46,7 +38,18 @@ function extractSubdomain(req: NextRequest): string | null {
   }
 
   return null;
-}
+};
+
+const applyLocale = (response: NextResponse, locale: string) => {
+  response.cookies.set('NEXT_LOCALE', locale, {
+    maxAge: 60 * 60 * 24 * 365,
+    path: '/',
+    sameSite: 'lax',
+  });
+
+  response.headers.set('x-locale', locale);
+  return response;
+};
 
 export function proxy(req: NextRequest) {
   // const refreshToken = req.cookies.get("refreshToken")?.value;
@@ -67,21 +70,26 @@ export function proxy(req: NextRequest) {
 
   // return NextResponse.next();
   const { pathname } = req.nextUrl;
+  const locale = req.cookies.get('NEXT_LOCALE')?.value || routing.defaultLocale;
+
   const subdomain = extractSubdomain(req);
 
   if (subdomain) {
     if (pathname.startsWith('/vh')) {
-      return NextResponse.next();
+      return applyLocale(NextResponse.next(), locale);
     }
 
-    return NextResponse.rewrite(
-      new URL(`/vh/${subdomain}${pathname}`, req.url)
-    );
+    const url = req.nextUrl.clone();
+    url.pathname = `/vh/${subdomain}${pathname}`;
+
+    return applyLocale(NextResponse.next(), locale);
   }
 
-  return NextResponse.next();
+  return applyLocale(NextResponse.next(), locale);
 };
 
 export const config = {
-  matcher: ['/((?!api|_next|[\\w-]+\\.\\w+).*)'],
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff|woff2|ttf|eot)$).*)',
+  ],
 };
