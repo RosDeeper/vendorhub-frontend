@@ -11,6 +11,8 @@ import { useRouter } from "next/navigation";
 import { Button, FormOTPInput } from "@/components/common";
 import { IMAGES } from "@/components/images";
 import { SYSTEM_PATHS } from "@/src/constants/path";
+import { motion } from "motion/react";
+import { formVariants } from "@/components/common/animation";
 
 type Props = {
   email: string,
@@ -72,7 +74,11 @@ const OTPForm = ({ email }: Props) => {
   console.log("Generated OTP:", serverOtp);
 
   return (
-    <>
+    <motion.div 
+      variants={formVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <Stack mb='40px'>
         <FaStarOfLife size={28} />
         <Typography className="create-title">
@@ -130,7 +136,7 @@ const OTPForm = ({ email }: Props) => {
           style={{ width: '100%' }}
         />
       </Stack>
-    </>
+    </motion.div>
   );
 };
 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MdLockOutline } from "react-icons/md";
+import { motion } from "motion/react";
 import { LuArrowRightFromLine } from "react-icons/lu";
 
 import { IMAGES } from "@/components/images";
@@ -16,6 +17,7 @@ import {
   initialPasswordValues, 
   passwordSchema 
 } from "../helpers";
+import { formVariants } from "@/components/common/animation";
 
 const PasswordForm = () => {
   const form = useForm<CreatePasswordFormValues>({
@@ -34,7 +36,11 @@ const PasswordForm = () => {
   };
 
   return (
-    <>
+    <motion.div 
+      variants={formVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <Stack mb='40px'>
         <FaStarOfLife size={28} />
         <Typography className="create-title">
@@ -94,7 +100,7 @@ const PasswordForm = () => {
           </Stack>
         </form>
       </FormProvider>
-    </>
+    </motion.div>
   );
 };
 

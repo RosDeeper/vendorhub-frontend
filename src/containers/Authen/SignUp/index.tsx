@@ -1,17 +1,18 @@
 import { Stack } from "@mui/material";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { motion } from "motion/react";
+import { useSearchParams } from "next/navigation";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 
-import { 
-  formVariants,
-  heroVariants
-} from "./helpers";
 import EmailForm from "./components/EmailForm";
 import OTPForm from "./components/OTPForm";
 import PasswordForm from "./components/PasswordForm";
 import { IMAGES } from "@/components/images";
+import { 
+  containerVariants, 
+  formVariants, 
+  heroVariants 
+} from "@/components/common/animation";
 
 type SignUpStep = 'email' | 'otp' | 'password';
 
@@ -43,9 +44,6 @@ const SignUpPage = () => {
       
       <motion.div
         variants={formVariants}
-        initial="hidden"
-        animate="visible"
-        exit='exit'
         style={{
           width: '50%',
           display: 'flex',
@@ -65,15 +63,25 @@ const SignUpPage = () => {
             }}
           />
 
-          {currentStep === 'email' && (
-            <EmailForm onNext={handleNext} />
-          )}
-          {currentStep === 'otp' && (
-            <OTPForm email={emailData} />
-          )}
-          {currentStep === 'password' && (
-            <PasswordForm />
-          )}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStep}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              {currentStep === 'email' && (
+                <EmailForm onNext={handleNext} />
+              )}
+              {currentStep === 'otp' && (
+                <OTPForm email={emailData} />
+              )}
+              {currentStep === 'password' && (
+                <PasswordForm />
+              )}
+            </motion.div>
+          </AnimatePresence>
         </Stack>
       </motion.div>
     </div>

@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { motion, AnimatePresence, Variants, stagger } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 
 import { LoginPage, SignUpPage } from "@/src/containers/Authen";
+import { containerVariants } from "@/components/common/animation";
 
 import '../styles.scss';
 
@@ -21,16 +22,6 @@ const X = () => {
   const [currentTab, setCurrentTab] = useState<string>(
     typeFromUrl ?? tabs[0].value
   );
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-    },
-    exit: { 
-      opacity: 0,
-    }
-  };
 
   const renderTab = () => {
     switch (currentTab) {

@@ -16,16 +16,15 @@ import { Toastify, mockLogin, protocol, rootDomain } from "@/lib";
 import { 
   CrudKeys, 
   formSchema, 
-  formVariants, 
   initialValues, 
   leftNavItems, 
   LoginFormValues, 
-  navVariants, 
   rightNavItems
 } from "./helpers";
 
 import { useLogin } from "@/src/queries";
 import { IMAGES } from "@/components/images";
+import { formVariants, navVariants } from "@/components/common/animation";
 
 const LoginPage = () => {
   const router = useRouter();
