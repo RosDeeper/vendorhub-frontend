@@ -2,7 +2,7 @@ import { Stack, Typography, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import Cookies from "universal-cookie";
 import Image from "next/image";
 import { useState } from "react";
@@ -10,7 +10,6 @@ import { FaGoogle } from "react-icons/fa";
 import { motion } from "motion/react";
 import Link from "next/link";
 
-import { Form } from "@/components/ui";
 import { Button, FormCheckbox, FormInput, NavigationMenu } from "@/components/common";
 import { SYSTEM_PATHS } from "@/src/constants/path";
 import { Toastify, mockLogin, protocol, rootDomain } from "@/lib";
@@ -26,6 +25,7 @@ import {
 } from "./helpers";
 
 import { useLogin } from "@/src/queries";
+import { IMAGES } from "@/components/images";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -86,12 +86,8 @@ const LoginPage = () => {
         exit='exit'
       >
         <Stack flexDirection='row' justifyContent='space-between'>
-          <NavigationMenu
-            items={leftNavItems}
-          />
-          <NavigationMenu
-            items={rightNavItems} 
-          />
+          <NavigationMenu items={leftNavItems} />
+          <NavigationMenu items={rightNavItems} />
         </Stack>
       </motion.nav>
 
@@ -104,7 +100,7 @@ const LoginPage = () => {
         <Stack flexDirection='row' justifyContent='center' mt={8}>
           <Stack flexDirection='column' alignItems='center'>
             <Image 
-              src='/assets/vendor-black.png' 
+              src={IMAGES.VendorBlackLogo}
               alt='vendorHub-logo-black' 
               width={340}
               height={28}
@@ -120,7 +116,7 @@ const LoginPage = () => {
               </Typography>
 
               <Stack mt='60px' width='400px'>
-                <Form {...form}>
+                <FormProvider {...form}>
                   <form onSubmit={handleSubmit(handleValidSubmit)}>
                     <Grid container gap={3}>
                       <Grid size={12}>
@@ -153,12 +149,14 @@ const LoginPage = () => {
                             }
                           />
 
-                          <Typography 
-                            className="span-white"
-                            style={{ cursor: 'pointer' }}
-                          >
-                            Forgot password ?
-                          </Typography>
+                          <Link href={SYSTEM_PATHS.forgetPassword}>
+                            <Typography 
+                              className="span-white"
+                              style={{ cursor: 'pointer' }}
+                            >
+                              Forgot password ?
+                            </Typography>
+                          </Link>
                         </Stack>
                       </Grid>
                     </Grid>
@@ -168,13 +166,13 @@ const LoginPage = () => {
                         type="submit"
                         variant='secondary'
                         label="Sign In"
-                        style={{ width: '100%', backgroundColor: '#D7CECE', color: '#000' }}
+                        style={{ width: '100%' }}
                         disabled={isLoading}
                         isLoading={isLoading}
                       />
                     </Stack>
                   </form>
-                </Form>
+                </FormProvider>
 
                 <Stack flexDirection='column' alignItems='center' gap={2} mt={4}>
                   <Typography className="span-white">

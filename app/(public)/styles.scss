@@ -9,7 +9,6 @@
   &.create-title {
     font-size: 36px;
     font-weight: 600;
-    color: #453838;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -34,4 +33,12 @@
 
     backdrop-filter: blur(10px);
   }
+}
+
+.signup-wrapper {
+  padding: 40px 0;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  overflow-x: hidden;
 }

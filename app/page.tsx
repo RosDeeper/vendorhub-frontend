@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import { Typography, Stack } from '@mui/material';
 import Link from 'next/link';
@@ -7,6 +5,7 @@ import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/common';
 import { SYSTEM_PATHS } from '@/src/constants/path';
+import { IMAGES } from '@/components/images';
 
 const X = () => {
   const t = useTranslations('HomePage');
@@ -14,7 +13,7 @@ const X = () => {
   return (
     <div className='flex flex-col min-h-screen justify-center items-center'>
       <Image 
-        src='/assets/vendor-logo.png' 
+        src={IMAGES.VendorWhiteLogo}
         alt='vendorHub-logo' 
         width={860}
         height={76}

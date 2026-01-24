@@ -1,12 +1,14 @@
 'use client';
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { motion } from "motion/react";
+
+import { SYSTEM_PATHS } from "@/src/constants/path";
 
 const backgroundImage: React.CSSProperties = {
   background: `
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/assets/background-image.png') center / 100% 100% no-repeat
+    url('/assets/images/background-image.png') center / 100% 100% no-repeat
   `,
   position: 'fixed',
   opacity: 1,
@@ -16,13 +18,17 @@ const backgroundImage: React.CSSProperties = {
 
 export const AnimatedBackground = () => {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const type = searchParams.get("type");
-  const isSignup = type === "signup";
+
+  const isCollapsed = 
+    type === "signup" || 
+    pathname === SYSTEM_PATHS.forgetPassword;
 
   return (
     <motion.div
       animate={{ 
-        clipPath: isSignup ? 'inset(0 50% 0 0)' : 'inset(0 0% 0 0)',
+        clipPath: isCollapsed ? 'inset(0 50% 0 0)' : 'inset(0 0% 0 0)',
       }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       style={backgroundImage}

@@ -47,20 +47,6 @@ export const leftNavItems: NavItemType[] = [
 
 export const rightNavItems: NavItemType[] = [
   {
-    label: "Language",
-    href: "#",
-    children: [
-      {
-        label: "English",
-        href: "#",
-      },
-      {
-        label: 'Vietnamese',
-        href: '#'
-      }
-    ]
-  },
-  {
     label: "Sign in",
     href: "#",
     render: () => {
