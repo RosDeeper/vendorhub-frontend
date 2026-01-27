@@ -82,7 +82,8 @@ export function proxy(req: NextRequest) {
     const url = req.nextUrl.clone();
     url.pathname = `/vh/${subdomain}${pathname}`;
 
-    return applyLocale(NextResponse.next(), locale);
+    const rewriteResponse = NextResponse.rewrite(url);
+    return applyLocale(rewriteResponse, locale);
   }
 
   return applyLocale(NextResponse.next(), locale);

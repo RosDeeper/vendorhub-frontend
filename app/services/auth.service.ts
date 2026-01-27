@@ -1,6 +1,6 @@
 'use server';
 
-const BE_API = process.env.NEXT_PUBLIC_BACKEND_API_URL;
+import { apiAuthClient } from "@/src/queries";
 
 export type LoginPayload = {
   email: string;
@@ -9,40 +9,39 @@ export type LoginPayload = {
 
 export type RegisterPayload = {
   email: string;
-  password?: string;
-  userName?: string;
+  phone: string;
 };
 
-export const login = async (payload: LoginPayload): Promise<any> => {
-  const response = await fetch(`${BE_API}/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
-    body: JSON.stringify(payload),
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || 'Login failed');
-  }
-
-  return data;
+export type VerifyOTPPayload = {
+  email: string;
+  name?: string;
+  otp: string;
 };
 
-export const register = async (payload: RegisterPayload): Promise<any> => {
-  const response = await fetch(`${BE_API}/auth/register`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
-    body: JSON.stringify(payload),
-  });
+export const login = async (payload: LoginPayload): Promise<any> => (
+  apiAuthClient<any, LoginPayload>({
+    endpoint: "/auth/login",
+    payload,
+  })
+);
 
-  const data = await response.json();
+export const sendOTP = async (payload: RegisterPayload): Promise<any> => (
+  apiAuthClient<any, RegisterPayload>({
+    endpoint: "/auth/registeration/sendOTP",
+    payload,
+  })
+);
 
-  if (!response.ok) {
-    throw new Error(data.message || 'Registration failed');
-  }
+export const verifyOTP = async (payload: VerifyOTPPayload): Promise<any> => (
+  apiAuthClient<any, VerifyOTPPayload>({
+    endpoint: '/auth/registeration/verifyOTP',
+    payload,
+  })
+);
 
-  return data;
-};
+export const createPassword = async (payload: { password: string }): Promise<any> => (
+  apiAuthClient<any, { password: string }>({
+    endpoint: '/auth/registeration/createPassword',
+    payload,
+  })
+);

@@ -7,10 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MdLockOutline } from "react-icons/md";
 import { motion } from "motion/react";
 import { LuArrowRightFromLine } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 
 import { IMAGES } from "@/components/images";
 import { Button, FormInput, PasswordStrength } from "@/components/common";
-import {  } from "@/components/common";
 import { 
   CreatePasswordFormValues, 
   CrudKeys, 
@@ -19,7 +19,22 @@ import {
 } from "../helpers";
 import { formVariants } from "@/components/common/animation";
 
+import { useCreatePassword } from "@/src/queries";
+import { SYSTEM_PATHS } from "@/src/constants/path";
+import { Toastify } from "@/lib";
+
 const PasswordForm = () => {
+  const router = useRouter();
+
+  const { createPassword, isLoading } = useCreatePassword({
+    onSuccess() {
+      router.push(`${SYSTEM_PATHS.auth}?type=login`);
+    },
+    onError() {
+      Toastify.error("Create Password Failed! Please try again.");
+    },
+  });
+
   const form = useForm<CreatePasswordFormValues>({
     resolver: zodResolver(passwordSchema),
     defaultValues: initialPasswordValues,
@@ -30,9 +45,7 @@ const PasswordForm = () => {
   const password = watch(CrudKeys._PASSWORD);
 
   const handleValidSubmit = (formValues: CreatePasswordFormValues) => {
-    console.log({
-      password: formValues.password,
-    });
+    createPassword({ password: formValues.password });    
   };
 
   return (
@@ -96,6 +109,8 @@ const PasswordForm = () => {
               variant='primary'
               endIcon={<LuArrowRightFromLine size={20} />}
               style={{ width: '100%' }}
+              isLoading={isLoading}
+              disabled={isLoading}
             />
           </Stack>
         </form>

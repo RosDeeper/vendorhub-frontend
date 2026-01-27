@@ -2,7 +2,7 @@ import z from "zod";
 
 export enum CrudKeys {
   _EMAIL = 'email',
-  _PHONE_NUMBER = 'phoneNumber',
+  _PHONE_NUMBER = 'phone',
   _PASSWORD = 'password',
   _CONFIRM_PASSWORD = 'confirmPassword',
 };

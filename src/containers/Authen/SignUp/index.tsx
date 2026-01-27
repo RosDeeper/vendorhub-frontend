@@ -13,17 +13,18 @@ import {
   formVariants, 
   heroVariants 
 } from "@/components/common/animation";
+import { initialValues, SignUpFormValues } from "./helpers";
 
 type SignUpStep = 'email' | 'otp' | 'password';
 
 const SignUpPage = () => {
   const searchParams = useSearchParams();
-  const [emailData, setEmailData] = useState<string>('');
+  const [formData, setFormData] = useState<SignUpFormValues>(initialValues);
 
   const currentStep = searchParams.get('step') as SignUpStep || 'email';
 
-  const handleNext = (email: string) => {
-    setEmailData(email);
+  const handleNext = (payload: SignUpFormValues) => {
+    setFormData(payload);
   };
 
   return (
@@ -75,7 +76,7 @@ const SignUpPage = () => {
                 <EmailForm onNext={handleNext} />
               )}
               {currentStep === 'otp' && (
-                <OTPForm email={emailData} />
+                <OTPForm data={formData} />
               )}
               {currentStep === 'password' && (
                 <PasswordForm />

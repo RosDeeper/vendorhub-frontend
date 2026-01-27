@@ -1,7 +1,6 @@
 import { Stack, Typography, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect } from "next/navigation";
 import { useForm, FormProvider } from "react-hook-form";
 import Cookies from "universal-cookie";
 import Image from "next/image";
@@ -12,7 +11,7 @@ import Link from "next/link";
 
 import { Button, FormCheckbox, FormInput, NavigationMenu } from "@/components/common";
 import { SYSTEM_PATHS } from "@/src/constants/path";
-import { Toastify, mockLogin, protocol, rootDomain } from "@/lib";
+import { Toastify, protocol, rootDomain } from "@/lib";
 import { 
   CrudKeys, 
   formSchema, 
@@ -33,14 +32,9 @@ const LoginPage = () => {
   const [checked, setChecked] = useState<boolean>(false);
 
   const { login, isLoading } = useLogin({
-    onSuccess(data) {
+    onSuccess() {
       Toastify.success("Login Successfully!");
-      cookies.set('accessToken', data.accessToken, { 
-        path: '/' ,
-        sameSite: 'strict',
-        maxAge: 15 * 60,
-      });
-      router.push(SYSTEM_PATHS.dashboard);
+      // router.push(SYSTEM_PATHS.dashboard);
     },
     onError() {
       Toastify.error("Login Failed! Please try again.");
@@ -57,18 +51,8 @@ const LoginPage = () => {
   } = form;
 
   const handleValidSubmit = (formValues: LoginFormValues) => {
-    // login(formValues);
-    const { email, password } = formValues;
-    const result = mockLogin(email, password);
-
-    if (!result) {
-      return;
-    }
-
-    localStorage.setItem('accessToken', result.accessToken)
-    localStorage.setItem('user', JSON.stringify(result.user))
-
-    redirect(`${protocol}://${result.user.tenant.slug}.${rootDomain}/dashboard`);
+    login(formValues);
+    // redirect(`${protocol}://${result.user.tenant.slug}.${rootDomain}/dashboard`);
   };
 
   return (
@@ -76,6 +60,7 @@ const LoginPage = () => {
       style={{
         minHeight: "100vh",
         padding: "40px 120px 40px",
+        overflowX: 'hidden'
       }}
     >
       <motion.nav
@@ -122,6 +107,7 @@ const LoginPage = () => {
                         <FormInput 
                           name={CrudKeys._EMAIL}
                           placeholder="Enter Email"
+                          autoComplete='off'
                         />
                       </Grid>
                       <Grid size={12}>
@@ -129,6 +115,7 @@ const LoginPage = () => {
                           name={CrudKeys._PASSWORD}
                           type='password'
                           placeholder="Enter Password"
+                          autoComplete='off'
                         />
                       </Grid>
                       <Grid size={12}>

@@ -1,17 +1,15 @@
-'use client';
-
 import { useMutation } from "@tanstack/react-query";
 
-import { login } from "@/app/services";
+import { createPassword } from "@/app/services/auth.service";
 
 type Props = {
   onSuccess?: (data?: any) => void;
   onError?: (error?: Error) => void;
 };
 
-export const useLogin = (options: Props) => {
+export const useCreatePassword = (options: Props) => {
   const mutation = useMutation({
-    mutationFn: login,
+    mutationFn: createPassword,
 
     onSuccess: (data) => {
       options?.onSuccess?.(data);
@@ -23,7 +21,7 @@ export const useLogin = (options: Props) => {
   });
 
   return {
-    login: mutation.mutate,
+    createPassword: mutation.mutate,
     isLoading: mutation.isPending,
   };
 };

@@ -12,19 +12,19 @@ import { CrudKeys, formSchema, initialValues, SignUpFormValues } from "../helper
 import { Toastify } from "@/lib";
 import { TEXT_SIZE } from "@/src/constants/text";
 
-import { useRegister } from "@/src/queries";
+import { useSendOTP } from "@/src/queries";
 
 type Props = {
-  onNext: (email: string) => void;
+  onNext: (payload: SignUpFormValues) => void;
 };
 
 const EmailForm = ({ onNext }: Props) => {
   const router = useRouter();
   const [checked, setChecked] = useState<boolean>(false);
 
-  const { register, isLoading } = useRegister({
+  const { sendOTP, isLoading } = useSendOTP({
     onSuccess() {
-      // handleOnSuccess();
+      router.push(`${SYSTEM_PATHS.auth}?type=signup&step=otp`);
     },
     onError() {
       Toastify.error("Sign-up Failed! Please try again.");
@@ -41,12 +41,8 @@ const EmailForm = ({ onNext }: Props) => {
   } = form;
 
   const handleValidSubmit = (formValues: SignUpFormValues) => {
-    onNext(formValues.email);
-
-    console.log(formValues);
-     
-    router.push(`${SYSTEM_PATHS.auth}?type=signup&step=otp`);
-    // register(payload);
+    sendOTP(formValues);
+    onNext(formValues);
   };
 
   // const handleOnSuccess = () => {
@@ -114,6 +110,7 @@ const EmailForm = ({ onNext }: Props) => {
                 placeholder="Enter email"
                 required
                 variant='light'
+                autoComplete='off'
               />
             </Grid>
 
@@ -124,6 +121,7 @@ const EmailForm = ({ onNext }: Props) => {
                 placeholder="Enter phone number"
                 required
                 variant='light'
+                autoComplete='off'
               />
             </Grid>
 

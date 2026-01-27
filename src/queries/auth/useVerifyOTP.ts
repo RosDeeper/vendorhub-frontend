@@ -1,17 +1,15 @@
-'use client';
-
 import { useMutation } from "@tanstack/react-query";
 
-import { register } from "@/app/services";
+import { verifyOTP } from "@/app/services/auth.service";
 
 type Props = {
   onSuccess?: (data?: any) => void;
   onError?: (error?: Error) => void;
 };
 
-export const useRegister = (options: Props) => {
+export const useVerifyOTP = (options: Props) => {
   const mutation = useMutation({
-    mutationFn: register,
+    mutationFn: verifyOTP,
 
     onSuccess: (data) => {
       options?.onSuccess?.(data);
@@ -23,7 +21,7 @@ export const useRegister = (options: Props) => {
   });
 
   return {
-    register: mutation.mutate,
+    verifyOTP: mutation.mutate,
     isLoading: mutation.isPending,
   };
 };
