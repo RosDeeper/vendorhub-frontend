@@ -2,15 +2,16 @@ import { Grid, Stack, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { FaGoogle, FaStarOfLife } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useState } from "react";
 
 import { Button, FormCheckbox, FormInput } from "@/components/common";
 import { SYSTEM_PATHS } from "@/src/constants/path";
 import { CrudKeys, formSchema, initialValues, SignUpFormValues } from "../helpers";
 import { Toastify } from "@/lib";
 import { TEXT_SIZE } from "@/src/constants/text";
+import { useDialog } from "@/components/hooks";
 
 import { useSendOTP } from "@/src/queries";
 
@@ -21,6 +22,7 @@ type Props = {
 const EmailForm = ({ onNext }: Props) => {
   const router = useRouter();
   const [checked, setChecked] = useState<boolean>(false);
+  const { openDialog, closeDialog } = useDialog();
 
   const { sendOTP, isLoading } = useSendOTP({
     onSuccess() {
@@ -45,48 +47,6 @@ const EmailForm = ({ onNext }: Props) => {
     onNext(formValues);
   };
 
-  // const handleOnSuccess = () => {
-  //   openDialog({
-  //     type: 'alert',
-  //     size: 'sm',
-  //     content: (
-  //       <Stack px={3} py={1} gap={2}>
-  //         <Stack direction='column' alignItems='center' gap={1} mb={2}>
-  //           <Typography
-  //             sx={{
-  //               fontSize: TEXT_SIZE.HXL,
-  //               fontWeight: FONT_WEIGHT.BOLD,
-  //               color: '#584700',
-  //             }}
-  //           >
-  //             Sign-up successfully
-  //           </Typography>
-  //           <Typography 
-  //             textAlign='center'
-  //             sx={{
-  //               fontSize: TEXT_SIZE.BASE,
-  //               fontWeight: FONT_WEIGHT.MEDIUM,
-  //               marginBottom: '20px',
-  //             }}
-  //           >
-  //             Log back in with your new sign-in inforamtion to get started with {" "}
-  //             <span style={{ color: '#BC9900BF' }}>vendorHub</span>!
-  //           </Typography>
-  //           <PeopleGroupEmoji />
-  //         </Stack>
-
-  //         <Button
-  //           label="Login"
-  //           onClick={() => {
-  //             router.push(`${SYSTEM_PATHS.auth}?type=login`);
-  //             closeDialog();
-  //           }}
-  //         />
-  //       </Stack>
-  //     ),
-  //   });
-  // };
-
   return (
     <>
       <Stack mb='40px'>
@@ -94,7 +54,7 @@ const EmailForm = ({ onNext }: Props) => {
         <Typography className="create-title">
           Create an account
         </Typography>
-        <Typography color="#453838" textAlign='center'>
+        <Typography textAlign='center'>
           Access your tasks, notes, and project anytime,<br />
           anywhere - and keep everything flowflowing in one place.
         </Typography>

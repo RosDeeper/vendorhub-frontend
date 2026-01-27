@@ -11,21 +11,20 @@ import {
   AlertDialogFooter,
   AlertDialogAction,
   AlertDialogCancel,
-} from "@/components/ui/alert-dialog";
-import {
+
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { 
+
   Drawer, 
   DrawerContent, 
   DrawerHeader, 
-  DrawerTitle 
-} from "@/components/ui/drawer";
-import { Button } from "../common";
+  DrawerTitle,
+
+  Button
+} from "@/components/common";
 
 type DialogSize = "sm" | "md" | "lg" | "xl";
 

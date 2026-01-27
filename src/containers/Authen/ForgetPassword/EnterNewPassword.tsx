@@ -17,7 +17,7 @@ import {
   NewPasswordFormValues
 } from "./helper";
 import { SYSTEM_PATHS } from "@/src/constants/path";
-import { PhonePasswordEmoji } from "@/components/common/Emoji";
+// import { PhonePasswordEmoji } from "@/components/common/Emoji";
 import { TEXT_SIZE, FONT_WEIGHT } from "@/src/constants/text";
 import { useDialog } from "@/components/hooks";
 
@@ -43,7 +43,7 @@ const EnterNewPassword = () => {
       content: (
         <Stack px={3} py={1} gap={2}>
           <Stack direction='column' alignItems='center' gap={1}>
-            <PhonePasswordEmoji />
+            {/* <PhonePasswordEmoji /> */}
             <Typography
               sx={{
                 fontSize: TEXT_SIZE.HXL,

@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/incompatible-library */
 import { Grid, Stack, Typography } from "@mui/material";
 import { FaStarOfLife } from "react-icons/fa";
-import Image from "next/image";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MdLockOutline } from "react-icons/md";
 import { motion } from "motion/react";
 import { LuArrowRightFromLine } from "react-icons/lu";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 import { IMAGES } from "@/components/images";
 import { Button, FormInput, PasswordStrength } from "@/components/common";
@@ -18,17 +19,19 @@ import {
   passwordSchema 
 } from "../helpers";
 import { formVariants } from "@/components/common/animation";
-
-import { useCreatePassword } from "@/src/queries";
 import { SYSTEM_PATHS } from "@/src/constants/path";
 import { Toastify } from "@/lib";
+import { useDialog } from "@/components/hooks";
+import { TEXT_SIZE } from "@/src/constants/text";
+
+import { useCreatePassword } from "@/src/queries";
 
 const PasswordForm = () => {
-  const router = useRouter();
+  const { openDialog, closeDialog } = useDialog();
 
   const { createPassword, isLoading } = useCreatePassword({
     onSuccess() {
-      router.push(`${SYSTEM_PATHS.auth}?type=login`);
+      handleOnSuccess();
     },
     onError() {
       Toastify.error("Create Password Failed! Please try again.");
@@ -46,6 +49,53 @@ const PasswordForm = () => {
 
   const handleValidSubmit = (formValues: CreatePasswordFormValues) => {
     createPassword({ password: formValues.password });    
+  };
+
+  const handleOnSuccess = () => {
+    openDialog({
+      type: 'alert',
+      size: 'sm',
+      content: (
+        <Stack px={3} py={1} gap={2}>
+          <Stack direction='column' alignItems='center' gap={1} mb={2}>
+            <Typography
+              sx={{
+                fontSize: TEXT_SIZE.HXL,
+                color: '#253857',
+                fontWeight: 700,
+              }}
+            >
+              Sign-up successfully
+            </Typography>
+            <Typography 
+              textAlign='center'
+              sx={{ marginBottom: '20px' }}
+            >
+              Log back in with your new sign-in inforamtion to get started with {" "}
+              <span style={{ 
+                color: '#253857',
+                fontWeight: 700
+              }}
+              >vendorHub</span>!
+            </Typography>
+            <Image 
+              src={IMAGES.Congratulation}
+              alt="congratulation"
+              width={160}
+              height={160}
+            />
+          </Stack>
+          
+          <Link href={`${SYSTEM_PATHS.auth}?type=login`}>
+            <Button
+              label="Sign-in"
+              endIcon={<LuArrowRightFromLine size={20} />}
+              onClick={() => closeDialog()}
+            />
+          </Link>
+        </Stack>
+      ),
+    });
   };
 
   return (

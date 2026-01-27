@@ -11,7 +11,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/components/common/ui";
 import { cn } from "@/lib/utils";
 
 // //////////////////////// COMMAND /////////////////////////////

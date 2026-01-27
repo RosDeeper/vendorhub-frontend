@@ -3,4 +3,7 @@ export * from './Divider';
 export * from './Table';
 export * from './Breadcumb';
 export * from './Button';
+export * from './Alert';
+export * from './Dialog';
+export * from './Drawer';
 export * from './NavigationMenu';
