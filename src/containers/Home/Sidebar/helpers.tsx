@@ -6,43 +6,43 @@ import { LuCalendarDays } from "react-icons/lu";
 import { MdOutlineDiscount } from "react-icons/md";
 import { HiOutlineCreditCard } from "react-icons/hi2";
 
-import { SYSTEM_PATHS } from "@/src/constants/path";
+import { SYS_PATHS } from "@/src/constants/path";
 import { COLOR_CODES } from "@/src/constants/color";
 
 export const sidebarList = [
   {
     title: 'Dashboard',
-    route: SYSTEM_PATHS.dashboard,
+    route: SYS_PATHS.dashboard,
     icon: <RxDashboard size={24} color={COLOR_CODES.ICON_COLOR} />,
   },
   {
     title: 'Employee',
-    route: SYSTEM_PATHS.employee,
+    route: SYS_PATHS.employee,
     icon: <BsPeople size={24} color={COLOR_CODES.ICON_COLOR} />,
   },
   {
     title: 'Service',
-    route: SYSTEM_PATHS.service,
+    route: SYS_PATHS.service,
     icon: <IoSparklesOutline size={24} color={COLOR_CODES.ICON_COLOR} />,
   },
   {
     title: 'Booking',
-    route: SYSTEM_PATHS.booking,
+    route: SYS_PATHS.booking,
     icon: <LuCalendarDays size={24} color={COLOR_CODES.ICON_COLOR} />,
   },
   {
     title: 'Payment',
-    route: SYSTEM_PATHS.payment,
+    route: SYS_PATHS.payment,
     icon: <HiOutlineCreditCard size={24} color={COLOR_CODES.ICON_COLOR} />,
   },
   {
     title: 'Voucher',
-    route: SYSTEM_PATHS.voucher,
+    route: SYS_PATHS.voucher,
     icon: <MdOutlineDiscount size={24} color={COLOR_CODES.ICON_COLOR} />,
   },
   {
     title: 'Product',
-    route: SYSTEM_PATHS.product,
+    route: SYS_PATHS.product,
     icon: <BsBoxSeam size={24} color={COLOR_CODES.ICON_COLOR} />,
   },
 ];

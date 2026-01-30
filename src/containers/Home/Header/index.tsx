@@ -8,12 +8,12 @@ import { FaCaretDown } from "react-icons/fa6";
 import { DefaultAvatar } from "@/components/images";
 import { TEXT_SIZE } from "@/src/constants/text";
 import { Divider } from "@/components/common";
-import { SYSTEM_PATHS } from "@/src/constants/path";
+import { SYS_PATHS } from "@/src/constants/path";
 
 const Header = () => {
   return (
     <Stack className="header-container">
-      <Link href={SYSTEM_PATHS.dashboard}>
+      <Link href={SYS_PATHS.dashboard}>
         <Image 
           src='/assets/vendor-black.png'
           alt="VendorHub Logo"
