@@ -1,6 +1,5 @@
-export const SYSTEM_PATHS = {
+export const SYS_PATHS = {
   auth: '/auth',
-  forgetPassword: '/forget-password',
   dashboard: '/dashboard',
   product: '/product',
   employee: '/employee',
@@ -10,7 +9,18 @@ export const SYSTEM_PATHS = {
   voucher: '/voucher',
 };
 
+export const SYS_TYPE = {
+  LOGIN: 'login',
+  SIGN_UP: 'sign-up',
+  FORGET_PASSWORD: 'forgot-password',
+};
+
+export const OTP_STEP = {
+  EMAIL: 'email',
+  OTP: 'otp',
+  CREATE_PASSWORD: 'create-password',
+}
+
 export const PUBLIC_PATHS = [
-  SYSTEM_PATHS.auth,
-  SYSTEM_PATHS.forgetPassword,
+  SYS_PATHS.auth,
 ];

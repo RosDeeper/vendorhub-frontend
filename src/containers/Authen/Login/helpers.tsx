@@ -2,7 +2,7 @@ import z from "zod";
 import { Stack } from "@mui/material";
 
 import { NavItemType } from "@/components/common";
-import { SYSTEM_PATHS } from "@/src/constants/path";
+import { SYS_PATHS, SYS_TYPE } from "@/src/constants/path";
 
 export enum CrudKeys {
   _EMAIL = 'email',
@@ -59,7 +59,7 @@ export const rightNavItems: NavItemType[] = [
   },
   {
     label: "Sign up",
-    href: `${SYSTEM_PATHS.auth}?type=signup`,
+    href: `${SYS_PATHS.auth}?type=${SYS_TYPE.SIGN_UP}`,
     render: () => {
       return (
         <Stack style={{

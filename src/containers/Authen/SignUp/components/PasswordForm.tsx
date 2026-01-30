@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MdLockOutline } from "react-icons/md";
 import { motion } from "motion/react";
 import { LuArrowRightFromLine } from "react-icons/lu";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -19,17 +18,33 @@ import {
   passwordSchema 
 } from "../helpers";
 import { formVariants } from "@/components/common/animation";
-import { SYSTEM_PATHS } from "@/src/constants/path";
+import { SYS_PATHS, SYS_TYPE } from "@/src/constants/path";
 import { Toastify } from "@/lib";
 import { useDialog } from "@/components/hooks";
 import { TEXT_SIZE } from "@/src/constants/text";
 
-import { useCreatePassword } from "@/src/queries";
+import { useCreatePassword, useCreateForgotPassword } from "@/src/queries";
 
-const PasswordForm = () => {
+type Props = {
+  isForgotPassword?: boolean;
+};
+
+const PasswordForm = ({ isForgotPassword}: Props) => {
   const { openDialog, closeDialog } = useDialog();
 
-  const { createPassword, isLoading } = useCreatePassword({
+  const { mutate: createPassword, isLoading } = useCreatePassword({
+    onSuccess() {
+      handleOnSuccess();
+    },
+    onError() {
+      Toastify.error("Create Password Failed! Please try again.");
+    },
+  });
+
+  const { 
+    mutate: createForgotPassword, 
+    isLoading: isForgotLoading
+  } = useCreateForgotPassword({
     onSuccess() {
       handleOnSuccess();
     },
@@ -48,7 +63,11 @@ const PasswordForm = () => {
   const password = watch(CrudKeys._PASSWORD);
 
   const handleValidSubmit = (formValues: CreatePasswordFormValues) => {
-    createPassword({ password: formValues.password });    
+    if (isForgotPassword) {
+      createForgotPassword({ password: formValues.password }); 
+    } else {
+      createPassword({ password: formValues.password });    
+    }
   };
 
   const handleOnSuccess = () => {
@@ -65,18 +84,27 @@ const PasswordForm = () => {
                 fontWeight: 700,
               }}
             >
-              Sign-up successfully
+              {isForgotPassword ? 'Update password successfully' : 'Sign-up successfully'}
             </Typography>
             <Typography 
               textAlign='center'
               sx={{ marginBottom: '20px' }}
             >
-              Log back in with your new sign-in inforamtion to get started with {" "}
-              <span style={{ 
-                color: '#253857',
-                fontWeight: 700
-              }}
-              >vendorHub</span>!
+              {isForgotPassword ? (
+                <>
+                  Your password has been updated. <br />
+                  Now you can log back to the system!
+                </>
+               ) : (
+                <>
+                  Log back in with your new sign-in inforamtion to get started with {" "}
+                  <span style={{ 
+                    color: '#253857',
+                    fontWeight: 700
+                  }}
+                  >vendorHub</span>!
+                </>
+              )}
             </Typography>
             <Image 
               src={IMAGES.Congratulation}
@@ -86,10 +114,11 @@ const PasswordForm = () => {
             />
           </Stack>
           
-          <Link href={`${SYSTEM_PATHS.auth}?type=login`}>
+          <Link href={`${SYS_PATHS.auth}?type=${SYS_TYPE.LOGIN}`}>
             <Button
               label="Sign-in"
               endIcon={<LuArrowRightFromLine size={20} />}
+              style={{ width: '100%' }}
               onClick={() => closeDialog()}
             />
           </Link>
@@ -159,8 +188,8 @@ const PasswordForm = () => {
               variant='primary'
               endIcon={<LuArrowRightFromLine size={20} />}
               style={{ width: '100%' }}
-              isLoading={isLoading}
-              disabled={isLoading}
+              isLoading={isLoading || isForgotLoading}
+              disabled={isLoading || isForgotLoading}
             />
           </Stack>
         </form>

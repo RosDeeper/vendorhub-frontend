@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/common';
-import { SYSTEM_PATHS } from '@/src/constants/path';
+import { SYS_PATHS, SYS_TYPE } from '@/src/constants/path';
 import { IMAGES } from '@/components/images';
 
 const X = () => {
@@ -30,14 +30,14 @@ const X = () => {
       </Typography>
 
       <Stack flexDirection='row' gap={25} mt={20}>
-        <Link href={`${SYSTEM_PATHS.auth}?type=signup`}>
+        <Link href={`${SYS_PATHS.auth}?type=${SYS_TYPE.SIGN_UP}`}>
           <Button 
             label={t('signUp')}
             variant='secondary'
             style={{ width: '160px' }}
           />
         </Link>
-        <Link href={`${SYSTEM_PATHS.auth}?type=login`}>
+        <Link href={`${SYS_PATHS.auth}?type=${SYS_TYPE.LOGIN}`}>
           <Button 
             label={t('signIn')}
             variant='primary'

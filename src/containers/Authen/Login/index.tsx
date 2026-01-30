@@ -2,7 +2,6 @@ import { Stack, Typography, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
-import Cookies from "universal-cookie";
 import Image from "next/image";
 import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
@@ -10,7 +9,9 @@ import { motion } from "motion/react";
 import Link from "next/link";
 
 import { Button, FormCheckbox, FormInput, NavigationMenu } from "@/components/common";
-import { SYSTEM_PATHS } from "@/src/constants/path";
+import { IMAGES } from "@/components/images";
+import { formVariants, navVariants } from "@/components/common/animation";
+import { SYS_PATHS, SYS_TYPE } from "@/src/constants/path";
 import { Toastify, protocol, rootDomain } from "@/lib";
 import { 
   CrudKeys, 
@@ -22,16 +23,13 @@ import {
 } from "./helpers";
 
 import { useLogin } from "@/src/queries";
-import { IMAGES } from "@/components/images";
-import { formVariants, navVariants } from "@/components/common/animation";
 
 const LoginPage = () => {
   const router = useRouter();
-  const cookies = new Cookies();
 
   const [checked, setChecked] = useState<boolean>(false);
 
-  const { login, isLoading } = useLogin({
+  const { mutate: login, isLoading } = useLogin({
     onSuccess() {
       Toastify.success("Login Successfully!");
       // router.push(SYSTEM_PATHS.dashboard);
@@ -84,8 +82,8 @@ const LoginPage = () => {
         <Stack flexDirection='row' justifyContent='center' mt={8}>
           <Stack flexDirection='column' alignItems='center'>
             <Image 
-              src={IMAGES.VendorBlackLogo}
-              alt='vendorHub-logo-black' 
+              src={IMAGES.VendorWhiteLogo}
+              alt='vendorHub-logo-white' 
               width={340}
               height={28}
               objectFit='contain'
@@ -135,7 +133,7 @@ const LoginPage = () => {
                             }
                           />
 
-                          <Link href={SYSTEM_PATHS.forgetPassword}>
+                          <Link href={`${SYS_PATHS.auth}?type=${SYS_TYPE.FORGET_PASSWORD}`}>
                             <Typography 
                               className="span-white"
                               style={{ cursor: 'pointer' }}
@@ -172,7 +170,7 @@ const LoginPage = () => {
                   />
                   <Typography className="span-white">
                     Don&apos;t have an account?{' '}
-                    <Link href={`${SYSTEM_PATHS.auth}?type=signup`}>
+                    <Link href={`${SYS_PATHS.auth}?type=${SYS_TYPE.SIGN_UP}`}>
                       <span style={{
                         fontWeight: 600,
                         color: '#8394FF'

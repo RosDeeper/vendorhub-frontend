@@ -9,7 +9,7 @@ export type LoginPayload = {
 
 export type RegisterPayload = {
   email: string;
-  phone: string;
+  phone?: string;
 };
 
 export type VerifyOTPPayload = {
@@ -42,6 +42,27 @@ export const verifyOTP = async (payload: VerifyOTPPayload): Promise<any> => (
 export const createPassword = async (payload: { password: string }): Promise<any> => (
   apiAuthClient<any, { password: string }>({
     endpoint: '/auth/registeration/createPassword',
+    payload,
+  })
+);
+
+export const sendForgotOTP = async (payload: RegisterPayload): Promise<any> => (
+  apiAuthClient<any, RegisterPayload>({
+    endpoint: '/auth/forgot-password/sendOTP',
+    payload,
+  })
+);
+
+export const verifyForgotOTP = async (payload: VerifyOTPPayload): Promise<any> => (
+  apiAuthClient<any, VerifyOTPPayload>({
+    endpoint: '/auth/forgot-password/verifyOTP',
+    payload,
+  })
+);
+
+export const createForgotPassword = async (payload: { password: string }): Promise<any> => (
+  apiAuthClient<any, { password: string }>({
+    endpoint: '/auth/forgot-password/createPassword',
     payload,
   })
 );

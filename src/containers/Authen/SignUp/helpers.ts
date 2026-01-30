@@ -9,7 +9,7 @@ export enum CrudKeys {
 
 export type SignUpFormValues = {
   [CrudKeys._EMAIL]: string,
-  [CrudKeys._PHONE_NUMBER]: string,
+  [CrudKeys._PHONE_NUMBER]?: string,
 };
 
 export type CreatePasswordFormValues = {
@@ -29,12 +29,18 @@ export const initialPasswordValues = {
 
 // ------------ Form Schema --------------
 
-export const formSchema = z.object({
-  [CrudKeys._EMAIL]: z.email("Invalid email address")
-    .min(1, "Email is required"),
-  [CrudKeys._PHONE_NUMBER]: z.string("Invalid phone number")
-    .min(1, "Phone number is required"),
-});
+export const formSchema = (isForgotPassword: boolean | undefined) => {
+  return (
+    z.object({
+      [CrudKeys._EMAIL]: z.email("Invalid email address")
+        .min(1, "Email is required"),
+      [CrudKeys._PHONE_NUMBER]: !isForgotPassword
+        ? z.string("Invalid phone number")
+          .min(1, "Phone number is required")
+        : z.string().optional().or(z.literal("")),
+    })
+  )
+}
 
 export const passwordSchema = z
   .object({

@@ -1,27 +1,27 @@
 import { Stack } from "@mui/material";
-import { useSearchParams } from "next/navigation";
-import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
+import { AnimatePresence, motion } from "motion/react";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-import EmailForm from "./components/EmailForm";
-import OTPForm from "./components/OTPForm";
-import PasswordForm from "./components/PasswordForm";
-import { IMAGES } from "@/components/images";
 import { 
   containerVariants, 
   formVariants, 
   heroVariants 
 } from "@/components/common/animation";
-import { initialValues, SignUpFormValues } from "./helpers";
+import { IMAGES } from "@/components/images";
+import EmailForm from "../SignUp/components/EmailForm";
+import OTPForm from "../SignUp/components/OTPForm";
+import PasswordForm from "../SignUp/components/PasswordForm";
+import { initialValues, SignUpFormValues } from "../SignUp/helpers";
 import { OTP_STEP } from "@/src/constants/path";
 
-const SignUpPage = () => {
+const ForgetPassword = () => {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState<SignUpFormValues>(initialValues);
-
+  
   const currentStep = 
-    searchParams.get('step') as (typeof OTP_STEP)[keyof typeof OTP_STEP] ?? OTP_STEP.EMAIL;
+    searchParams.get("step") as (typeof OTP_STEP)[keyof typeof OTP_STEP] ?? OTP_STEP.EMAIL;
 
   const handleNext = (payload: SignUpFormValues) => {
     setFormData(payload);
@@ -35,7 +35,6 @@ const SignUpPage = () => {
       >
         Easily access your personal hub to stay clear, focused, and productive
       </motion.p>
-      
       <motion.div
         variants={formVariants}
         style={{
@@ -66,13 +65,13 @@ const SignUpPage = () => {
               exit="exit"
             >
               {currentStep === OTP_STEP.EMAIL && (
-                <EmailForm onNext={handleNext} />
+                <EmailForm isForgotPassword onNext={handleNext} />
               )}
               {currentStep === OTP_STEP.OTP && (
-                <OTPForm data={formData} />
+                <OTPForm data={formData} isForgotPassword />
               )}
               {currentStep === OTP_STEP.CREATE_PASSWORD && (
-                <PasswordForm />
+                <PasswordForm isForgotPassword />
               )}
             </motion.div>
           </AnimatePresence>
@@ -82,4 +81,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default ForgetPassword;

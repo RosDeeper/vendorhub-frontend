@@ -1,9 +1,9 @@
 'use client';
 
-import { useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { motion } from "motion/react";
 
-import { SYSTEM_PATHS } from "@/src/constants/path";
+import { SYS_TYPE } from "@/src/constants/path";
 
 const backgroundImage: React.CSSProperties = {
   background: `
@@ -18,12 +18,11 @@ const backgroundImage: React.CSSProperties = {
 
 export const AnimatedBackground = () => {
   const searchParams = useSearchParams();
-  const pathname = usePathname();
   const type = searchParams.get("type");
 
   const isCollapsed = 
-    type === "signup" || 
-    pathname === SYSTEM_PATHS.forgetPassword;
+    type === SYS_TYPE.SIGN_UP || 
+    type === SYS_TYPE.FORGET_PASSWORD;
 
   return (
     <motion.div

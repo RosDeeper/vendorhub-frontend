@@ -13,25 +13,31 @@ import Cookies from "universal-cookie";
 
 import { Button, FormOTPInput } from "@/components/common";
 import { IMAGES } from "@/components/images";
-import { SYSTEM_PATHS } from "@/src/constants/path";
+import { OTP_STEP, SYS_PATHS, SYS_TYPE } from "@/src/constants/path";
 import { formVariants } from "@/components/common/animation";
 import { Toastify } from "@/lib";
 import { SignUpFormValues } from "../helpers";
 
-import { useVerifyOTP, useSendOTP } from "@/src/queries";
+import { 
+  useVerifyOTP, 
+  useSendOTP,
+  useVerifyForgotOTP,
+  useSendForgotOTP
+} from "@/src/queries";
 
 type Props = {
   data: SignUpFormValues,
+  isForgotPassword?: boolean;
 };
 
 dayjs.extend(duration);
 
-const OTPForm = ({ data }: Props) => {
+const OTPForm = ({ data, isForgotPassword }: Props) => {
   const router = useRouter();
   const [otp, setOtp] = useState<string>('');
   const cookies = new Cookies();
-
-  const { sendOTP, isLoading: isSendingOTP } = useSendOTP({
+  console.log(data)
+  const { mutate: sendOTP, isLoading: isSendingOTP } = useSendOTP({
     onSuccess() {
       restart(getExpiryTime(300));
     },
@@ -40,9 +46,33 @@ const OTPForm = ({ data }: Props) => {
     },
   });
 
-  const { verifyOTP, isLoading } = useVerifyOTP({
+  const { 
+    mutate: sendForgotOTP, 
+    isLoading: isSendForgotLoading 
+  } = useSendForgotOTP({
+    onSuccess() {
+      restart(getExpiryTime(300));
+    },
+    onError() {
+      Toastify.error('Send OTP Failed! Please try again');
+    },
+  });
+
+  const { mutate: verifyOTP, isLoading } = useVerifyOTP({
     onSuccess(data) {
       handleSetToken(data?.accessToken); 
+    },
+    onError() {
+      Toastify.error("Verify OTP Failed! Please try again.");
+    },
+  });
+
+  const { 
+    mutate: verifyForgotOTP, 
+    isLoading:isVerifyForgotLoading 
+  } = useVerifyForgotOTP({
+    onSuccess(data) {
+      handleSetToken(data?.resetToken); 
     },
     onError() {
       Toastify.error("Verify OTP Failed! Please try again.");
@@ -70,11 +100,21 @@ const OTPForm = ({ data }: Props) => {
   const timeDuration = dayjs.duration({ minutes, seconds });
 
   const handleResendOTP = () => {
-    sendOTP(data);
+    if (isForgotPassword) {
+      sendForgotOTP(data);
+    } else {
+      sendOTP(data);
+    }
   };
 
   const handleVerifyOTP = () => {
-    verifyOTP({ email: data.email, otp });
+    const payload = { email: data.email, otp };
+
+    if (isForgotPassword) {
+      verifyForgotOTP(payload);
+    } else {
+      verifyOTP(payload);
+    }
   };
 
   const handleSetToken = (token: string) => {
@@ -85,7 +125,15 @@ const OTPForm = ({ data }: Props) => {
         sameSite: 'lax',
       });
 
-      router.push(`${SYSTEM_PATHS.auth}?type=signup&step=password`);
+      if (isForgotPassword) {
+        router.push(
+          `${SYS_PATHS.auth}?type=${SYS_TYPE.FORGET_PASSWORD}&step=${OTP_STEP.CREATE_PASSWORD}`
+        );
+      } else {
+        router.push(
+          `${SYS_PATHS.auth}?type=${SYS_TYPE.SIGN_UP}&step=${OTP_STEP.CREATE_PASSWORD}`
+        );
+      }
     } else {
       Toastify.error("Can not get OTP Verification. Please try again.");
     }
@@ -136,7 +184,7 @@ const OTPForm = ({ data }: Props) => {
           }}
         >
           OTP has been expired.{" "}
-          {isSendingOTP ? (
+          {(isSendingOTP || isSendForgotLoading) ? (
             <LoaderCircle className="animate-spin" width={16} height={16} color="#3A86FF" />
           ) : (
             <span
@@ -158,15 +206,15 @@ const OTPForm = ({ data }: Props) => {
           endIcon={<LuArrowRightFromLine size={20} />}
           style={{ width: '100%' }}
           onClick={handleVerifyOTP}
-          isLoading={isLoading}
-          disabled={otp?.length !== 6 || totalSeconds <= 0 || isLoading}
+          isLoading={isLoading || isVerifyForgotLoading}
+          disabled={otp?.length !== 6 || totalSeconds <= 0 || isLoading || isVerifyForgotLoading}
         />
         <Button
           type="submit"
           label="Back"
           variant='secondary'
           style={{ width: '100%' }}
-          disabled={isLoading}
+          disabled={isLoading || isVerifyForgotLoading}
           onClick={() => router.back()}
         />
       </Stack>
