@@ -1,5 +1,5 @@
 import { Stack, Typography, Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import Image from "next/image";
@@ -26,13 +26,11 @@ import { useLogin } from "@/src/queries";
 
 const LoginPage = () => {
   const router = useRouter();
-
   const [checked, setChecked] = useState<boolean>(false);
 
   const { mutate: login, isLoading } = useLogin({
     onSuccess() {
       Toastify.success("Login Successfully!");
-      // router.push(SYSTEM_PATHS.dashboard);
     },
     onError() {
       Toastify.error("Login Failed! Please try again.");
@@ -50,7 +48,6 @@ const LoginPage = () => {
 
   const handleValidSubmit = (formValues: LoginFormValues) => {
     login(formValues);
-    // redirect(`${protocol}://${result.user.tenant.slug}.${rootDomain}/dashboard`);
   };
 
   return (

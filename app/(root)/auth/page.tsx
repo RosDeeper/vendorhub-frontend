@@ -12,7 +12,8 @@ import '../styles.scss';
 const X = () => {
   const searchParams = useSearchParams();
 
-  const typeFromUrl = searchParams.get("type") as (typeof SYS_TYPE)[keyof typeof SYS_TYPE];
+  const typeFromUrl = 
+    searchParams.get("type") as (typeof SYS_TYPE)[keyof typeof SYS_TYPE] || SYS_TYPE.LOGIN;
 
   const renderTab = () => {
     switch (typeFromUrl) {

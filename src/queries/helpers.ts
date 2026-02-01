@@ -55,9 +55,10 @@ export const apiAuthClient = async <TResponse, TPayload = unknown>({
         cookieStore.set(cookie.name, cookie.value, {
           path: cookie.path || '/',
           httpOnly: cookie.httpOnly,
-          sameSite: (cookie.sameSite?.toLowerCase() as any) || 'lax',
+          sameSite: 'lax',
           maxAge: cookie.maxAge,
           secure: cookie.secure || process.env.NODE_ENV === 'production',
+          domain: '.localhost'
         });
       });
     }

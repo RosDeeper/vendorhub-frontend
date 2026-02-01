@@ -25,6 +25,18 @@ export const login = async (payload: LoginPayload): Promise<any> => (
   })
 );
 
+export const logout = async (): Promise<any> => (
+  apiAuthClient<any, LoginPayload>({
+    endpoint: "/auth/logout",
+  })
+);
+
+export const refreshToken = async (): Promise<any> => (
+  apiAuthClient<any, LoginPayload>({
+    endpoint: "/auth/refresh-tokens",
+  })
+);
+
 export const sendOTP = async (payload: RegisterPayload): Promise<any> => (
   apiAuthClient<any, RegisterPayload>({
     endpoint: "/auth/registeration/sendOTP",

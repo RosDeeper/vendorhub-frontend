@@ -1,4 +1,5 @@
 export const SYS_PATHS = {
+  root: '/',
   auth: '/auth',
   dashboard: '/dashboard',
   product: '/product',
@@ -22,5 +23,6 @@ export const OTP_STEP = {
 }
 
 export const PUBLIC_PATHS = [
+  SYS_PATHS.root,
   SYS_PATHS.auth,
 ];
