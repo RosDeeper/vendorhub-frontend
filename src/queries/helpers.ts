@@ -58,7 +58,6 @@ export const apiAuthClient = async <TResponse, TPayload = unknown>({
           sameSite: 'lax',
           maxAge: cookie.maxAge,
           secure: cookie.secure || process.env.NODE_ENV === 'production',
-          domain: '.localhost'
         });
       });
     }
