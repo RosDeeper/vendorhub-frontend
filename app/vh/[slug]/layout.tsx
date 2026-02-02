@@ -14,7 +14,7 @@ const HomeLayout = ({ children }: Props) => {
       <Header />
       <Stack className="home-body" gap={4}>
         <Sidebar />
-        <Stack width='100%'>
+        <Stack width='100%' marginTop='12px'>
           {children}
         </Stack>
       </Stack>

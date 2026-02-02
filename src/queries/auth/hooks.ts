@@ -6,7 +6,7 @@ import {
   verifyForgotOTP,
   createPassword,
   createForgotPassword,
-} from "@/app/services/auth.service";
+} from "@/src/services/auth.service";
 import { useAppMutation } from "../useAppMutation";
 
 type Props = {

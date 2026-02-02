@@ -15,34 +15,34 @@ export const sidebarList = [
     route: SYS_PATHS.dashboard,
     icon: <RxDashboard size={24} color={COLOR_CODES.ICON_COLOR} />,
   },
-  {
-    title: 'Employee',
-    route: SYS_PATHS.employee,
-    icon: <BsPeople size={24} color={COLOR_CODES.ICON_COLOR} />,
-  },
-  {
-    title: 'Service',
-    route: SYS_PATHS.service,
-    icon: <IoSparklesOutline size={24} color={COLOR_CODES.ICON_COLOR} />,
-  },
-  {
-    title: 'Booking',
-    route: SYS_PATHS.booking,
-    icon: <LuCalendarDays size={24} color={COLOR_CODES.ICON_COLOR} />,
-  },
-  {
-    title: 'Payment',
-    route: SYS_PATHS.payment,
-    icon: <HiOutlineCreditCard size={24} color={COLOR_CODES.ICON_COLOR} />,
-  },
-  {
-    title: 'Voucher',
-    route: SYS_PATHS.voucher,
-    icon: <MdOutlineDiscount size={24} color={COLOR_CODES.ICON_COLOR} />,
-  },
-  {
-    title: 'Product',
-    route: SYS_PATHS.product,
-    icon: <BsBoxSeam size={24} color={COLOR_CODES.ICON_COLOR} />,
-  },
+  // {
+  //   title: 'Employee',
+  //   route: SYS_PATHS.employee,
+  //   icon: <BsPeople size={24} color={COLOR_CODES.ICON_COLOR} />,
+  // },
+  // {
+  //   title: 'Service',
+  //   route: SYS_PATHS.service,
+  //   icon: <IoSparklesOutline size={24} color={COLOR_CODES.ICON_COLOR} />,
+  // },
+  // {
+  //   title: 'Booking',
+  //   route: SYS_PATHS.booking,
+  //   icon: <LuCalendarDays size={24} color={COLOR_CODES.ICON_COLOR} />,
+  // },
+  // {
+  //   title: 'Payment',
+  //   route: SYS_PATHS.payment,
+  //   icon: <HiOutlineCreditCard size={24} color={COLOR_CODES.ICON_COLOR} />,
+  // },
+  // {
+  //   title: 'Voucher',
+  //   route: SYS_PATHS.voucher,
+  //   icon: <MdOutlineDiscount size={24} color={COLOR_CODES.ICON_COLOR} />,
+  // },
+  // {
+  //   title: 'Product',
+  //   route: SYS_PATHS.product,
+  //   icon: <BsBoxSeam size={24} color={COLOR_CODES.ICON_COLOR} />,
+  // },
 ];

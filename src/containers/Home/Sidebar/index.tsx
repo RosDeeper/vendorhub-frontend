@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 
 import { FONT_WEIGHT } from "@/src/constants/text";
+import { cn } from "@/lib";
 import { useSidebar } from "@/components/hooks";
 import { sidebarList } from "./helpers";
 
@@ -19,7 +20,6 @@ const Sidebar = () => {
   useEffect(() => {
     setActiveRoute(pathname);
   }, [pathname]);
-
   
   return (
     <Stack>
@@ -35,8 +35,11 @@ const Sidebar = () => {
           return (
             <Stack 
               key={index} 
-              className="sidebar-item"
-              gap={2}
+              className={cn(
+                'sidebar-item',
+                isCollapsed ? "collapsed" : "expanded"
+              )}
+              gap={isCollapsed ? 0 : 2}
               style={{
                 backgroundColor: isActive
                   ? "var(--background-normal)"
@@ -48,7 +51,7 @@ const Sidebar = () => {
                 router.push(item.route);
               }}
             >
-              <span>{item.icon}</span>
+              <div>{item.icon}</div>
               {!isCollapsed &&  (
                 <Typography
                   fontWeight={FONT_WEIGHT.BOLD}
