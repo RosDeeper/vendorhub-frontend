@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 'use server';
 
+import { rootDomain } from '@/lib';
 import setCookieParser from 'set-cookie-parser';
 
 const BE_API = process.env.NEXT_PUBLIC_BACKEND_API_URL;
@@ -58,6 +59,9 @@ export const apiAuthClient = async <TResponse, TPayload = unknown>({
           sameSite: 'lax',
           maxAge: cookie.maxAge,
           secure: cookie.secure || process.env.NODE_ENV === 'production',
+          domain: process.env.NODE_ENV === 'development' 
+            ? '.vh.local'
+            : `.${rootDomain}`
         });
       });
     }

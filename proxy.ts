@@ -20,10 +20,14 @@ const extractSubdomain = (req: NextRequest): string | null => {
   const host = req.headers.get('host') ?? '';
   const hostname = host.split(':')[0];
 
-  if (hostname.includes('localhost')) {
-    const parts = hostname.split('.');
+  // Check vh.local (Development)
+  if (hostname.endsWith('.vh.local')) {
+    return hostname.replace('.vh.local', '');
+  }
 
-    return parts.length > 1 && parts[0] !== 'localhost' ? parts[0] : null;
+  // Check Production
+  if (hostname.endsWith(`.${rootDomain}`) && hostname !== rootDomain) {
+    return hostname.replace(`.${rootDomain}`, '');
   }
 
   return null;
@@ -35,60 +39,41 @@ export function proxy(req: NextRequest) {
   const refreshToken = req.cookies.get("refreshToken")?.value;
   const locale = req.cookies.get('NEXT_LOCALE')?.value || routing.defaultLocale;
 
-  //////////////////// CHECK LOGIN ////////////////////
+  // Check Public Path
   const isPublicPath = PUBLIC_PATHS?.some((path) => {
-    if (path === SYS_PATHS.root) {
-      return pathname === SYS_PATHS.root;
-    }
+    if (path === SYS_PATHS.root) return pathname === SYS_PATHS.root;
 
     return pathname === path || pathname.startsWith(`${path}/`);
-  })
+  });
 
-  // if (!subdomain) {
-  //   // Chưa login → ép về /auth?type=login
-  //   if (!refreshToken && !isPublicPath) {
-  //     const url = new URL(SYS_PATHS.auth, req.url);
-  //     url.searchParams.set('type', 'login');
+  if (subdomain) {
+    // Without authentication
+    if (!refreshToken) {
+      return NextResponse.redirect(`${protocol}://${rootDomain}${SYS_PATHS.root}`);
+    }
+    
+    // With authentication but try login page
+    if (isPublicPath) {
+       return NextResponse.redirect(new URL('/dashboard', req.url));
+    }
 
-  //     return applyLocale(NextResponse.redirect(url), locale);
-  //   }
-
-  //   // Đã login → redirect sang tenant
-  //   if (refreshToken && isPublicPath) {
-  //     return NextResponse.redirect(
-  //       new URL(`${protocol}://test.${rootDomain}/dashboard`)
-  //     );
-  //   }
-
-  //   return NextResponse.next()
-  // }
-
-  // if (!refreshToken) {
-  //   const url = new URL(`${protocol}://${rootDomain}/auth`);
-  //   url.searchParams.set('type', 'login');
-
-  //   return NextResponse.redirect(url);
-  // }
-
-  // // Đã login + tenant domain → OK
-  // return applyLocale(NextResponse.next(), locale);
-
-  ////////////////// WHEN NO LOGIN ////////////////////
-  if (!refreshToken && !isPublicPath) {
-    return NextResponse.redirect(
-      `${protocol}://${rootDomain}${SYS_PATHS.root}`
-    );
+    return applyLocale(NextResponse.next(), locale);
   }
 
-  //////////////////// WHEN LOGIN ////////////////////
-  if (refreshToken && isPublicPath) {
-    return NextResponse.redirect(
-      `${protocol}://test.${rootDomain}/dashboard`
-    );
+  if (!subdomain) {
+    // Authenticated but in login page
+    if (refreshToken && isPublicPath) {
+      return NextResponse.redirect(`${protocol}://test.${rootDomain}/dashboard`);
+    }
+
+    // Non-authenticated but try tenant page
+    if (!refreshToken && !isPublicPath) {
+      return NextResponse.redirect(`${protocol}://${rootDomain}${SYS_PATHS.root}`);
+    }
   }
 
   return applyLocale(NextResponse.next(), locale);
-};
+}
 
 export const config = {
   matcher: [

@@ -1,5 +1,4 @@
 import { Stack, Typography, Grid } from "@mui/material";
-import { useRouter, redirect } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import Image from "next/image";
@@ -25,12 +24,13 @@ import {
 import { useLogin } from "@/src/queries";
 
 const LoginPage = () => {
-  const router = useRouter();
   const [checked, setChecked] = useState<boolean>(false);
+  const targetUrl = `${protocol}://test.${rootDomain}/dashboard`;
 
   const { mutate: login, isLoading } = useLogin({
     onSuccess() {
       Toastify.success("Login Successfully!");
+      window.location.href = targetUrl;
     },
     onError() {
       Toastify.error("Login Failed! Please try again.");

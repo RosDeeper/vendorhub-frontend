@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 
-import { rootDomain } from "./lib";
-
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
@@ -13,7 +11,7 @@ const nextConfig: NextConfig = {
         has: [
           {
             type: 'host',
-            value: `(?<slug>.*).${rootDomain}`,
+            value: '(?<slug>[^.]+)\\.vh\\.local(?::\\d+)?',
           },
         ],
         destination: '/vh/:slug/:path*',
@@ -23,7 +21,7 @@ const nextConfig: NextConfig = {
         has: [
           {
             type: 'host',
-            value: `${rootDomain}`,
+            value: 'vh\\.local(?::\\d+)?',
           },
         ],
         destination: '/:path*',
