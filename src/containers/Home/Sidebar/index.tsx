@@ -13,8 +13,7 @@ import { sidebarList } from "./helpers";
 const Sidebar = () => {
   const router = useRouter();
   const pathname = usePathname();
-  // const { isCollapsed, toggleSidebar } = useSidebar();
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const { isCollapsed, toggleSidebar } = useSidebar();
   const [activeRoute, setActiveRoute] = useState(pathname);
 
   useEffect(() => {
@@ -28,9 +27,11 @@ const Sidebar = () => {
         style={{
           width: isCollapsed ? '80px' : '200px',
         }}
+        
       >
         {sidebarList.map((item, index) => {
           const isActive = activeRoute.startsWith(item.route);
+          const Icon = item.icon;
 
           return (
             <Stack 
@@ -42,7 +43,7 @@ const Sidebar = () => {
               gap={isCollapsed ? 0 : 2}
               style={{
                 backgroundColor: isActive
-                  ? "var(--background-normal)"
+                  ? "#EFF2F4"
                   : "transparent",
                 transform: isActive ? "translateX(0)" : "translateX(-4px)",
               }}
@@ -51,12 +52,15 @@ const Sidebar = () => {
                 router.push(item.route);
               }}
             >
-              <div>{item.icon}</div>
+              <Icon 
+                size={24}
+                color={isActive ? '#2C3E50' : '#EFF2F4'}
+              />
               {!isCollapsed &&  (
                 <Typography
                   fontWeight={FONT_WEIGHT.BOLD}
                   letterSpacing={1}
-                  color="#584700"
+                  color={isActive ? '#2C3E50' : '#EFF2F4'}
                 >
                   {item.title}
                 </Typography>
@@ -66,7 +70,7 @@ const Sidebar = () => {
         })}
 
         <Stack
-          onClick={() => setIsCollapsed(!isCollapsed)}
+          onClick={() => toggleSidebar()}
           className="collapse-button"
         >
           {isCollapsed ? <FaCaretRight size={20} /> : <FaCaretLeft size={20} />}

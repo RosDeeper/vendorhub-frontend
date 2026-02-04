@@ -3,7 +3,7 @@ export const SYS_PATHS = {
   auth: '/auth',
   dashboard: '/dashboard',
   product: '/product',
-  employee: '/employee',
+  staff: '/staff',
   service: '/service',
   booking: '/booking',
   payment: '/payment',

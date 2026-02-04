@@ -39,9 +39,8 @@ export const Breadcrumbs = ({ items, className }: BreadcrumbsProps) => {
                 {isLast ? (
                   <BreadcrumbPage
                     style={{
-                      backgroundColor: 'var(--primary-color)',
-                      padding: '4px 8px',
                       borderRadius: '99px',
+                      color: '#2C3E50',
                     }}
                   >{item.label}</BreadcrumbPage>
                 ) : (
@@ -49,6 +48,7 @@ export const Breadcrumbs = ({ items, className }: BreadcrumbsProps) => {
                     href={item.href}
                     onClick={() => router.push(item.href || '')}
                     className="cursor-pointer"
+                    style={{ color: '#2C3E50' }}
                   >
                     {item.label}
                   </BreadcrumbLink>

@@ -20,12 +20,24 @@
 
   &.sidebar-container {
     padding: 12px;
-    min-height: calc(100vh);
+    min-height: calc(100vh - 56px);
     transition: width 0.1s ease;
     background-color: var(--primary-color);
     gap: 4px;
     position: relative;
     background-color: #2C3E50;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -16px;
+      width: 0;
+      height: 0;
+      border-width: 16px 16px 0 0;
+      border-style: solid;
+      border-color: #2C3E50 transparent;
+    }
   }
 
   &.sidebar-item {

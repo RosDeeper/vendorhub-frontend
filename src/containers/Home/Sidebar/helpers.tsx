@@ -7,24 +7,23 @@ import { MdOutlineDiscount } from "react-icons/md";
 import { HiOutlineCreditCard } from "react-icons/hi2";
 
 import { SYS_PATHS } from "@/src/constants/path";
-import { COLOR_CODES } from "@/src/constants/color";
 
 export const sidebarList = [
   {
     title: 'Dashboard',
     route: SYS_PATHS.dashboard,
-    icon: <RxDashboard size={24} color={COLOR_CODES.ICON_COLOR} />,
+    icon: RxDashboard,
   },
-  // {
-  //   title: 'Employee',
-  //   route: SYS_PATHS.employee,
-  //   icon: <BsPeople size={24} color={COLOR_CODES.ICON_COLOR} />,
-  // },
-  // {
-  //   title: 'Service',
-  //   route: SYS_PATHS.service,
-  //   icon: <IoSparklesOutline size={24} color={COLOR_CODES.ICON_COLOR} />,
-  // },
+  {
+    title: 'Staff',
+    route: SYS_PATHS.staff,
+    icon: BsPeople,
+  },
+  {
+    title: 'Service',
+    route: SYS_PATHS.service,
+    icon: IoSparklesOutline,
+  },
   // {
   //   title: 'Booking',
   //   route: SYS_PATHS.booking,

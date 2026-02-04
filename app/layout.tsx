@@ -40,13 +40,13 @@ const RootLayout = async ({ children }: Props) => {
           <ThemeProvider>
             <QueryProvider>
               <DialogProvider>
-                {/* <SidebarProvider> */}
+                <SidebarProvider>
                   <AnimatedBackground />
                   <Suspense fallback={null}>
                     {children}
                   </Suspense>
                   <ToastProvider />
-                {/* </SidebarProvider> */}
+                </SidebarProvider>
               </DialogProvider>
             </QueryProvider>
           </ThemeProvider>

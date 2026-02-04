@@ -1,10 +1,11 @@
 import { Stack } from "@mui/material";
 
 import { Breadcrumbs } from "@/components/common";
+import { SYS_PATHS } from "@/src/constants/path";
 
 const X = () => {
   const breadcrumbItems = [
-    { label: "Employee Management", href: "/employee" },
+    { label: "Staff", href: SYS_PATHS.staff },
   ];
 
   return (
