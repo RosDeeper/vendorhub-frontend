@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { 
+  commonMotionProps,
   containerVariants, 
   formVariants, 
   heroVariants 
@@ -60,9 +61,7 @@ const ForgetPassword = () => {
             <motion.div
               key={currentStep}
               variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
+              {...commonMotionProps}
             >
               {currentStep === OTP_STEP.EMAIL && (
                 <EmailForm isForgotPassword onNext={handleNext} />

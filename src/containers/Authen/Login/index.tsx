@@ -9,7 +9,11 @@ import Link from "next/link";
 
 import { Button, FormCheckbox, FormInput, NavigationMenu } from "@/components/common";
 import { IMAGES } from "@/components/images";
-import { formVariants, navVariants } from "@/components/common/animation";
+import { 
+  commonMotionProps, 
+  formVariants, 
+  navVariants 
+} from "@/components/common/animation";
 import { SYS_PATHS, SYS_TYPE } from "@/src/constants/path";
 import { Toastify, protocol, rootDomain } from "@/lib";
 import { 
@@ -60,9 +64,7 @@ const LoginPage = () => {
     >
       <motion.nav
         variants={navVariants}
-        initial='hidden'
-        animate='visible'
-        exit='exit'
+        {...commonMotionProps}
       >
         <Stack flexDirection='row' justifyContent='space-between'>
           <NavigationMenu items={leftNavItems} />
@@ -72,9 +74,7 @@ const LoginPage = () => {
 
       <motion.div
         variants={formVariants}
-        initial="hidden"
-        animate="visible"
-        exit='exit'
+        {...commonMotionProps}
       >
         <Stack flexDirection='row' justifyContent='center' mt={8}>
           <Stack flexDirection='column' alignItems='center'>

@@ -3,6 +3,8 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { usePathname } from 'next/navigation';
 
+import { commonMotionProps, containerVariants } from '@/components/common/animation';
+
 const Template = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
@@ -10,9 +12,8 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     <AnimatePresence mode='wait'>
       <motion.div 
         key={pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, ease: 'easeInOut' }}
+        variants={containerVariants}
+        {...commonMotionProps}  
       >
         {children}
       </motion.div>

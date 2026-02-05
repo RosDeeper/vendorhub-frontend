@@ -9,6 +9,7 @@ import OTPForm from "./components/OTPForm";
 import PasswordForm from "./components/PasswordForm";
 import { IMAGES } from "@/components/images";
 import { 
+  commonMotionProps,
   containerVariants, 
   formVariants, 
   heroVariants 
@@ -61,9 +62,7 @@ const SignUpPage = () => {
             <motion.div
               key={currentStep}
               variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
+              {...commonMotionProps}
             >
               {currentStep === OTP_STEP.EMAIL && (
                 <EmailForm onNext={handleNext} />

@@ -40,7 +40,10 @@ export const Breadcrumbs = ({ items, className }: BreadcrumbsProps) => {
                   <BreadcrumbPage
                     style={{
                       borderRadius: '99px',
-                      color: '#2C3E50',
+                      padding: '0 12px',
+                      backgroundColor: '#2C3E50',
+                      color: '#EFF2F4',
+                      fontWeight: 400,
                     }}
                   >{item.label}</BreadcrumbPage>
                 ) : (

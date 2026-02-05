@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 
 import { LoginPage, SignUpPage, ForgetPassword } from "@/src/containers/Authen";
-import { containerVariants } from "@/components/common/animation";
+import { containerVariants, commonMotionProps } from "@/components/common/animation";
 import { SYS_TYPE } from "@/src/constants/path";
 
 import '../styles.scss';
@@ -32,9 +32,7 @@ const X = () => {
       <motion.div
         key={typeFromUrl}
         variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
+        {...commonMotionProps}
       >
         {renderTab()}
       </motion.div>
