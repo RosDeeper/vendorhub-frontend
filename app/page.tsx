@@ -9,7 +9,7 @@ import { motion } from "motion/react";
 
 import { Button } from '@/components/common';
 import { SYS_PATHS, SYS_TYPE } from '@/src/constants/path';
-import { IMAGES } from '@/components/images';
+import { SYS_IMAGES } from '@/components/images';
 import { containerVariants, commonMotionProps } from '@/components/common/animation';
 
 const X = () => {
@@ -22,7 +22,7 @@ const X = () => {
     >
       <div className='flex flex-col min-h-screen justify-center items-center'>
         <Image 
-          src={IMAGES.VendorWhiteLogo}
+          src={SYS_IMAGES.VendorWhiteLogo}
           alt='vendorHub-logo' 
           width={860}
           height={76}

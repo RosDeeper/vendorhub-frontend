@@ -8,7 +8,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 
 import { Button, FormCheckbox, FormInput, NavigationMenu } from "@/components/common";
-import { IMAGES } from "@/components/images";
+import { SYS_IMAGES } from "@/components/images";
 import { 
   commonMotionProps, 
   formVariants, 
@@ -79,7 +79,7 @@ const LoginPage = () => {
         <Stack flexDirection='row' justifyContent='center' mt={8}>
           <Stack flexDirection='column' alignItems='center'>
             <Image 
-              src={IMAGES.VendorWhiteLogo}
+              src={SYS_IMAGES.VendorWhiteLogo}
               alt='vendorHub-logo-white' 
               width={340}
               height={28}

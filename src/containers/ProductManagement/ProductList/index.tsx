@@ -17,7 +17,7 @@ const ProductList = () => {
   return (
     <Stack>
       <Table
-        title="Product Management" 
+        // title="Product Management" 
         data={mock}
         totalRecord={mock.length}
         columns={columns}

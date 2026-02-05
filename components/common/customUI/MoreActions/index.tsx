@@ -9,29 +9,21 @@ type Props = {
 
 export const MoreActions = ({ onEdit, onDelete }: Props) => {
   return (
-    <Stack flexDirection='row' gap={1} alignItems='center'>
+    <Stack flexDirection='row' gap={2} alignItems='center'>
       <FiEdit2 
         style={{
-          width: '32px',
-          height: '32px',
-          color: '#FACC00',
-          padding: '0px 4px',
-          borderRadius: '50%',
-          backgroundColor: '#FFFAE6',
-          border: '1px solid #000',
+          width: '20px',
+          height: '20px',
+          color: '#3498DB',
           cursor: 'pointer'
         }} 
         onClick={onEdit}
       />
       <FaRegTrashAlt 
         style={{
-          width: '32px',
-          height: '32px',
-          color: '#ffffff',
-          backgroundColor: '#967A00',
-          padding: '2px 8px',
-          borderRadius: '50%',
-          border: '1px solid #000',
+          width: '20px',
+          height: '20px',
+          color: '#FF383C',
           cursor: 'pointer'
         }} 
         onClick={onDelete}

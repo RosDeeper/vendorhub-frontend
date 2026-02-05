@@ -8,14 +8,14 @@ import { FaCaretDown } from "react-icons/fa6";
 import { TEXT_SIZE } from "@/src/constants/text";
 import { Divider } from "@/components/common";
 import { SYS_PATHS } from "@/src/constants/path";
-import { IMAGES } from "@/components/images";
+import { SYS_IMAGES } from "@/components/images";
 
 const Header = () => {
   return (
     <Stack className="header-container">
       <Link href={SYS_PATHS.dashboard}>
         <Image 
-          src={IMAGES.VendorWhiteLogo}
+          src={SYS_IMAGES.VendorWhiteLogo}
           alt="VendorHub Logo"
           width={160}
           height={16}
@@ -29,7 +29,7 @@ const Header = () => {
 
         <Stack direction='row' alignItems='center' gap={2}>
           <Image 
-            src={IMAGES.DefaultAvatar}
+            src={SYS_IMAGES.DefaultAvatar}
             alt="default-avatar"
             width={36}
             height={36}

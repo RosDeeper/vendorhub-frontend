@@ -8,7 +8,7 @@ import OTPImage from '@/public/assets/svgs/otp-image.svg';
 import EmptyTable from '@/public/assets/svgs/empty-table.svg';
 import Congratulation from '@/public/assets/svgs/congratulation.svg';
 
-export const IMAGES = {
+export const SYS_IMAGES = {
   VendorBlackLogo,
   VendorWhiteLogo,
   BackgroundImage,

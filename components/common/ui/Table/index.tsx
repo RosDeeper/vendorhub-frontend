@@ -1,11 +1,8 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/incompatible-library */
 'use client';
 
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
-import { FiPlusCircle } from "react-icons/fi";
-import { BiFilterAlt } from "react-icons/bi";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { 
   ColumnDef, 
@@ -18,12 +15,10 @@ import {
   SortingState, 
   useReactTable
 } from "@tanstack/react-table";
-import { IoIosSearch } from "react-icons/io";
-import { Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { FONT_WEIGHT, TEXT_SIZE } from "@/src/constants/text";
 import { 
   TableBody, 
   TableCell, 
@@ -36,9 +31,10 @@ import {
   PaginationItem, 
   PaginationLink, 
 } from "./lib-ui";
-import { Input } from "../../FormComponents";
-import { useDialog } from "@/components/hooks";
 import { Button } from "../Button";
+import { SYS_IMAGES } from "@/components/images";
+
+import './styles.scss';
 
 // CUSTOME TABLE
 interface DataTableProps<TData, TValue> {
@@ -48,7 +44,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[],
   columns: ColumnDef<TData, TValue>[],
   isLoading?: boolean,
-  filterForm?: React.ReactNode,
+  tableHead?: React.ReactNode,
 };
 
 const Table = <TData, TValue>({
@@ -58,7 +54,7 @@ const Table = <TData, TValue>({
   take = 10,
   columns,
   isLoading,
-  filterForm,
+  tableHead
 }: DataTableProps<TData, TValue>) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -67,8 +63,6 @@ const Table = <TData, TValue>({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState({});
   const [rowSelection, setRowSelection] = useState({});
-
-  const { openDialog } = useDialog();
 
   const page = Number(searchParams.get("page") ?? 1);
   const totalPage = Math.ceil(totalRecord / take);
@@ -129,7 +123,7 @@ const Table = <TData, TValue>({
       >
         <Stack>
           <Image 
-            src='/assets/EmptyTable.svg'
+            src={SYS_IMAGES.EmptyTable}
             alt="Empty Data"
             height={400}
             width={450}
@@ -148,13 +142,6 @@ const Table = <TData, TValue>({
     params.set("page", String(p));
     router.push(`?${params.toString()}`);
   };
-
-  const handleOpenFilter = () => {
-    openDialog({
-      type: 'drawer',
-      content: filterForm,
-    });
-  };
   
   return (
     <Stack gap={2}>
@@ -164,66 +151,22 @@ const Table = <TData, TValue>({
             {title}{' '}{`(${data.length})`}
           </h2>
         )}
-        <div className="flex items-center gap-6">
-          <Button 
-            className="w-20 text-sm!" 
-            variant='primary'
-            onClick={handleOpenFilter}
-            label='Filter'
-            startIcon={<BiFilterAlt style={{ width: '20px', height: '20px' }} />}
-            style={{}}
-          />
-
-          <Input 
-            placeholder="Search products..."
-            startIcon={<IoIosSearch style={{ width: '20px', height: '20px' }} />}
-            style={{
-              width: '350px',
-            }}
-          />
-        </div>
-
       </Stack>
 
       <Stack 
-        className="shadow-shadow" 
-        style={{
-          borderRadius: '20px',
-          border: '1px solid #000',
-          padding: '12px 20px',
-          backgroundColor: '#F7F6EC',
-          maxHeight: 'calc(100vh - 260px)',
-        }}
+        className="table-wrapper"
         gap={2}
       >
-        <Stack direction='row' justifyContent='space-between' alignItems='center'>
-          <Typography style={{
-            fontSize: TEXT_SIZE.LG,
-            fontWeight: FONT_WEIGHT.BOLD
-          }}>
-            Selected 10 Products
-          </Typography>
-
-          <Button 
-            label="Add Product"
-            style={{ width: '140px' }}
-            endIcon={<FiPlusCircle style={{ width: '20px', height: '20px' }} />}
-          />
-        </Stack>
+        {tableHead}
 
         <UITable>
-          <TableHeader 
-            className="font-semibold sticky top-0 z-10" 
-            style={{ 
-              backgroundColor: '#E2E0D0',
-            }}
-          >
+          <TableHeader className="table-header">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead 
                     key={header.id} 
-                    className="font-semibold uppercase"
+                    className="font-bold text-[#2C3E50]"
                     style={{ padding: '0px 16px' }}
                   >
                     {flexRender(
@@ -245,49 +188,50 @@ const Table = <TData, TValue>({
           </TableBody>
         </UITable>
 
+        <Stack ml='auto'>
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <Button 
+                  variant='primary'
+                  size='icon'
+                  startIcon={<FaChevronLeft style={{ width: '12px', height: '12px' }} />}
+                  onClick={() => onPageChange(page - 1)}
+                  disabled={page === 1}
+                  style={{ borderRadius: '12px' }}
+                /> 
+              </PaginationItem>
+
+              {Array.from({ length: totalPage }).map((_, i) => {
+                const p = i + 1;
+                return (
+                  <PaginationItem key={p}>
+                    <PaginationLink
+                      isActive={p === page}
+                      onClick={() => onPageChange(p)}
+                      style={{borderRadius: '12px'}}
+                    >
+                      {p}
+                    </PaginationLink>
+                  </PaginationItem>
+                );
+              })}
+
+              <PaginationItem>
+                <Button 
+                  size='icon'
+                  variant='primary'
+                  startIcon={<FaChevronRight style={{ width: '12px', height: '12px' }} />}
+                  onClick={() => onPageChange(page + 1)}
+                  style={{ borderRadius: '12px' }}
+                  disabled={page === totalPage}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </Stack>
       </Stack>
       
-      <Stack ml='auto'>
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <Button 
-                label="Previous"
-                variant='primary'
-                startIcon={<FaChevronLeft style={{ width: '12px', height: '12px' }} />}
-                onClick={() => onPageChange(page - 1)}
-                style={{ width: '100px' }}
-                disabled={page === 1}
-              />
-            </PaginationItem>
-
-            {Array.from({ length: totalPage }).map((_, i) => {
-              const p = i + 1;
-              return (
-                <PaginationItem key={p}>
-                  <PaginationLink
-                    isActive={p === page}
-                    onClick={() => onPageChange(p)}
-                  >
-                    {p}
-                  </PaginationLink>
-                </PaginationItem>
-              );
-            })}
-
-            <PaginationItem>
-              <Button 
-                label="Next"
-                variant='primary'
-                startIcon={<FaChevronRight style={{ width: '12px', height: '12px' }} />}
-                onClick={() => onPageChange(page + 1)}
-                style={{ width: '100px' }}
-                disabled={page === totalPage}
-              />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </Stack>
     </Stack>
   );  
 };

@@ -9,7 +9,7 @@ import { LuArrowRightFromLine } from "react-icons/lu";
 import Link from "next/link";
 import Image from "next/image";
 
-import { IMAGES } from "@/components/images";
+import { SYS_IMAGES } from "@/components/images";
 import { Button, FormInput, PasswordStrength } from "@/components/common";
 import { 
   CreatePasswordFormValues, 
@@ -107,7 +107,7 @@ const PasswordForm = ({ isForgotPassword}: Props) => {
               )}
             </Typography>
             <Image 
-              src={IMAGES.Congratulation}
+              src={SYS_IMAGES.Congratulation}
               alt="congratulation"
               width={160}
               height={160}
@@ -139,7 +139,7 @@ const PasswordForm = ({ isForgotPassword}: Props) => {
           Create a password
         </Typography>
         <Image
-          src={IMAGES.CreatePassword}
+          src={SYS_IMAGES.CreatePassword}
           alt='create-password-image'
           width={140}
           height={140}

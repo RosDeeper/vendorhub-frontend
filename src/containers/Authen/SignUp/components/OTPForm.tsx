@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 import Cookies from "universal-cookie";
 
 import { Button, FormOTPInput } from "@/components/common";
-import { IMAGES } from "@/components/images";
+import { SYS_IMAGES } from "@/components/images";
 import { OTP_STEP, SYS_PATHS, SYS_TYPE } from "@/src/constants/path";
 import { formVariants } from "@/components/common/animation";
 import { Toastify } from "@/lib";
@@ -151,7 +151,7 @@ const OTPForm = ({ data, isForgotPassword }: Props) => {
           OTP Verification
         </Typography>
         <Image
-          src={IMAGES.OTPImage}
+          src={SYS_IMAGES.OTPImage}
           alt='otp-image'
           width={140}
           height={140}

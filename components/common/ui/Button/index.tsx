@@ -7,21 +7,25 @@ import { cn } from "@/lib";
 import { FONT_WEIGHT, TEXT_SIZE } from "@/src/constants/text";
 
 const buttonVariants = cva(
-  "inline-flex items-center cursor-pointer justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-95",
+  `
+    inline-flex items-center cursor-pointer justify-center whitespace-nowrap
+    rounded-full text-sm font-medium transition-all duration-200 focus-visible:outline-none 
+    focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+    disabled:pointer-events-none disabled:opacity-50 active:scale-95
+    hover:shadow-[0_4px_12px_rgba(255,255,255,0.3),0_6px_16px_rgba(0,0,0,0.12)]"
+  `,
   {
     variants: {
       variant: {
         secondary:
           "bg-[#DFDADA] text-black shadow-[0_4px_6px_rgba(0,0,0,0.4)] \
-          hover:translate-y-0.5 \
-          hover:shadow-[0_4px_12px_rgba(255,255,255,0.3),0_6px_16px_rgba(0,0,0,0.12)]",
+          hover:translate-y-0.5",
         primary:
-          "bg-[#253857] text-white \
+          "bg-[#2C3E50] text-[#EFF2F4] \
           shadow-[0_4px_6px_rgba(0,0,0,0.4)] \
-          hover:translate-y-0.5 \
-          hover:shadow-[0_4px_12px_rgba(255,255,255,0.3),0_6px_16px_rgba(0,0,0,0.12)]",
+          hover:translate-y-0.5",
         ghost:
-          "bg-transparent text-white hover:bg-white/10",
+          "bg-transparent text-[#2C3E50] hover:bg-white/10",
         default: "text-main-foreground bg-main hover:translate-x-boxShadowX hover:translate-y-boxShadowY", 
         noShadow: "text-main-foreground bg-main", 
         neutral: "bg-secondary-background text-foreground border-2 border-border shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none", 

@@ -48,13 +48,13 @@ export const StatCard = (props: Props) => {
         config.border
       )}
       style={{
-        padding: '16px',
+        padding: '12px',
         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
       }}
     >
-      <div className="flex flex-col gap-1">
-        <span className="text-[16px] font-medium text-slate-500">{title}</span>
-        <motion.h3 className={`text-[28px] font-bold ${config.color}`}>
+      <div className="flex flex-col">
+        <span className="text-[14px] font-medium text-slate-500">{title}</span>
+        <motion.h3 className={`text-[20px] font-bold ${config.color}`}>
           {rounded}
         </motion.h3>
       </div>

@@ -7,7 +7,7 @@ import { useState } from "react";
 import EmailForm from "./components/EmailForm";
 import OTPForm from "./components/OTPForm";
 import PasswordForm from "./components/PasswordForm";
-import { IMAGES } from "@/components/images";
+import { SYS_IMAGES } from "@/components/images";
 import { 
   commonMotionProps,
   containerVariants, 
@@ -47,7 +47,7 @@ const SignUpPage = () => {
       >
         <Stack width='460px'>
           <Image 
-            src={IMAGES.VendorBlackLogo}
+            src={SYS_IMAGES.VendorBlackLogo}
             alt='vendorHub-logo-black' 
             width={160}
             height={16}

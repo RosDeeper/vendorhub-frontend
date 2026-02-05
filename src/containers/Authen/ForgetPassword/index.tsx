@@ -10,7 +10,7 @@ import {
   formVariants, 
   heroVariants 
 } from "@/components/common/animation";
-import { IMAGES } from "@/components/images";
+import { SYS_IMAGES } from "@/components/images";
 import EmailForm from "../SignUp/components/EmailForm";
 import OTPForm from "../SignUp/components/OTPForm";
 import PasswordForm from "../SignUp/components/PasswordForm";
@@ -46,7 +46,7 @@ const ForgetPassword = () => {
       >
         <Stack width='460px'>
           <Image 
-            src={IMAGES.VendorBlackLogo}
+            src={SYS_IMAGES.VendorBlackLogo}
             alt='vendorHub-logo-black' 
             width={160}
             height={16}
