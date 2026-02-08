@@ -21,7 +21,7 @@ const ProductList = () => {
         data={mock}
         totalRecord={mock.length}
         columns={columns}
-        filterForm={<FilterForm />}
+        // filterForm={<FilterForm />}
       />
     </Stack>
   );
