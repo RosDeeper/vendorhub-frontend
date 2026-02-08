@@ -20,7 +20,7 @@ const TableHead = () => {
   return (
     <Stack direction='row' justifyContent='space-between' alignItems='center'>
       <Input 
-        placeholder="Search staff..."
+        placeholder="Search staff's name, email"
         startIcon={<IoIosSearch style={{ width: '20px', height: '20px' }} />}
         style={{ width: '350px' }}
         variant='light'

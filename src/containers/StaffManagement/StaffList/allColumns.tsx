@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import { useDialog } from "@/components/hooks";
 import { MoreActions, StatusTag } from "@/components/common";
 import { SYS_IMAGES } from "@/components/images";
+import DeleteStaff from "./components/DeleteStaff";
 
 export const allColumns = (): ColumnDef<any>[] => [
   {
@@ -37,9 +38,8 @@ export const allColumns = (): ColumnDef<any>[] => [
     accessorKey: "workingHours",
     header: "Working Hours",
     cell: ({ row }) => {
-      const data = row.original;
-
       const { openDialog } = useDialog();
+      const data = row.original;
 
       const handleShowAssets = () => {
         openDialog({
@@ -95,8 +95,20 @@ export const allColumns = (): ColumnDef<any>[] => [
   {
     header: 'Action',
     cell: () => {
+      const { openDialog } = useDialog();
+
+      const handleDeleteStaff = () => {
+        openDialog({
+          type: 'alert',
+          content: <DeleteStaff />,
+          size: 'sm',
+        })
+      };
+
       return (
-        <MoreActions />
+        <MoreActions 
+          onDelete={handleDeleteStaff}
+        />
       );
     },
   },

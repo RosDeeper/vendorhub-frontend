@@ -7,7 +7,7 @@ import { PiEye, PiEyeClosed } from "react-icons/pi";
 
 import { cn } from "@/lib/utils";
 import { FormControl, FormField, FormItem } from "@/components/ui";
-import { LibInput, LibLabel } from "./lib-ui";
+import { LibInput } from "./lib-ui";
 
 type InputProps = React.ComponentProps<"input"> & {
   label?: string;
@@ -38,15 +38,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <Stack direction='column' gap={1}>
         {(label) && (
           <Stack direction='row' justifyContent='space-between'>
-            <LibLabel 
-              htmlFor={name} 
+            <span 
               className={cn(
                 'font-bold tracking-[1]',
-                variant === 'glass' ? "text-white" : "text-gray-700"
+                variant === 'glass' ? "text-white" : "text-[#2C3E50]"
               )}>
               {label}
               {required ? <span style={{ color: 'red' }}>*</span> : null}
-            </LibLabel>
+            </span>
           </Stack>
         )}
 
@@ -63,8 +62,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               "focus-within:bg-white/24"
             ],
             variant === 'light' && [
-              "bg-white border-gray-200 shadow-sm",
-              "shadow-[20px_20px_50px_rgba(199, 199, 199, 0.9)]",
+              "bg-white",
               "focus-within:shadow-md",
             ],
             props.value && variant === 'glass' ? 'bg-white/24' : 'shadow-md',

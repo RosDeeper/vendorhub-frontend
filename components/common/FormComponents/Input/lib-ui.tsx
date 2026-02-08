@@ -41,7 +41,7 @@ const LibInput = ({
       //   className,
       // )}
       className={cn(
-        "flex h-11 w-full tracking-[1] bg-transparent outline-none text-sm transition-colors",
+        "flex h-10 w-full tracking-[1] bg-transparent outline-none text-sm transition-colors",
         "file:border-0 file:bg-transparent file:text-sm file:font-heading",
         "disabled:cursor-not-allowed",
         variant === 'glass' 

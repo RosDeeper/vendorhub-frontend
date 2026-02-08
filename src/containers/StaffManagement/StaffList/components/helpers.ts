@@ -1,5 +1,6 @@
 export const mock = [
   {
+    id: '12',
     name: 'John Michael',
     email: 'micheal@mail.com',
     services: ['Nails', 'Salons'],
@@ -7,6 +8,7 @@ export const mock = [
     createdAt: '2026-02-11T13:18:28.926Z',
   },
   {
+    id: '13',
     name: 'John Michael',
     email: 'micheal@mail.com',
     services: ['Nails', 'Salons'],
@@ -14,6 +16,7 @@ export const mock = [
     createdAt: '2026-02-11T13:18:28.926Z',
   },
   {
+    id: '14',
     name: 'John Michael',
     email: 'micheal@mail.com',
     services: ['Nails', 'Salons'],
@@ -23,26 +26,26 @@ export const mock = [
 ];
 
 export enum FilterKeys {
-  _TITLE = 'productTitle',
-  _SKU = 'sku',
-  _STOCK_LEVEL = 'stockLevel',
-  _CATEGORY = 'category',
-  _WAREHOUSE = 'warehouse',
+  _STATUS = 'status',
+  _SERVICES = 'services',
+  _WEEK_DAY = 'weekday',
+  _START_TIME = 'startTime',
+  _END_TIME = 'endTime',
 }
 
 export type ProductFilterParams = {
-  [FilterKeys._TITLE]: string,
-  [FilterKeys._SKU]: string,
-  [FilterKeys._STOCK_LEVEL]: number[],
-  [FilterKeys._CATEGORY]: string,
-  [FilterKeys._WAREHOUSE]: string,
+  [FilterKeys._STATUS]: string,
+  [FilterKeys._SERVICES]: string[],
+  [FilterKeys._WEEK_DAY]: string,
+  [FilterKeys._START_TIME]: string,
+  [FilterKeys._END_TIME]: string,
 };
 
 export const ProductFilterParamsValues = {
-  [FilterKeys._TITLE]: '',
-  [FilterKeys._SKU]: '',
-  [FilterKeys._STOCK_LEVEL]: [0, 0],
-  [FilterKeys._CATEGORY]: '',
-  [FilterKeys._WAREHOUSE]: '',
+  [FilterKeys._STATUS]: '',
+  [FilterKeys._SERVICES]: [],
+  [FilterKeys._WEEK_DAY]: '',
+  [FilterKeys._START_TIME]: '',
+  [FilterKeys._END_TIME]: '',
 };
 

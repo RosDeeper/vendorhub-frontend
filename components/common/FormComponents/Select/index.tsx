@@ -2,7 +2,9 @@
 
 import { FieldValues, Path, useFormContext } from "react-hook-form";
 import { useState } from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Stack } from "@mui/material";
+import { Check } from "lucide-react";
+import { FiChevronDown } from "react-icons/fi";
 
 import { FormControl, FormField, FormItem } from "@/components/ui";
 import { cn } from "@/lib";
@@ -12,6 +14,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -22,14 +25,28 @@ type Option = {
   value: string;
 };
 
-type FormSelectProps<T extends FieldValues> = {
-  name: Path<T>;
+type BaseSelectProps = {
   label?: string;
   placeholder?: string;
   options: Option[];
   disabled?: boolean;
   searchable?: boolean;
+  isTimePicker?: boolean;
 };
+
+type StandaloneSelectProps = BaseSelectProps & {
+  name?: never;
+  value?: string;
+  onChange?: (value: string) => void;
+};
+
+type FormSelectProps<T extends FieldValues> = BaseSelectProps & {
+  name: Path<T>;
+  value?: never; 
+  onChange?: never;
+}
+
+type SelectProps<T extends FieldValues> = StandaloneSelectProps | FormSelectProps<T>;
 
 export const FormSelect = <T extends FieldValues>({
   name,
@@ -37,81 +54,81 @@ export const FormSelect = <T extends FieldValues>({
   placeholder = "Select...",
   options,
   disabled,
+  isTimePicker,
   searchable = false,
-}: FormSelectProps<T>) => {
-  const { control } = useFormContext<T>();
+  value: manualValue,
+  onChange: manualOnChange,
+}: SelectProps<T>) => {
+  const formContext = useFormContext<T>();
   const [open, setOpen] = useState(false);
 
-  return (
-    <FormField
-      control={control}
-      name={name}
-      render={({ field }) => {
-        const selected = options.find(
-          (opt) => opt.value === field.value
-        );
+  const renderSelect = (
+    currentValue: string, 
+    onValueChange: (val: string) => void
+  ) => {
+    const selected = options.find((opt) => opt.value === currentValue);
 
-        return (
-          <FormItem>
-            {label && (
-              <span className="font-bold">{label}</span>
-            )}
+    return (
+      <FormItem>
+        <Stack direction='column' gap={1}>
+          {label && (
+            <span className="font-bold text-[#2C3E50]">{label}</span>
+          )}
 
-            <Popover 
-              open={open} 
-              onOpenChange={(v) => {
-                if (disabled) return;
-                setOpen(v);
-              }}
-            >
-              <PopoverTrigger asChild>
-                <FormControl>
-                  <div 
-                    className={cn(
-                      "rounded-base bg-white cursor-pointer",
-                      disabled && "bg-gray-200"
-                    )}
-                    style={{
-                      border: '2px solid #000',
-                      padding: '0 12px',
-                    }}
-                  >
-                    <div className="flex h-10 justify-between items-center">
-                      {selected?.label ? (
-                        <span className="font-base text-black">
-                          {selected?.label}
-                        </span>
-                      ) : (
-                        <span className="font-base text-[#7f7f7f]">
-                          {placeholder}
-                        </span>
-                      )}
-                      <ChevronsUpDown style={{ width: '20px', height: '20px' }} />
-                    </div>
-                  </div>
-                </FormControl>
-              </PopoverTrigger>
-
-              <PopoverContent className="p-0 w-(--radix-popover-trigger-width) bg-white">
-                <Command className="bg-white rounded-base! border-none">
-                  {searchable && (
-                    <CommandInput placeholder="Search..." />
+          <Popover 
+            open={open} 
+            onOpenChange={(v) => {
+              if (disabled) return;
+              setOpen(v);
+            }}
+          >
+            <PopoverTrigger asChild>
+              <FormControl>
+                <Stack 
+                  className={cn(
+                    "rounded-full bg-white cursor-pointer",
+                    !isTimePicker && 'shadow-md',
+                    disabled && "bg-gray-200"
                   )}
+                  style={{ padding: '0 12px' }}
+                >
+                  <div className="flex h-10 justify-between items-center">
+                    {selected?.label ? (
+                      <span className="font-base text-black">
+                        {selected?.label}
+                      </span>
+                    ) : (
+                      <span className="font-base text-[#7f7f7f]">
+                        {placeholder}
+                      </span>
+                    )}
+                    <FiChevronDown size={16} />
+                  </div>
+                </Stack>
+              </FormControl>
+            </PopoverTrigger>
 
-                  <CommandEmpty>
-                    <span className="leading-9">
-                      No data
-                    </span>
-                  </CommandEmpty>
+            <PopoverContent className="p-0 w-(--radix-popover-trigger-width)">
+              <Command className="bg-white rounded-base! border-none">
+                {searchable && (
+                  <CommandInput placeholder="Search..." />
+                )}
 
-                  {options.length !== 0 && (
+                <CommandEmpty>
+                  <span className="leading-9">
+                    No data
+                  </span>
+                </CommandEmpty>
+
+                {options.length !== 0 && (
+                  <CommandList>
                     <CommandGroup>
                       {options.map((opt) => (
                         <CommandItem
                           key={opt.value}
                           value={opt.label}
                           onSelect={() => {
-                            field.onChange(opt.value);
+                            onValueChange(opt.value);
                             setOpen(false);
                           }}
                         >
@@ -121,7 +138,7 @@ export const FormSelect = <T extends FieldValues>({
                           <Check
                             className={cn(
                               "mr-2 h-4 w-4",
-                              opt.value === field.value
+                              opt.value === currentValue
                                 ? "opacity-100"
                                 : "opacity-0"
                             )}
@@ -129,13 +146,25 @@ export const FormSelect = <T extends FieldValues>({
                         </CommandItem>
                       ))}
                     </CommandGroup>
-                  )}
-                </Command>
-              </PopoverContent>
-            </Popover>
-          </FormItem>
-        );
-      }}
-    />
-  );
+                  </CommandList>
+                )}
+              </Command>
+            </PopoverContent>
+          </Popover>
+        </Stack>
+      </FormItem>
+    );
+  };
+
+  if (name && formContext) {
+    return (
+      <FormField
+        control={formContext.control}
+        name={name}
+        render={({ field }) => renderSelect(field.value, field.onChange)}
+      />
+    );
+  }
+
+  return renderSelect(manualValue || "", manualOnChange || (() => {}));
 };

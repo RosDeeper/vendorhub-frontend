@@ -1,13 +1,12 @@
 'use client';
 
 import { Grid, Stack, Typography } from "@mui/material";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { BiFilterAlt } from "react-icons/bi";
-import { IoIosSearch } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
 
-import { FormInput, FormSlider, FormSelect, Button } from "@/components/common";
-import { Form } from "@/components/ui";
+import {  FormSelect, Button, FormTimePicker } from "@/components/common";
+import { WEEKDAY_OPTIONS } from "@/lib";
 import { 
   FilterKeys,
   ProductFilterParams, 
@@ -19,15 +18,7 @@ const FilterForm = () => {
     defaultValues: ProductFilterParamsValues,
   });
 
-  const {
-    control,
-    handleSubmit,
-  } = form;
-
-  const stockRange = useWatch({
-    control,
-    name: FilterKeys._STOCK_LEVEL,
-  });
+  const { handleSubmit } = form;
 
   const handleValidSubmit = (formValues: ProductFilterParams) => {
     console.log(formValues);
@@ -35,74 +26,66 @@ const FilterForm = () => {
 
   return (
     <Stack>
-      <Stack direction='row' gap={2}>
-        <BiFilterAlt style={{ width: '28px', height: '28px' }} />
+      <Stack direction='row' gap={2} alignItems='center'>
+        <BiFilterAlt size={22} />
         <Typography style={{
-          fontSize: '20px',
+          fontSize: '18px',
           fontWeight: 700
-          }}>
+        }}>
           Filter Data
         </Typography>
       </Stack>
 
-      <Typography mt={1} mb={3}>
+      <Typography mt={1} mb={1}>
         Narrow down the results quickly and find what you need.
       </Typography>
       
-      <Stack style={{
-        borderBottom: '1px solid #000',
-        paddingBottom: '12px',
-      }}>
-        <Form {...form}>
+      <Stack mt={1}>
+        <FormProvider {...form}>
           <form onSubmit={handleSubmit(handleValidSubmit)} id="filter-form">
             <Grid container spacing={3}>
               <Grid size={4}>
-                <FormInput 
-                  name={FilterKeys._TITLE}
-                  placeholder="Search for Product Title"
-                  startIcon={<IoIosSearch style={{ width: '20px', height: '20px' }} />}
-                />
-              </Grid>
-              <Grid size={4}>
-                <FormInput 
-                  name={FilterKeys._SKU}
-                  placeholder="Search for SKUs"
-                  startIcon={<IoIosSearch style={{ width: '20px', height: '20px' }} />}
-                />
-              </Grid>
-              <Grid size={4}>
-                <FormSlider 
-                  name={FilterKeys._STOCK_LEVEL}
-                  min={0}
-                  max={200}
-                  step={1}
-                  value={stockRange}
-                  showValue
-                  label="Stock Level"
+                <FormSelect 
+                  name={FilterKeys._WEEK_DAY}
+                  label="Week Day"
+                  options={WEEKDAY_OPTIONS}
+                  placeholder="Select"
                 />
               </Grid>
               <Grid size={4}>
                 <FormSelect 
-                  name={FilterKeys._CATEGORY}
+                  name={FilterKeys._STATUS}
+                  label="Status"
                   options={[
-                    { label: 'Category 1', value: '1' },
-                    { label: 'Category 2', value: '2' },
-                    { label: 'Category 3', value: '3' },
-                    { label: 'Category 4', value: '4' },
+                    { label: 'Active', value: 'active' },
+                    { label: 'Inactive', value: 'inactive' },
                   ]}
-                  placeholder="Select Category"
+                  placeholder="Select"
                 />
               </Grid>
               <Grid size={4}>
                 <FormSelect 
-                  name={FilterKeys._WAREHOUSE}
+                  name={FilterKeys._SERVICES}
+                  label="Services"
                   options={[]}
-                  placeholder="Select Warehouse"
+                  placeholder="Select"
+                />
+              </Grid>
+              <Grid size={2}>
+                <FormTimePicker 
+                  name={FilterKeys._START_TIME}
+                  label="Start Time"
+                />
+              </Grid>
+              <Grid size={2}>
+                <FormTimePicker 
+                  name={FilterKeys._END_TIME}
+                  label="End Time"
                 />
               </Grid>
             </Grid>
           </form>
-        </Form>
+        </FormProvider>
       </Stack>
 
       <Stack 
@@ -112,9 +95,9 @@ const FilterForm = () => {
         style={{ marginTop: '12px' }}
       >
         <Button
-          variant='primary'
+          variant='outline'
           label="Reset"
-          style={{ width: '140px', backgroundColor: '#fff' }}
+          style={{ width: '140px', borderRadius: '12px' }}
           startIcon={<LiaTimesSolid style={{ width: '20px', height: '20px' }} />}
         />
         <Button
@@ -122,7 +105,7 @@ const FilterForm = () => {
           variant='primary'
           form="filter-form"
           label="Apply"
-          style={{ width: '140px' }}
+          style={{ width: '140px', borderRadius: '12px' }}
           startIcon={<BiFilterAlt style={{ width: '20px', height: '20px' }} />}
         />
       </Stack>

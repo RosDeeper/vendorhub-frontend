@@ -24,7 +24,7 @@ const Command = ({
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "flex h-full w-full flex-col overflow-hidden rounded-none border-2 border-border",
+        "flex w-full flex-col rounded-xl overflow-hidden",
         "bg-main font-base text-main-foreground",
         className,
       )}
@@ -95,9 +95,10 @@ const CommandList = ({
     <CommandPrimitive.List
       data-slot="command-list"
       className={cn(
-        "max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto",
+        "max-h-[300px] overflow-x-hidden overflow-y-auto",
         className,
       )}
+      onWheel={(e) => e.stopPropagation()}
       {...props}
     />
   )
@@ -124,7 +125,7 @@ const CommandGroup = ({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "p-2! text-main-foreground overflow-hidden **:[[cmdk-group-heading]]:px-2",
+        "text-main-foreground max-h-60 overflow-auto **:[[cmdk-group-heading]]:px-2",
         "**:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-base",
         "**:[[cmdk-group-heading]]:font-heading",
         className,
@@ -156,8 +157,9 @@ const CommandItem = ({
       data-slot="command-item"
       className={cn(
         "cursor-pointer h-9 relative p-3! justify-between flex select-none items-center",
-        "rounded-base px-2 py-1.5 gap-2 text-sm text-main-foreground outline-border",
-        "outline-0 aria-selected:outline-2 data-[disabled=true]:pointer-events-none",
+        "rounded-base px-2 py-1.5 gap-2 text-sm",
+        "aria-selected:bg-[#2C3E50] aria-selected:text-[#EEF2F4]",
+        "data-[disabled=true]:pointer-events-none",
         "data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='size-'])]:size-4",
         className,
@@ -209,7 +211,7 @@ const PopoverContent = ({
         align={align}
         sideOffset={sideOffset}
         className={cn(
-          "z-50 w-72 rounded-base border-2 border-border bg-main p-4 text-foreground",
+          "z-50 w-72 text-foreground",
           "outline-none data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",

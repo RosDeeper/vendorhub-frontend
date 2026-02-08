@@ -9,6 +9,18 @@
     width: 100%;
     align-items: center;
     background-color: #2C3E50;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -16px;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-width: 16px 0 0 16px;
+      border-style: solid;
+      border-color: #2C3E50 transparent;
+    }
   }
 
   &.home-body {

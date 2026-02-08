@@ -153,7 +153,7 @@ export const DialogProvider = ({
       {options?.type === 'drawer' && (
         <Drawer open={open} onOpenChange={setOpen} direction={options?.side ?? 'top'}>
           <DrawerContent 
-            className='flex flex-col'
+            className='flex flex-col bg-[#EFF2F4]'
             style={{ padding: '16px 24px' }}
           >
             <DrawerHeader>
@@ -166,7 +166,7 @@ export const DialogProvider = ({
               )}
             </DrawerHeader>
 
-            <div className="flex-1 overflow-auto pt-4">
+            <div className="flex-1 pt-4">
               {options?.content}
             </div>
 
@@ -186,7 +186,7 @@ export const DialogProvider = ({
             )}
 
             <div className="flex justify-center mt-4!">
-              <div className="h-2 w-40 rounded-full bg-black/60" />
+              <div className="h-2 w-40 rounded-full bg-[#2C3E50]" />
             </div>
           </DrawerContent>
         </Drawer>

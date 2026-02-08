@@ -5,7 +5,7 @@ import { FiUsers, FiUserCheck, FiUserPlus, FiUserX } from "react-icons/fi";
 
 import { StatCard } from "@/components/common";
 
-export const ListStats = () => {
+const StaffStat = () => {
   return (
     <Grid container spacing={5}>
       <Grid size={{ xs: 3 }}>
@@ -42,3 +42,5 @@ export const ListStats = () => {
     </Grid>
   );
 };
+
+export default StaffStat;

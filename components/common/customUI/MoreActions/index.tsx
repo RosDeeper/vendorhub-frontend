@@ -12,8 +12,8 @@ export const MoreActions = ({ onEdit, onDelete }: Props) => {
     <Stack flexDirection='row' gap={2} alignItems='center'>
       <FiEdit2 
         style={{
-          width: '20px',
-          height: '20px',
+          width: '18px',
+          height: '18px',
           color: '#3498DB',
           cursor: 'pointer'
         }} 
@@ -21,8 +21,8 @@ export const MoreActions = ({ onEdit, onDelete }: Props) => {
       />
       <FaRegTrashAlt 
         style={{
-          width: '20px',
-          height: '20px',
+          width: '18px',
+          height: '18px',
           color: '#FF383C',
           cursor: 'pointer'
         }} 

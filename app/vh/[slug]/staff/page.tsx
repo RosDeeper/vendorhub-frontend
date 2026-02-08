@@ -3,8 +3,7 @@ import { Stack, Typography } from "@mui/material";
 import { Breadcrumbs } from "@/components/common";
 import { SYS_PATHS } from "@/src/constants/path";
 import { COLOR_CODES } from "@/src/constants/color";
-import { ListStats } from "./components";
-import { StaffList } from "@/src/containers/StaffManagement";
+import { StaffList, StaffStat } from "@/src/containers/StaffManagement";
 
 const X = () => {
   const breadcrumbItems = [
@@ -22,8 +21,7 @@ const X = () => {
         Staff Management
       </Typography>
 
-      <ListStats />
-      
+      <StaffStat />
       <StaffList />
     </Stack>
   );
