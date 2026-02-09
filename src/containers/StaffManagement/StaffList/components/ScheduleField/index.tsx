@@ -1,10 +1,12 @@
 'use client';
 
 import { useFormContext, useWatch } from "react-hook-form";
-import { Stack, Grid } from "@mui/material";
+import { Stack, Grid, Typography } from "@mui/material";
 
 import { FormSwitch, FormTimePicker } from "@/components/common";
 import { WEEKDAY_OPTIONS } from "@/lib";
+
+import './styles.scss';
 
 type ScheduleItemProps = {
   dayLabel: string;
@@ -32,19 +34,24 @@ const ScheduleItem = ({ dayLabel, name, dayValue }: ScheduleItemProps) => {
       setValue(name, [...currentValues, newItem]);
     } else {
       const filtered = currentValues.filter((item: any) => item.day !== dayValue);
-      
+
       setValue(name, filtered);
     }
   };
 
   return (
-    <Stack gap={1}>
-      <FormSwitch 
-        name=''
-        label={dayLabel}
-        checked={isEnabled}
-        onCheckedChange={handleToggle}
-      />
+    <Stack gap={2} className="toggle-container">
+      <Stack className="day-toggle" direction='row' gap={2}>
+        <FormSwitch 
+          name=''
+          checked={isEnabled}
+          onCheckedChange={handleToggle}
+        />
+        <Typography color="#2c3e50" fontWeight={700} letterSpacing={1}>
+          {dayLabel}
+        </Typography>
+      </Stack>
+      
       {isEnabled && (
         <Grid container spacing={2} alignItems='center'>
           <Grid size={5.5}>
@@ -67,7 +74,7 @@ const ScheduleItem = ({ dayLabel, name, dayValue }: ScheduleItemProps) => {
 
 const ScheduleField = ({ name }: { name: string }) => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={4} mb={1}>
       {WEEKDAY_OPTIONS.map((day, index) => (
         <Grid key={index} size={6}>
           <ScheduleItem 

@@ -23,4 +23,10 @@ export const statusVariants = {
     border: "border-l-[#3498DB]",
     iconColor: "#3498DB"
   },
+  danger: {
+    color: "text-[#E74C3C]",    
+    bg: "bg-[#FADBD8]",       
+    border: "border-l-[#E74C3C]",
+    iconColor: "#E74C3C"
+  },
 };

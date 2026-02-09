@@ -11,7 +11,7 @@ export type AddStaffFormValues = {
   [FormKeys._FULL_NAME]: string;
   [FormKeys._WORKING_HOUR]: string[];
   [FormKeys._SERVICES]: string[];
-  [FormKeys._STATUS]: string;
+  [FormKeys._STATUS]: boolean;
 };
 
 export const initialFormValues = {
@@ -19,5 +19,5 @@ export const initialFormValues = {
   [FormKeys._FULL_NAME]: '',
   [FormKeys._WORKING_HOUR]: [],
   [FormKeys._SERVICES]: [],
-  [FormKeys._STATUS]: '',
+  [FormKeys._STATUS]: false,
 };

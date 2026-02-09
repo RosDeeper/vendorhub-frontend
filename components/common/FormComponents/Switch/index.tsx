@@ -40,12 +40,12 @@ export const FormSwitch = <T extends FieldValues>({
         return (
           <FormItem>
             <Stack gap={1}>
-              <div className="flex gap-1">
-                {label && (
+              {label && (
+                <div className="flex gap-1">
                   <span className="font-bold text-[#2C3E50] tracking-[1px]">{label}</span>
-                )}
-                {props.required ? <span style={{ color: 'red' }}>*</span> : null}
-              </div>
+                  {props.required ? <span style={{ color: 'red' }}>*</span> : null}
+                </div>
+              )}
 
               <FormControl>
                 <Switch

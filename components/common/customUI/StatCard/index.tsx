@@ -17,7 +17,7 @@ type Props = {
   title: string;
   data: number;
   icon: IconType;
-  variant?: "default" | "success" | "warning" | "info",
+  variant?: "default" | "success" | "warning" | "info" | "danger",
 };
 
 export const StatCard = (props: Props) => {

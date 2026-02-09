@@ -47,7 +47,7 @@ export const FormTimePicker = <T extends FieldValues>({
         return (
           <FormItem className="flex flex-col gap-1">
             {label && (
-              <span className="font-bold text-[#2C3E50]">{label}</span>
+              <span className="font-bold text-[#2C3E50] tracking-[1px]">{label}</span>
             )}
 
             <FormControl>

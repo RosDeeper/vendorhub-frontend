@@ -32,7 +32,7 @@ const AddStaff = () => {
     <Stack>
       <div className="custom-scrollbar" 
         style={{ 
-          maxHeight: '500px',
+          maxHeight: '560px',
           overflowY: 'auto',
           paddingRight: '4px'
         }}
@@ -40,6 +40,15 @@ const AddStaff = () => {
         <FormProvider {...form}>
           <form onSubmit={handleSubmit(handleValidSubmit)} id='add-form'>
             <Grid container spacing={2}>
+              <Grid size={12}>
+                <FormInput 
+                  name={FormKeys._AVATAR_URL}
+                  label="Avatar"
+                  required
+                  variant='light'
+                  placeholder="Enter fullname"
+                />
+              </Grid>
               <Grid size={4.5}>
                 <FormInput 
                   name={FormKeys._FULL_NAME}
@@ -68,12 +77,11 @@ const AddStaff = () => {
                 />
               </Grid>
               <Grid size={12}>
-                <Typography color="#2c3e50" fontWeight={700}>
+                <Typography color="#2c3e50" fontWeight={700} letterSpacing={1} mb={1}>
                   Working Hour
                   <span style={{ color: 'red', marginLeft: '4px' }}>*</span>
                 </Typography>
-              </Grid>
-              <Grid size={12}>
+
                 <ScheduleField name={FormKeys._WORKING_HOUR} />
               </Grid>
             </Grid>
