@@ -22,7 +22,7 @@ export const Checkbox = React.forwardRef<
       <label className="flex items-center gap-2 cursor-pointer">
         <LibCheckbox ref={ref} variant={variant} {...props} />
         <span className={cn(
-          "text-sm text-foreground font-bold select-none",
+          "text-sm text-[#2C3E50] font-semibold select-none",
           props?.disabled && 'opacity-50'
         )}>
           {label}

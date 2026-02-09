@@ -26,3 +26,15 @@
   --font-weight-base: 500;
   --font-weight-heading: 700;
 }
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-1.5; /* w-1.5 tương đương 6px */
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-full hover:bg-gray-600;
+  }
+}

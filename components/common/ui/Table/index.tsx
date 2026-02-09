@@ -198,7 +198,6 @@ const Table = <TData, TValue>({
                   startIcon={<FaChevronLeft style={{ width: '12px', height: '12px' }} />}
                   onClick={() => onPageChange(page - 1)}
                   disabled={page === 1}
-                  style={{ borderRadius: '12px' }}
                 /> 
               </PaginationItem>
 
@@ -209,7 +208,6 @@ const Table = <TData, TValue>({
                     <PaginationLink
                       isActive={p === page}
                       onClick={() => onPageChange(p)}
-                      style={{borderRadius: '12px'}}
                     >
                       {p}
                     </PaginationLink>
@@ -223,7 +221,6 @@ const Table = <TData, TValue>({
                   variant='primary'
                   startIcon={<FaChevronRight style={{ width: '12px', height: '12px' }} />}
                   onClick={() => onPageChange(page + 1)}
-                  style={{ borderRadius: '12px' }}
                   disabled={page === totalPage}
                 />
               </PaginationItem>

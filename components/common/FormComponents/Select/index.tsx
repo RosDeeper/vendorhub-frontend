@@ -28,6 +28,7 @@ type Option = {
 type BaseSelectProps = {
   label?: string;
   placeholder?: string;
+  required?: boolean;
   options: Option[];
   disabled?: boolean;
   searchable?: boolean;
@@ -54,6 +55,7 @@ export const FormSelect = <T extends FieldValues>({
   placeholder = "Select...",
   options,
   disabled,
+  required,
   isTimePicker,
   searchable = false,
   value: manualValue,
@@ -70,9 +72,12 @@ export const FormSelect = <T extends FieldValues>({
 
     return (
       <FormItem>
-        <Stack direction='column' gap={1}>
+        <Stack direction='column'>
           {label && (
-            <span className="font-bold text-[#2C3E50]">{label}</span>
+            <div className="flex gap-1 mb-1!">
+              <span className="font-bold text-[#2C3E50] tracking-[1px]">{label}</span>
+              {required ? <span style={{ color: 'red' }}>*</span> : null}
+            </div>
           )}
 
           <Popover 
@@ -98,7 +103,7 @@ export const FormSelect = <T extends FieldValues>({
                         {selected?.label}
                       </span>
                     ) : (
-                      <span className="font-base text-[#7f7f7f]">
+                      <span className="font-base text-[#7f7f7f] tracking-[1px]">
                         {placeholder}
                       </span>
                     )}
@@ -122,11 +127,10 @@ export const FormSelect = <T extends FieldValues>({
 
                 {options.length !== 0 && (
                   <CommandList>
-                    <CommandGroup>
+                    <CommandGroup  className="custom-scrollbar">
                       {options.map((opt) => (
                         <CommandItem
                           key={opt.value}
-                          value={opt.label}
                           onSelect={() => {
                             onValueChange(opt.value);
                             setOpen(false);

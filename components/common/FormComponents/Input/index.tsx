@@ -37,15 +37,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <Stack direction='column' gap={1}>
         {(label) && (
-          <Stack direction='row' justifyContent='space-between'>
+          <Stack direction='row' gap={0.5}>
             <span 
               className={cn(
                 'font-bold tracking-[1]',
                 variant === 'glass' ? "text-white" : "text-[#2C3E50]"
               )}>
               {label}
-              {required ? <span style={{ color: 'red' }}>*</span> : null}
             </span>
+            {required ? <span style={{ color: 'red' }}>*</span> : null}
           </Stack>
         )}
 

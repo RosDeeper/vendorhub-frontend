@@ -127,26 +127,29 @@ export const DialogProvider = ({
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent className={sizeClass}>
             <DialogHeader>
-              <DialogTitle style={{ fontSize: '20px' }}>{options?.title}</DialogTitle>
+              <DialogTitle>{options?.title}</DialogTitle>
             </DialogHeader>
 
             <div className="py-2">{options?.content}</div>
 
-            <DialogFooter>
-              {(options?.cancelText && options?.cancelText !== '') && (
-                <Button 
-                  label={options?.cancelText}
-                  onClick={handleCancelDialog}
-                />
-                
-              )}
-              {(options?.confirmText && options?.confirmText !== '') && (
-                <Button 
-                  label={options?.confirmText}
-                  onClick={handleConfirmDialog}
-                />
-              )}
-            </DialogFooter>
+            {(options?.cancelText || options?.confirmText) && (
+              <DialogFooter>
+                {(options?.cancelText && options?.cancelText !== '') && (
+                  <Button 
+                    label={options?.cancelText}
+                    onClick={handleCancelDialog}
+                  />
+                  
+                )}
+                {(options?.confirmText && options?.confirmText !== '') && (
+                  <Button 
+                    label={options?.confirmText}
+                    onClick={handleConfirmDialog}
+                  />
+                )}
+              </DialogFooter>
+            )}
+
           </DialogContent>
         </Dialog>
       )}

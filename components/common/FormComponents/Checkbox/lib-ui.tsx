@@ -30,7 +30,7 @@ export const LibCheckbox = forwardRef<
         className="flex items-center justify-center text-current"
       >
         <CheckIcon className={cn(
-          'size-3',
+          'size-3.5',
           variant === 'glass' ? 'text-white' : 'text-black'
         )} />
       </CheckboxPrimitive.Indicator>

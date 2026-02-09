@@ -11,7 +11,7 @@ import {
   FilterKeys,
   ProductFilterParams, 
   ProductFilterParamsValues 
-} from "../helpers";
+} from "./helpers";
 
 const FilterForm = () => {
   const form = useForm<ProductFilterParams>({
@@ -97,16 +97,16 @@ const FilterForm = () => {
         <Button
           variant='outline'
           label="Reset"
-          style={{ width: '140px', borderRadius: '12px' }}
-          startIcon={<LiaTimesSolid style={{ width: '20px', height: '20px' }} />}
+          style={{ width: '140px' }}
+          startIcon={<LiaTimesSolid size={20} />}
         />
         <Button
           type="submit"
           variant='primary'
           form="filter-form"
           label="Apply"
-          style={{ width: '140px', borderRadius: '12px' }}
-          startIcon={<BiFilterAlt style={{ width: '20px', height: '20px' }} />}
+          style={{ width: '140px' }}
+          startIcon={<BiFilterAlt size={20} />}
         />
       </Stack>
     </Stack>

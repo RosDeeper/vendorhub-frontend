@@ -8,12 +8,22 @@ export const MINUTES_OPTIONS = Array.from({ length: 12 }, (_, i) => ({
   value: (i * 5).toString().padStart(2, '0'),
 }));
 
+export enum DAY_OF_WEEK {
+  _MONDAY = 'MONDAY',
+  _TUESDAY = 'TUESDAY',
+  _WEDNESDAY = 'WEDNESDAY',
+  _THURSDAY = 'THURSDAY',
+  _FRIDAY = 'FRIDAY',
+  _SATURDAY = 'SATURDAY',
+  _SUNDAY = 'SUNDAY',
+};
+
 export const WEEKDAY_OPTIONS = [
-  { label: "Monday", value: "monday" },
-  { label: "Tuesday", value: "tuesday" },
-  { label: "Wednesday", value: "wednesday" },
-  { label: "Thursday", value: "thursday" },
-  { label: "Friday", value: "friday" },
-  { label: "Saturday", value: "saturday" },
-  { label: "Sunday", value: "sunday" },
+  { label: "Monday", value: DAY_OF_WEEK._MONDAY },
+  { label: "Tuesday", value: DAY_OF_WEEK._TUESDAY },
+  { label: "Wednesday", value: DAY_OF_WEEK._WEDNESDAY },
+  { label: "Thursday", value: DAY_OF_WEEK._THURSDAY },
+  { label: "Friday", value: DAY_OF_WEEK._FRIDAY },
+  { label: "Saturday", value: DAY_OF_WEEK._SATURDAY },
+  { label: "Sunday", value: DAY_OF_WEEK._SUNDAY },
 ];
