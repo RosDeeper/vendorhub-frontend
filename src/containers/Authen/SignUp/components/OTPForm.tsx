@@ -36,7 +36,7 @@ const OTPForm = ({ data, isForgotPassword }: Props) => {
   const router = useRouter();
   const [otp, setOtp] = useState<string>('');
   const cookies = new Cookies();
-  console.log(data)
+
   const { mutate: sendOTP, isLoading: isSendingOTP } = useSendOTP({
     onSuccess() {
       restart(getExpiryTime(300));

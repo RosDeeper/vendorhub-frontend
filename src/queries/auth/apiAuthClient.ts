@@ -28,9 +28,10 @@ export const apiAuthClient = async <TResponse, TPayload = unknown>({
     const { cookies: nextCookies } = await import('next/headers');
     const cookieStore = await nextCookies();
     const accessToken = cookieStore.get('accessToken')?.value;
+    const refreshToken = cookieStore.get('refreshToken')?.value;
 
-    
     if (accessToken) authHeaders['Authorization'] = `Bearer ${accessToken}`;
+    if (refreshToken) authHeaders['Cookie'] = `refreshToken=${refreshToken}`;
   }
   
   const response = await fetch(url, {

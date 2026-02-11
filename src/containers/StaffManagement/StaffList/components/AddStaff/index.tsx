@@ -89,7 +89,7 @@ const AddStaff = () => {
         </FormProvider>
       </div>
 
-      <Stack direction='row' justifyContent='flex-end' gap={2}>
+      <Stack direction='row' justifyContent='flex-end' gap={2} mt={1}>
         <Button
           label="Cancel"
           variant='outline'

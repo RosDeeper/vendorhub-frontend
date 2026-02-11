@@ -45,6 +45,7 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[],
   isLoading?: boolean,
   tableHead?: React.ReactNode,
+  onAction?: (p: number) => void;
 };
 
 const Table = <TData, TValue>({
@@ -54,7 +55,8 @@ const Table = <TData, TValue>({
   take = 10,
   columns,
   isLoading,
-  tableHead
+  tableHead,
+  onAction,
 }: DataTableProps<TData, TValue>) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -141,6 +143,8 @@ const Table = <TData, TValue>({
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", String(p));
     router.push(`?${params.toString()}`);
+
+    onAction?.(p);
   };
   
   return (
@@ -193,9 +197,9 @@ const Table = <TData, TValue>({
             <PaginationContent>
               <PaginationItem>
                 <Button 
-                  variant='primary'
+                  variant='ghost'
                   size='icon'
-                  startIcon={<FaChevronLeft style={{ width: '12px', height: '12px' }} />}
+                  startIcon={<FaChevronLeft size={12} />}
                   onClick={() => onPageChange(page - 1)}
                   disabled={page === 1}
                 /> 
@@ -218,8 +222,8 @@ const Table = <TData, TValue>({
               <PaginationItem>
                 <Button 
                   size='icon'
-                  variant='primary'
-                  startIcon={<FaChevronRight style={{ width: '12px', height: '12px' }} />}
+                  variant='ghost'
+                  startIcon={<FaChevronRight size={12} />}
                   onClick={() => onPageChange(page + 1)}
                   disabled={page === totalPage}
                 />

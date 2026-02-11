@@ -2,13 +2,22 @@
 
 import { useMemo } from "react";
 import { motion } from "motion/react";
+import { useSearchParams } from "next/navigation";
 
 import { Table } from "@/components/common";
 import { allColumns } from "./allColumns";
-import { mock } from "./components/helpers";
 import TableHead from "./components/TableHead";
 
+import { useGetStaffList } from "@/src/queries";
+
 const StaffList = () => {
+  const query = useSearchParams();
+  const currentPage = query.get('page');
+
+  const { staffList, totalStaff, isLoading, setParams } = useGetStaffList(
+    { page: Number(currentPage) || 1 }
+  );
+ 
   const columns = useMemo(() => {
     return allColumns();
   }, []);
@@ -20,10 +29,12 @@ const StaffList = () => {
       viewport={{ once: true }}
     >
       <Table
-        data={mock}
-        totalRecord={mock.length}
+        data={staffList}
+        totalRecord={totalStaff}
         columns={columns}
+        isLoading={isLoading}
         tableHead={<TableHead />}
+        onAction={(p: number) => setParams({ page: p })}
       />
     </motion.div>
   );

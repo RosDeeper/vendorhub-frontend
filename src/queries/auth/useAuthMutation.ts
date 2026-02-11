@@ -1,6 +1,6 @@
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 
-export const useAppMutation = <TData, TVariables>(
+export const useAuthMutation = <TData, TVariables = void>(
   mutationFn: (variables: TVariables) => Promise<TData>,
   options?: UseMutationOptions<TData, Error, TVariables>
 ) => {

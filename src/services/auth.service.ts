@@ -1,6 +1,6 @@
 'use server';
 
-import { apiAuthClient } from "@/src/queries";
+import { apiAuthClient } from "../queries/auth/apiAuthClient";
 
 export type LoginPayload = {
   email: string;
@@ -26,13 +26,13 @@ export const login = async (payload: LoginPayload): Promise<any> => (
 );
 
 export const logout = async (): Promise<any> => (
-  apiAuthClient<any, LoginPayload>({
+  apiAuthClient<any>({
     endpoint: "/auth/logout",
   })
 );
 
 export const refreshToken = async (): Promise<any> => (
-  apiAuthClient<any, LoginPayload>({
+  apiAuthClient<any>({
     endpoint: "/auth/refresh-tokens",
   })
 );

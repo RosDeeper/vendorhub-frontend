@@ -46,9 +46,7 @@ const LoginPage = () => {
     defaultValues: initialValues,
   });
 
-  const {
-    handleSubmit,
-  } = form;
+  const { handleSubmit } = form;
 
   const handleValidSubmit = (formValues: LoginFormValues) => {
     login(formValues);

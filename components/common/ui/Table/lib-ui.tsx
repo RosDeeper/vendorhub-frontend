@@ -140,23 +140,20 @@ const PaginationItem = ({ className, ...props }: React.ComponentProps<"li">) => 
 const PaginationLink = ({
   className,
   isActive,
-  size = "icon",
   ...props
-}: React.ComponentProps<"a"> & {
+}: React.ComponentProps<"span"> & {
   isActive?: boolean
-  size?: "default" | "sm" | "lg" | "icon"
 }) => {
   return (
-    <a
-      data-slot="pagination-link"
+    <span
       aria-current={isActive ? "page" : undefined}
       className={cn(
         buttonVariants({
-          variant: "primary",
-          size,
+          variant: "ghost",
+          size: 'icon',
         }),
         className,
-        isActive && "bg-black text-white",
+        isActive && "bg-[#2C3E50] text-white rounded-full",
       )}
       {...props}
     />
