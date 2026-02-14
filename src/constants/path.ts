@@ -1,6 +1,7 @@
 export const SYS_PATHS = {
   root: '/',
   auth: '/auth',
+  authCallback: '/auth/callback',
   dashboard: '/dashboard',
   product: '/product',
   staff: '/staff',

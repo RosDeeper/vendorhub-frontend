@@ -52,6 +52,11 @@ const LoginPage = () => {
     login(formValues);
   };
 
+  const handleGoogleSignIn = () => {
+    const baseUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL;
+    if (baseUrl) window.location.href = `${baseUrl}/auth/google`;
+  };
+
   return (
     <div 
       style={{
@@ -158,10 +163,12 @@ const LoginPage = () => {
                     or sign in with
                   </Typography>
                   <Button
-                    type="submit"
+                    type="button"
                     variant='secondary'
                     size='icon'
                     startIcon={<FaGoogle size={18} />}
+                    onClick={handleGoogleSignIn}
+                    aria-label="Sign in with Google"
                   />
                   <Typography className="span-white">
                     Don&apos;t have an account?{' '}

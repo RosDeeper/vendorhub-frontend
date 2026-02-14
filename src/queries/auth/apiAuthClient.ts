@@ -41,7 +41,7 @@ export const apiAuthClient = async <TResponse, TPayload = unknown>({
       ...authHeaders,
     },
     credentials: 'include',
-    body: payload ? JSON.stringify(payload) : undefined,
+    body: payload && method !== 'GET' ? JSON.stringify(payload) : undefined,
   });
 
   if (isServer) {
@@ -67,12 +67,21 @@ export const apiAuthClient = async <TResponse, TPayload = unknown>({
       });
     }
   }
-  
-  const data = await response.json();
-  
-  if (!response.ok) {
-    throw new Error(data?.message || 'Request failed');
+
+  const contentType = response.headers.get('content-type');
+  const hasJson = contentType?.includes('application/json');
+  const hasBody = response.status !== 204 && (response.headers.get('content-length') !== '0');
+
+  let data: TResponse;
+  if (hasJson && hasBody) {
+    data = await response.json();
+  } else {
+    data = {} as TResponse;
   }
 
-  return data as TResponse;
+  if (!response.ok) {
+    throw new Error((data as { message?: string })?.message || 'Request failed');
+  }
+
+  return data;
 };
