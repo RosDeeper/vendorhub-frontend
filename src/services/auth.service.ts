@@ -28,7 +28,6 @@ export const login = async (payload: LoginPayload): Promise<any> => (
 export const logout = async (): Promise<any> => (
   apiAuthClient<any>({
     endpoint: "/auth/logout",
-    method: "GET",
   })
 );
 
