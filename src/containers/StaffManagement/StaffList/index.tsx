@@ -14,9 +14,9 @@ const StaffList = () => {
   const query = useSearchParams();
   const currentPage = query.get('page');
 
-  const { staffList, totalStaff, isLoading, setParams } = useGetStaffList(
-    { page: Number(currentPage) || 1 }
-  );
+  // const { staffList, totalStaff, isLoading, setParams } = useGetStaffList(
+  //   { page: Number(currentPage) || 1 }
+  // );
  
   const columns = useMemo(() => {
     return allColumns();
@@ -29,12 +29,12 @@ const StaffList = () => {
       viewport={{ once: true }}
     >
       <Table
-        data={staffList}
-        totalRecord={totalStaff}
+        data={[]}
+        totalRecord={0}
         columns={columns}
-        isLoading={isLoading}
+        // isLoading={isLoading}
         tableHead={<TableHead />}
-        onAction={(p: number) => setParams({ page: p })}
+        // onAction={(p: number) => setParams({ page: p })}
       />
     </motion.div>
   );
