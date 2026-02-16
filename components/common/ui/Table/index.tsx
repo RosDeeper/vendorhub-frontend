@@ -15,8 +15,7 @@ import {
   SortingState, 
   useReactTable
 } from "@tanstack/react-table";
-import { Stack } from "@mui/material";
-import Image from "next/image";
+import { Stack, Typography } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { 
@@ -32,7 +31,6 @@ import {
   PaginationLink, 
 } from "./lib-ui";
 import { Button } from "../Button";
-import { SYS_IMAGES } from "@/components/images";
 
 import './styles.scss';
 
@@ -123,18 +121,11 @@ const Table = <TData, TValue>({
         colSpan={columns.length} 
         className="text-center py-10"
       >
-        <Stack>
-          <Image 
-            src={SYS_IMAGES.EmptyTable}
-            alt="Empty Data"
-            height={400}
-            width={450}
-            style={{ 
-              margin: '40px auto 0',
-              objectFit: 'cover'
-            }}
-          />
-        </Stack>
+        <Typography mt={2} fontStyle='italic' color="#62748e">
+          No record.
+          <br/>
+          Please add more data.
+        </Typography>
       </TableCell>
     </TableRow>
   );

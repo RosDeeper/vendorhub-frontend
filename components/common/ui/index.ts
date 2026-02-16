@@ -7,3 +7,4 @@ export * from './Alert';
 export * from './Dialog';
 export * from './Drawer';
 export * from './NavigationMenu';
+export * from './DropdownMenu';

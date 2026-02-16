@@ -5,7 +5,6 @@ import DefaultAvatar from '@/public/assets/images/default-avatar.png';
 
 import CreatePassword from '@/public/assets/svgs/create-password.svg';
 import OTPImage from '@/public/assets/svgs/otp-image.svg';
-import EmptyTable from '@/public/assets/svgs/empty-table.svg';
 import Congratulation from '@/public/assets/svgs/congratulation.svg';
 
 export const SYS_IMAGES = {
@@ -16,6 +15,5 @@ export const SYS_IMAGES = {
 
   CreatePassword,
   OTPImage,
-  EmptyTable,
   Congratulation,
 };

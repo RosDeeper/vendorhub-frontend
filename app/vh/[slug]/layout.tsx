@@ -26,7 +26,7 @@ type Props = {
 
 const HomeLayout = ({ children }: Props) => {
   const cookie = new Cookies();
-  const [isAuthReady, setIsAuthReady] = useState<boolean>(false);
+  const [isAuthReady, setIsAuthReady] = useState<boolean>(true);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
    const getRefreshDelay = (token: string) => {

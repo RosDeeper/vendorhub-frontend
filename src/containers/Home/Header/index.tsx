@@ -6,11 +6,20 @@ import Link from "next/link";
 import { FaCaretDown } from "react-icons/fa6";
 
 import { TEXT_SIZE } from "@/src/constants/text";
-import { Divider } from "@/components/common";
+import { Divider, DropdownMenu, DropdownItemType } from "@/components/common";
 import { SYS_PATHS } from "@/src/constants/path";
 import { SYS_IMAGES } from "@/components/images";
 
 const Header = () => {
+  const handleLogout = () => {};
+
+  const items: DropdownItemType[] = [
+    { label: 'Profile' },
+    { label: 'Settings' },
+    { separator: true },
+    { label: 'Logout', variant: 'destructive', onClick: handleLogout }
+  ];
+
   return (
     <Stack className="header-container">
       <Link href={SYS_PATHS.dashboard}>
@@ -27,7 +36,7 @@ const Header = () => {
 
         <Divider orientation='vertical' bgColor="#fff" />
 
-        <Stack direction='row' alignItems='center' gap={2}>
+        <Stack direction='row' alignItems='center' gap={1.5}>
           <Image 
             src={SYS_IMAGES.DefaultAvatar}
             alt="default-avatar"
@@ -40,7 +49,11 @@ const Header = () => {
           >
             coolseller
           </Typography>
-          <FaCaretDown size={16} color="#FFFFFF" />
+          
+          <DropdownMenu 
+            trigger={<FaCaretDown size={20} color="#FFFFFF" />}
+            items={items}
+          />
         </Stack>
       </Stack>
     </Stack>
