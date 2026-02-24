@@ -15,9 +15,9 @@ const Header = () => {
 
   const items: DropdownItemType[] = [
     { label: 'Profile' },
-    { label: 'Settings' },
+    { label: 'Setting' },
     { separator: true },
-    { label: 'Logout', variant: 'destructive', onClick: handleLogout }
+    { label: 'Logout', onClick: handleLogout }
   ];
 
   return (

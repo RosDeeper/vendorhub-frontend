@@ -90,7 +90,8 @@ const DropdownMenuItem = ({
         "cursor-pointer text-sm select-none data-disabled:pointer-events-none",
         "data-disabled:opacity-50 data-inset:pl-8 [&_svg]:pointer-events-none",
         "[&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        "pl-3! pr-3! h-9 bg-white items-center",
+        "pl-3! pr-3! h-9 bg-white items-center outline-hidden",
+        "hover:bg-gray-100",
         className
       )}
       {...props}
