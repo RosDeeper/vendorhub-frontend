@@ -2,14 +2,10 @@
 
 import { FieldValues, Path, useFormContext } from "react-hook-form";
 import * as SliderPrimitive from "@radix-ui/react-slider";
-
-import {
-  FormField,
-  FormItem,
-  FormControl,
-} from "@/components/ui";
-import { Slider } from "./lib-ui";
 import { Stack } from "@mui/material";
+
+import { Slider } from "./lib-ui";
+import { FormControl, FormField, FormItem } from "../Form/lib-ui";
 
 type FormSliderRangeProps<T extends FieldValues> = {
   name: Path<T>;
