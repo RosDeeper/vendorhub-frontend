@@ -1,13 +1,12 @@
 'use client';
 
 import { Grid, Stack, Typography } from "@mui/material";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm, useWatch, FormProvider } from "react-hook-form";
 import { BiFilterAlt } from "react-icons/bi";
 import { IoIosSearch } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
 
 import { FormInput, FormSlider, FormSelect, Button } from "@/components/common";
-import { Form } from "@/components/ui";
 import { 
   ProductFilterParams, 
   ProductFilterParamsValues,
@@ -53,7 +52,7 @@ const FilterForm = () => {
         borderBottom: '1px solid #000',
         paddingBottom: '12px',
       }}>
-        <Form {...form}>
+        <FormProvider {...form}>
           <form onSubmit={handleSubmit(handleValidSubmit)} id="filter-form">
             <Grid container spacing={3}>
               <Grid size={4}>
@@ -102,7 +101,7 @@ const FilterForm = () => {
               </Grid>
             </Grid>
           </form>
-        </Form>
+        </FormProvider>
       </Stack>
 
       <Stack 
