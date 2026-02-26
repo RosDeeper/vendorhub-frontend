@@ -4,9 +4,9 @@ import { FieldValues, Path, useFormContext } from "react-hook-form";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
-import { FormField, FormControl, FormItem } from "@/components/ui";
 import { HOURS_OPTIONS, MINUTES_OPTIONS } from "@/lib";
 import { FormSelect } from "../Select";
+import { FormControl, FormField, FormItem } from "../Form/lib-ui";
 
 dayjs.extend(utc);
 

@@ -6,7 +6,6 @@ import { Stack } from "@mui/material";
 import { Check } from "lucide-react";
 import { FiChevronDown } from "react-icons/fi";
 
-import { FormControl, FormField, FormItem } from "@/components/ui";
 import { cn } from "@/lib";
 import { 
   Command,
@@ -19,6 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "./lib-ui";
+import { FormControl, FormField, FormItem } from "../Form/lib-ui";
 
 type Option = {
   label: string;

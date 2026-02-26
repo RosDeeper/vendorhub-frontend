@@ -6,8 +6,8 @@ import React, { useState } from "react";
 import { PiEye, PiEyeClosed } from "react-icons/pi";
 
 import { cn } from "@/lib/utils";
-import { FormControl, FormField, FormItem } from "@/components/ui";
 import { LibInput } from "./lib-ui";
+import { FormControl, FormField, FormItem } from "../Form/lib-ui";
 
 type InputProps = React.ComponentProps<"input"> & {
   label?: string;

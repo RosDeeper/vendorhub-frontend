@@ -4,12 +4,8 @@ import { FieldValues, Path, useFormContext } from "react-hook-form";
 import * as SwitchPrimitive from "@radix-ui/react-switch"
 import { Stack } from "@mui/material";
 
-import { 
-  FormField,
-  FormControl,
-  FormItem
-} from "@/components/ui";
 import { Switch } from "./lib-ui";
+import { FormControl, FormField, FormItem } from "../Form/lib-ui";
 
 type FormSwitchProps<T extends FieldValues> = {
   name: Path<T>;
