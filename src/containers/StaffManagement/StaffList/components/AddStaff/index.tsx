@@ -3,17 +3,18 @@ import { Grid, Stack, Typography } from "@mui/material";
 
 import { 
   Button, 
+  Accordion,
   FormInput, 
   FormMultiSelect,
   FormSwitch,
 } from "@/components/common";
 import { useDialog } from "@/components/hooks";
+import ScheduleField from "../ScheduleField";
 import { 
   FormKeys, 
   AddStaffFormValues, 
   initialFormValues 
 } from "./helpers";
-import ScheduleField from "../ScheduleField";
 
 const AddStaff = () => {
   const { closeDialog } = useDialog();
@@ -89,7 +90,7 @@ const AddStaff = () => {
         </FormProvider>
       </div>
 
-      <Stack direction='row' justifyContent='flex-end' gap={2} mt={1}>
+      <Stack direction='row' justifyContent='flex-end' gap={2} mt={2}>
         <Button
           label="Cancel"
           variant='outline'

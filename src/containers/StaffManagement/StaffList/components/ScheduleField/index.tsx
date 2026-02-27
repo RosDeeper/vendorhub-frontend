@@ -74,7 +74,7 @@ const ScheduleItem = ({ dayLabel, name, dayValue }: ScheduleItemProps) => {
 
 const ScheduleField = ({ name }: { name: string }) => {
   return (
-    <Grid container spacing={4} mb={1}>
+    <Grid container spacing={4}>
       {WEEKDAY_OPTIONS.map((day, index) => (
         <Grid key={index} size={6}>
           <ScheduleItem 
