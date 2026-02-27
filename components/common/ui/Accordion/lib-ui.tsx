@@ -1,6 +1,6 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import * as React from "react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -38,7 +38,7 @@ const AccordionTrigger = ({
         className={cn(
           "flex flex-1 items-center gap-3 text-left text-base rounded-xl tracking-[1px]",
           "bg-white pt-2! pb-2! pl-4! font-heading transition-all [&[data-state=open]>svg]:rotate-90",
-          "data-[state=open]:rounded-b-none data-[state=open]:border-b-1",
+          "data-[state=open]:rounded-b-none data-[state=open]:border-b",
           "disabled:pointer-events-none disabled:opacity-50",
           className,
         )}
