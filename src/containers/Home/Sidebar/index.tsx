@@ -8,6 +8,7 @@ import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { FONT_WEIGHT } from "@/src/constants/text";
 import { cn } from "@/lib";
 import { useSidebar } from "@/components/hooks";
+import { Tooltip } from "@/components/common";
 import { sidebarList } from "./helpers";
 
 const Sidebar = () => {
@@ -52,18 +53,27 @@ const Sidebar = () => {
                 router.push(item.route);
               }}
             >
-              <Icon 
-                size={24}
-                color={isActive ? '#2C3E50' : '#EFF2F4'}
-              />
-              {!isCollapsed &&  (
-                <Typography
-                  fontWeight={FONT_WEIGHT.BOLD}
-                  letterSpacing={1}
-                  color={isActive ? '#2C3E50' : '#EFF2F4'}
-                >
-                  {item.title}
-                </Typography>
+              {isCollapsed ? (
+                <Tooltip content={item.title} side='right'>
+                  <Icon 
+                    size={24}
+                    color={isActive ? '#2C3E50' : '#EFF2F4'}
+                  />
+                </Tooltip>
+              ) : (
+                <>
+                  <Icon 
+                    size={24}
+                    color={isActive ? '#2C3E50' : '#EFF2F4'}
+                  />
+                  <Typography
+                    fontWeight={FONT_WEIGHT.BOLD}
+                    letterSpacing={1}
+                    color={isActive ? '#2C3E50' : '#EFF2F4'}
+                  >
+                    {item.title}
+                  </Typography>
+                </>
               )}
             </Stack>
           );
