@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback } from "react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 import {
@@ -56,24 +56,34 @@ export const DialogProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [options, setOptions] = useState<OpenDialogOptions | null>(null);
 
-  const handleOpenDialog = (opts: OpenDialogOptions) => {
+  const open = useCallback((opts: OpenDialogOptions) => {
     setOptions(opts);
-    setOpen(true);
-  };
+    setIsOpen(true);
+  }, []);
+
+  const close = useCallback(() => {
+    setIsOpen(false);
+  }, []);
 
   const handleConfirmDialog = () => {
     options?.onConfirm?.();
-    setOptions(null);
-    setOpen(false);
+    close();
   };
 
   const handleCancelDialog = () => {
     options?.onCancel?.();
-    setOptions(null);
-    setOpen(false);
+    close();
+  };
+
+  const onOpenChange = (openState: boolean) => {
+    setIsOpen(openState);
+
+    if (!openState) {
+      setTimeout(() => setOptions(null), 200);
+    }
   };
 
   const sizeClass = {
@@ -84,16 +94,11 @@ export const DialogProvider = ({
   }[options?.size ?? "md"];
 
   return (
-    <DialogContext.Provider
-      value={{
-        open: handleOpenDialog,
-        close: handleCancelDialog,
-      }}
-    >
+    <DialogContext.Provider value={{ open, close }}>
       {children}
 
       {options?.type === 'alert' && (
-        <AlertDialog open={open} onOpenChange={setOpen}>
+        <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
           <AlertDialogContent className={sizeClass}>
               <AlertDialogHeader>
                 <AlertDialogTitle>
@@ -124,7 +129,7 @@ export const DialogProvider = ({
         </AlertDialog>
       )}
       {options?.type === 'dialog' && (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={isOpen} onOpenChange={onOpenChange}>
           <DialogContent className={sizeClass}>
             <DialogHeader>
               <DialogTitle>{options?.title}</DialogTitle>
@@ -154,7 +159,7 @@ export const DialogProvider = ({
         </Dialog>
       )}
       {options?.type === 'drawer' && (
-        <Drawer open={open} onOpenChange={setOpen} direction={options?.side ?? 'top'}>
+        <Drawer open={isOpen} onOpenChange={onOpenChange} direction={options?.side ?? 'top'}>
           <DrawerContent 
             className='flex flex-col bg-[#EFF2F4]'
             style={{ padding: '16px 24px' }}
