@@ -7,3 +7,4 @@ export * from './TimePicker';
 export * from './MultiSelect';
 export * from './Switch';
 export * from './Textarea';
+export * from './RadioGroup';

@@ -45,6 +45,7 @@ export const FormTextarea = ({
                 {...props}
                 className={cn(
                   error ? "border-red-500" : "border-none",
+                  props?.disabled ? 'bg-gray-300' : '',
                   className
                 )}
               />
