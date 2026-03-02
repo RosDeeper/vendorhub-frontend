@@ -10,3 +10,4 @@ export * from './NavigationMenu';
 export * from './DropdownMenu';
 export * from './Accordion';
 export * from './Tooltip';
+export * from './MenuBar';
