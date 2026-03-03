@@ -4,15 +4,17 @@ import {
   MenubarContent, 
   MenubarItem, 
   MenubarMenu, 
+  MenubarRadioItem, 
   MenubarSeparator, 
   MenubarSub, 
   MenubarSubContent, 
   MenubarSubTrigger, 
-  MenubarTrigger 
+  MenubarTrigger,
 } from "./lib-ui";
 
 type MenubarItemConfig = {
-  label: string;
+  label?: string;
+  value?: string;
   onClick?: () => void;
   inset?: boolean;
   disabled?: boolean;
@@ -57,6 +59,19 @@ const renderMenuItem = (item: MenubarItemConfig, index: number) => {
       >
         {item.label}
       </MenubarCheckboxItem>
+    );
+  }
+
+  if (item.type === "radio") {
+    return (
+      <MenubarRadioItem 
+        key={index} 
+        value={item.value || item.label || ""} 
+        onClick={item.onClick}
+        disabled={item.disabled}
+      >
+        {item.label}
+      </MenubarRadioItem>
     );
   }
 
