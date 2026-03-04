@@ -134,16 +134,14 @@ const EmailForm = ({ onNext, isForgotPassword }: Props) => {
 
           </Grid>
 
-          <Stack mt={4} justifyContent='center' direction='row'>
-            <Button
-              type="submit"
-              label={isForgotPassword ? 'Send OTP' : 'Get Started'}
-              variant='primary'
-              style={{ width: '100%' }}
-              disabled={(isLoading || !checked) && (!isForgotPassword || isSendForgotLoading)}
-              isLoading={isLoading || isSendForgotLoading}
-            />
-          </Stack>
+          <Button
+            type="submit"
+            label={isForgotPassword ? 'Send OTP' : 'Get Started'}
+            variant='primary'
+            style={{ width: '100%', marginTop: '32px', borderRadius: '99px' }}
+            disabled={(isLoading || !checked) && (!isForgotPassword || isSendForgotLoading)}
+            isLoading={isLoading || isSendForgotLoading}
+          />
         </form>
       </FormProvider>
       

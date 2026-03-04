@@ -140,16 +140,14 @@ const LoginPage = () => {
                       </Grid>
                     </Grid>
 
-                    <Stack mt={4} justifyContent='center' direction='row'>
-                      <Button
-                        type="submit"
-                        variant='secondary'
-                        label="Sign In"
-                        style={{ width: '100%' }}
-                        disabled={isLoading}
-                        isLoading={isLoading}
-                      />
-                    </Stack>
+                    <Button
+                      type="submit"
+                      variant='secondary'
+                      label="Sign In"
+                      style={{ width: '100%', marginTop: '32px', borderRadius: '99px' }}
+                      disabled={isLoading}
+                      isLoading={isLoading}
+                    />
                   </form>
                 </FormProvider>
 
